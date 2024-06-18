@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+      
+  <ui:composition template="#{paginasBean._template}"> 	  
+      <ui:define name="menu">
+         <div class="menu">
+              <div id="menu">	
+                    <h:form>
+                        <p:panelMenu class="AjusteMenuPrincipal"  stateful="false">
+	                        <p:submenu label="Vale Social" expanded="true">	                                 
+	                                <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{acessoBean.validausu(0)}" value="Iniciar Requerimento" url="CadastrarValeSocial.xhtml" />                       
+	                                <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{acessoBean.validausu(0)}" value="Consultar Requerimentos" url="ConsultarValeSocial.xhtml" />
+	                                <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{acessoBean.validausu(0)}" value="Retorno SETRANS" url="RetornoSeTrans.xhtml" />
+	                        </p:submenu>
+	                        <p:submenu label="Relatórios" expanded="true">
+			                        <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{acessoBean.validausu(0)}" value="Listagem de Requerimentos" url="RelatorioRequerimentos.xhtml" />
+			                        <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{acessoBean.validausu(0)}" value="Listagem de Requerimentos - Exportação Excel" url="ListagemRequerimentosExcel.xhtml" />
+			    			</p:submenu>
+	                        <p:submenu label="Opções" expanded="true">
+			                        <p:menuitem value="Sair" action="#{acessoBean.logout}" />
+			    			</p:submenu>
+                        </p:panelMenu>           
+                    </h:form>
+              </div>
+         </div>
+      </ui:define>
+  </ui:composition>
+</html>
+
+
+
+
+
+
+
