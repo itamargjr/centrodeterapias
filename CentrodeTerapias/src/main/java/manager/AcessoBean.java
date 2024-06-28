@@ -18,7 +18,7 @@ import persistence.Dao;
 
 /**
  * Bean de controle de acesso.
- * Todas as funções relativas
+ * Todas as funcoes relativas
  * ao acesso do sistema
  * 
  * @author itamar
@@ -45,7 +45,7 @@ public class AcessoBean implements Serializable {
 	private List<Ctrl_usuarios> usuarioslista;
 	private List<String> acessosmenulista;
 	
-	/* Função que mostra em qual banco a aplicação está conectada e retorna a String */
+	/* Funcao que mostra em qual banco a aplicacao esta conectada e retorna a String */
 	public String banco(){
 		
 		String cam;
@@ -56,7 +56,7 @@ public class AcessoBean implements Serializable {
 		return cam.substring(cam.length()-18, cam.length());
 	}
 	
-	/* Função que mostra o usuário logado */
+	/* Funcao que mostra o usuario logado */
 	public String usuariologado(){
 		
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true); 
@@ -138,10 +138,10 @@ public class AcessoBean implements Serializable {
 	}
 
 	/**
-	 * Função de acesso ao sistema.
+	 * Funï¿½ï¿½o de acesso ao sistema.
 	 * recebe login e senha do 
-	 * usuário e critica a 
-	 * existência
+	 * usuario e critica a 
+	 * existï¿½ncia
 	 * 
 	 */
 
@@ -155,7 +155,7 @@ public class AcessoBean implements Serializable {
 			Ctrl_usuarios usuariologado = ad.login(usuarios);
 			
 			if (usuariologado.getLogin_usu()==null) {						
-				FacesMessage msg = new FacesMessage("Login não efetuado", "Usuário inexistente, ou senha inválida!");
+				FacesMessage msg = new FacesMessage("Login nao efetuado", "Usuario inexistente, ou senha invalida!");
 				
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 				
@@ -196,7 +196,7 @@ public class AcessoBean implements Serializable {
 		
 	}
 	
-	/* Função que mostra nome da escola escolhida no login */
+	/* Funcao que mostra nome da escola escolhida no login */
 	public String Nomeescola(){
 
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true); 
@@ -209,7 +209,7 @@ public class AcessoBean implements Serializable {
 		}
 	}
 	
-	/* Função que mostra ID da escola escolhida no login */
+	/* Funcao que mostra ID da escola escolhida no login */
 	public String Idescola(){
 
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true); 
@@ -223,9 +223,9 @@ public class AcessoBean implements Serializable {
 	}
 	
 	/**
-	 * Função de saída do sistema
-	 * que limpa os dados da sessão
-	 * e redireciona o usuário para a 
+	 * Funcao de saida do sistema
+	 * que limpa os dados da sessao
+	 * e redireciona o usuario para a 
 	 * tela de login
 	 * 
 	 */
@@ -243,12 +243,12 @@ public class AcessoBean implements Serializable {
 	}
 	
 	/**
-	 * Função para confirmar se
-	 * existe algum usuário logado
+	 * Funcao para confirmar se
+	 * existe algum usuario logado
 	 * 
-	 * A lógica é: se o atributo
+	 * A logica e: se o atributo
 	 * login_usu da classe acessousuarios
-	 * não está nulo, então ele está
+	 * nao esta nulo, entao ele esta
 	 * logado 
 	 * 
 	 */
@@ -276,7 +276,7 @@ public class AcessoBean implements Serializable {
 	
 	
 	public String validausu(Integer item) throws Exception{
-		// alterar o AcessoBean para guardar também a variável de sessão usuadm - login()   
+		// alterar o AcessoBean para guardar tambeï¿½m a variavel de sessao usuadm - login()   
 		
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		Integer usulog = (Integer) session.getAttribute("idusulogado");
@@ -285,7 +285,7 @@ public class AcessoBean implements Serializable {
 		String desabilita;
 		
 		if (item==0) {
-			desabilita = "false"; // Falta implementar/não tem controle de acesso no XHTML - habilita tudo
+			desabilita = "false"; // Falta implementar/nao tem controle de acesso no XHTML - habilita tudo
 		} else if ((adm != null) && (adm.equals("S"))) 		 		
 			desabilita = "false"; // Administrador - habilita tudo
 		else{			
@@ -376,7 +376,7 @@ public class AcessoBean implements Serializable {
 			
 			ud.gravarusuario(usuarios);
 			
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário gravado com sucesso!", ""));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario gravado com sucesso!", ""));
 			
 			usuarios = new Ctrl_usuarios();
 			
@@ -398,7 +398,7 @@ public class AcessoBean implements Serializable {
 			
 			linhas = ud.alterarusuario(usuarios);
 			
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário gravado com sucesso! " + linhas + " registros alterados", ""));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario gravado com sucesso! " + linhas + " registros alterados", ""));
 			
 			usuarios = new Ctrl_usuarios();
 			
@@ -422,7 +422,7 @@ public class AcessoBean implements Serializable {
 			
 			buscarusuario();
 			
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário excluído com sucesso! " + linhas + " registros alterados", ""));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario excluido com sucesso! " + linhas + " registros alterados", ""));
 
 		} catch (Exception e) {
 			e.printStackTrace();

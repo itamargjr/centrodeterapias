@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.util.Locale;
 
 /**
- * Classe ancestral de acesso � base de dados
+ * Classe ancestral de acesso a base de dados
  * @author itamar
  *
  */

@@ -11,9 +11,9 @@ import manager.AcessoBean;
 /**
  * Classe que "escuta" o 
  * ciclo do JSF e implementa
- * o evento que captura a navegação entre 
- * páginas do projeto para impedir um
- * usuário não logado de acessar o
+ * o evento que captura a navegacao entre 
+ * paginas do projeto para impedir um
+ * usuario nao logado de acessar o
  * sistema 
  * 
  * @author itamar
@@ -33,8 +33,8 @@ public class Autorizador implements PhaseListener{
 		FacesContext context = event.getFacesContext();
 		
 		/**
-		 * Se a página a ser acessada é o index.xhtml
-		 * nada é feito, já que esta é a página de login
+		 * Se a pagina a ser acessada e o index.xhtml
+		 * nada e feito, ja que esta e a pagina de login
 		 */
 		
 		if ("/index.xhtml".equals(context.getViewRoot().getViewId())) {
@@ -42,18 +42,18 @@ public class Autorizador implements PhaseListener{
 		}
 		
 		/**
-		 * Instancializo o acessobean pq lá está a 
-		 * referência se o usuário já está logado
-		 * ou não.
+		 * Instancializo o acessobean pq la esta a 
+		 * referencia se o usuario ja esta logado
+		 * ou nao.
 		 * 
-		 * Isto é registrado no método booleano
+		 * Isto e registrado no metodo booleano
 		 * isLogado()
 		 */
 		
 		AcessoBean acessoBean = context.getApplication().evaluateExpressionGet(context, "#{acessoBean}", AcessoBean.class);
 		
 		/**
-		 * Se não estiver logado, volta pro index.xhtml
+		 * Se nao estiver logado, volta pro index.xhtml
 		 */
 		
 		if (!acessoBean.isLogado()) {
@@ -62,15 +62,11 @@ public class Autorizador implements PhaseListener{
 			handler.handleNavigation(context, null, "index?faces-redirect=true");
 			
 			context.renderResponse();
-		}
-				
-
-		
+		}		
 	}
 
 	@Override
 	public void beforePhase(PhaseEvent arg0) {
-
 		
 	}
 
@@ -79,6 +75,4 @@ public class Autorizador implements PhaseListener{
 		
 		return PhaseId.RESTORE_VIEW;
 	}
-	
-
 }
