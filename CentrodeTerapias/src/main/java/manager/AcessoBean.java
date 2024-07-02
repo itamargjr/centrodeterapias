@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.primefaces.PrimeFaces;
 
 import entity.Ctrl_usuarios;
-import persistence.Ctrl_usuariosDao;
+import persistence.AcessoDao;
 import persistence.Dao;
 
 /**
@@ -147,7 +147,7 @@ public class AcessoBean implements Serializable {
 
 	public String login(){
 		
-		Ctrl_usuariosDao ad = new Ctrl_usuariosDao();
+		AcessoDao ad = new AcessoDao();
 		
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		
@@ -289,7 +289,7 @@ public class AcessoBean implements Serializable {
 		} else if ((adm != null) && (adm.equals("S"))) 		 		
 			desabilita = "false"; // Administrador - habilita tudo
 		else{			
-			Ctrl_usuariosDao valida = new Ctrl_usuariosDao();
+			AcessoDao valida = new AcessoDao();
 			desabilita = valida.validaItemUsuario(usulog, item);
 		}
 
@@ -301,7 +301,7 @@ public class AcessoBean implements Serializable {
 		
 		//System.out.println("vou buscar");
 		
-		Ctrl_usuariosDao ud = new Ctrl_usuariosDao();
+		AcessoDao ud = new AcessoDao();
 		
 		try {
 			
@@ -319,7 +319,7 @@ public class AcessoBean implements Serializable {
 	}
 	
 	public String listarusuario() {
-		Ctrl_usuariosDao ud = new Ctrl_usuariosDao();
+		AcessoDao ud = new AcessoDao();
 		
 		try {
 			
@@ -370,7 +370,7 @@ public class AcessoBean implements Serializable {
 	
 	public void cadastrarusuario() {
 		
-		Ctrl_usuariosDao ud = new Ctrl_usuariosDao();
+		AcessoDao ud = new AcessoDao();
 		
 		try {
 			
@@ -392,7 +392,7 @@ public class AcessoBean implements Serializable {
 		
 		Integer linhas = 0;
 		
-		Ctrl_usuariosDao ud = new Ctrl_usuariosDao();
+		AcessoDao ud = new AcessoDao();
 		
 		try {
 			
@@ -416,7 +416,7 @@ public class AcessoBean implements Serializable {
 		
 		try {
 			
-			linhas = new Ctrl_usuariosDao().excluirUsuario(usuarios);
+			linhas = new AcessoDao().excluirUsuario(usuarios);
 			
 			usuarios = new Ctrl_usuarios();
 			
