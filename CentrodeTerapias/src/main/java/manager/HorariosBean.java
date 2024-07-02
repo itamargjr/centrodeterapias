@@ -10,43 +10,45 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.PrimeFaces;
 
-import entity.Pacientes;
-import persistence.PacientesDao;
+import entity.Horarios;
+import persistence.HorariosDao;
 
 @ManagedBean
 @ViewScoped
-public class PacientesBean {
+public class HorariosBean {
 	
-	Pacientes pacientes;
+	Horarios horarios;
 	
-	List<Pacientes> pacienteslista;
+	List<Horarios> horarioslista;
 	
-	public PacientesBean() {
-		pacientes = new Pacientes();
+	public HorariosBean() {
 		
-		pacienteslista = new ArrayList<Pacientes>();
+		horarios = new Horarios();
+		
+		horarioslista = new ArrayList<Horarios>();
+
 	}
 
-	public Pacientes getPacientes() {
-		return pacientes;
+	public Horarios getHorarios() {
+		return horarios;
 	}
 
-	public void setPacientes(Pacientes pacientes) {
-		this.pacientes = pacientes;
+	public void setHorarios(Horarios horarios) {
+		this.horarios = horarios;
 	}
 
-	public List<Pacientes> getPacienteslista() {
-		return pacienteslista;
+	public List<Horarios> getHorarioslista() {
+		return horarioslista;
 	}
 
-	public void setPacienteslista(List<Pacientes> pacienteslista) {
-		this.pacienteslista = pacienteslista;
+	public void setHorarioslista(List<Horarios> horarioslista) {
+		this.horarioslista = horarioslista;
 	}
 	
 	public void Buscar() {
 		try {
 			
-			pacienteslista = new PacientesDao().findAll(pacientes);
+			horarioslista = new HorariosDao().findAll(horarios);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -59,16 +61,12 @@ public class PacientesBean {
 		PrimeFaces.current().executeScript("PF('dialogocadastro').show();");
 	}
 	
-	public void abrirdialogodetalhe() {
-		PrimeFaces.current().executeScript("PF('dialogodetalhe').show();");
-	}
-	
 	public void gravar() {
 		try {
 			
-			PacientesDao pd = new PacientesDao(); 
+			HorariosDao pd = new HorariosDao(); 
 			
-			pd.gravar(pacientes);
+			pd.gravar(horarios);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

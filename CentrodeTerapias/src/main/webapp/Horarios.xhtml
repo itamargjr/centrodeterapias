@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      >
+
+<ui:composition template="#{paginasBean._template}">  
+    <ui:define name="corpo">
+    
+    	<p:messages />
+    	
+    	<p:panel header="Cadastro de Horários">
+    		<h:form id="formbusca">
+    		
+    			<p:growl id="growl" showDetail="true" sticky="true" /> 
+
+   				<div class="ObjetosLinha">
+   					<div class="ObjetosColuna">
+						<p:outputLabel value="Horário"/>
+     					<p:inputText onfocus="StringMaiuscula(this, 60)" value="#{horariosBean.horarios.descricao_horario}" 
+     						styleClass="TamanhoPP"/>
+     				</div>
+				</div>
+	      			 
+         		<br/>
+         			
+			     <p:commandButton styleClass="BotaoPrimario" action="#{profissionaisBean.Buscar}" value="Buscar"  
+			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" update="formdados"/>  
+			     	
+			     <p:commandButton styleClass="BotaoSecundario" action="#{profissionaisBean.AbrirDialogoCadastro}" value="Cadastrar" 
+			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" update="formcadastro"/>    			
+      			
+      		</h:form>
+    	</p:panel>
+    	
+    	<p:panel>
+    		<h:form id="formdados">
+    			<p:dataTable value="#{horariosBean.horarioslista}" var="hor" id="dataTableDetalhe" rows="20" paginator="true" 
+                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}{RowsPerPageDropdown}"
+                 currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                 rowsPerPageTemplate="5,10,15">
+
+					<p:column headerText="Horário">
+   						<p:outputLabel value="#{hor.descricao_horario}" />
+   					</p:column>
+					
+					<p:column>
+						<p:commandLink value="Detalhe" action="#{horariosBean.abrirdialogodetalhe}" update="formdetalhe">
+							<f:setPropertyActionListener value="#{pac}" target="#{horariosBean.horarios}" />
+						</p:commandLink>
+					</p:column>
+				</p:dataTable>
+    		</h:form>
+    	</p:panel>
+			
+		<p:dialog header="Cadastro de Horários" widgetVar="dialogocadastro">
+
+    		<h:form id="formcadastro">
+    		
+    			<p:growl id="growl" showDetail="true" sticky="true" /> 
+    		
+   				<div class="ObjetosLinha">
+   					<div class="ObjetosColuna">
+						<p:outputLabel value="Horário"/>
+   						<p:inputText onfocus="StringMaiuscula(this, 60)" value="#{horariosBean.horarios.descricao_horario}" 
+   							styleClass="TamanhoM" required="true" requiredMessage="por favor informe o horário"/>
+   					</div>				
+      			</div>
+
+	      			 
+         		<br/>
+         			
+			     <p:commandButton styleClass="BotaoPrimario" action="#{horariosBean.gravar}" value="Gravar" 
+			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />      			
+      			
+      		</h:form>
+   	  </p:dialog>
+
+    </ui:define>
+  </ui:composition>   
+</html>
+
+

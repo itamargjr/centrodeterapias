@@ -10,43 +10,43 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.PrimeFaces;
 
-import entity.Pacientes;
-import persistence.PacientesDao;
+import entity.Profissionais;
+import persistence.ProfissionaisDao;
 
 @ManagedBean
 @ViewScoped
-public class PacientesBean {
+public class ProfissionaisBean {
 	
-	Pacientes pacientes;
+	Profissionais profissionais;
 	
-	List<Pacientes> pacienteslista;
+	List<Profissionais> profissionaislista;
 	
-	public PacientesBean() {
-		pacientes = new Pacientes();
+	public ProfissionaisBean() {
+		profissionais = new Profissionais();
 		
-		pacienteslista = new ArrayList<Pacientes>();
+		profissionaislista = new ArrayList<Profissionais>();
 	}
 
-	public Pacientes getPacientes() {
-		return pacientes;
+	public Profissionais getProfissionais() {
+		return profissionais;
 	}
 
-	public void setPacientes(Pacientes pacientes) {
-		this.pacientes = pacientes;
+	public void setProfissionais(Profissionais profissionais) {
+		this.profissionais = profissionais;
 	}
 
-	public List<Pacientes> getPacienteslista() {
-		return pacienteslista;
+	public List<Profissionais> getProfissionaislista() {
+		return profissionaislista;
 	}
 
-	public void setPacienteslista(List<Pacientes> pacienteslista) {
-		this.pacienteslista = pacienteslista;
+	public void setProfissionaislista(List<Profissionais> profissionaislista) {
+		this.profissionaislista = profissionaislista;
 	}
 	
 	public void Buscar() {
 		try {
 			
-			pacienteslista = new PacientesDao().findAll(pacientes);
+			profissionaislista = new ProfissionaisDao().findAll(profissionais);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -66,9 +66,9 @@ public class PacientesBean {
 	public void gravar() {
 		try {
 			
-			PacientesDao pd = new PacientesDao(); 
+			ProfissionaisDao pd = new ProfissionaisDao(); 
 			
-			pd.gravar(pacientes);
+			pd.gravar(profissionais);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

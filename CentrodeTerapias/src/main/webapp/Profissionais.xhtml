@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      >
+
+<ui:composition template="#{paginasBean._template}">  
+    <ui:define name="corpo">
+    
+    	<p:messages />
+    	
+    	<p:panel header="Cadastro de Profissionais">
+    		<h:form id="formbusca">
+    		
+    			<p:growl id="growl" showDetail="true" sticky="true" /> 
+
+   				<div class="ObjetosLinha">
+   					<div class="ObjetosColuna">
+						<p:outputLabel value="Nome"/>
+     					<p:inputText onfocus="StringMaiuscula(this, 60)" value="#{profissionaisBean.profissionais.nome_cteprof}" 
+     						styleClass="TamanhoPP"/>
+     				</div> 
+					<div class="ObjetosColuna">
+						<p:outputLabel value="Tipo" />
+						<p:selectOneMenu value="#{profissionaisBean.profissionais.tipo_cteprof}" styleClass="TamanhoSelectMIN">
+								<f:selectItem itemValue="" itemLabel="" />
+								<f:selectItem itemValue="1" itemLabel="Assistente Social" />
+								<f:selectItem itemValue="2" itemLabel="Fisioterapeuta" /> 	
+								<f:selectItem itemValue="3" itemLabel="Psicóloga" /> 	
+								<f:selectItem itemValue="4" itemLabel="Pedagoga" /> 
+								<f:selectItem itemValue="5" itemLabel="Professora" />
+								<f:selectItem itemValue="6" itemLabel="Funcionário" />  									
+						</p:selectOneMenu>
+					</div>
+				</div>
+	      			 
+         		<br/>
+         			
+			     <p:commandButton styleClass="BotaoPrimario" action="#{profissionaisBean.Buscar}" value="Buscar"  
+			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" update="formdados"/>  
+			     	
+			     <p:commandButton styleClass="BotaoSecundario" action="#{profissionaisBean.AbrirDialogoCadastro}" value="Cadastrar" 
+			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" update="formcadastro"/>    			
+      			
+      		</h:form>
+    	</p:panel>
+    	
+    	<p:panel>
+    		<h:form id="formdados">
+    			<p:dataTable value="#{profissionaisBean.profissionaislista}" var="prof" id="dataTableDetalhe" rows="20" paginator="true" 
+                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}{RowsPerPageDropdown}"
+                 currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                 rowsPerPageTemplate="5,10,15">
+
+					<p:column headerText="Profissional">
+   						<p:outputLabel value="#{prof.nome_cteprof}" />
+   					</p:column>
+						
+					<p:column headerText="Tipo">
+						<p:outputLabel value="#{prof.tipo_cteprof}"/>
+					</p:column>
+					
+					<p:column headerText="Email">
+   						<p:outputLabel value="#{prof.email_cteprof}" />
+   					</p:column>
+					
+					<p:column>
+						<p:commandLink value="Detalhe" action="#{profissionaisBean.abrirdialogodetalhe}" update="formdetalhe">
+							<f:setPropertyActionListener value="#{pac}" target="#{profissionaisBean.profissionais}" />
+						</p:commandLink>
+					</p:column>
+				</p:dataTable>
+    		</h:form>
+    	</p:panel>
+			
+		<p:dialog header="Cadastro de Profissionais" widgetVar="dialogocadastro">
+
+    		<h:form id="formcadastro">
+    		
+    			<p:growl id="growl" showDetail="true" sticky="true" /> 
+    		
+   				<div class="ObjetosLinha">
+   					<div class="ObjetosColuna">
+						<p:outputLabel value="Nome"/>
+   						<p:inputText onfocus="StringMaiuscula(this, 60)" value="#{profissionaisBean.profissionais.nome_cteprof}" 
+   							styleClass="TamanhoM" required="true" requiredMessage="por favor informe o nome do profissional"/>
+   					</div> 
+   					
+   					<div class="ObjetosColuna">
+						<p:outputLabel value="Tipo" />
+						<p:selectOneMenu value="#{profissionaisBean.profissionais.tipo_cteprof}" styleClass="TamanhoSelectMIN"
+							 required="true" requiredMessage="por favor informe o nome do tipo">
+							<f:selectItem itemValue="6" itemLabel="Funcionário" />
+							<f:selectItem itemValue="1" itemLabel="Assistente Social" />
+							<f:selectItem itemValue="2" itemLabel="Fisioterapeuta" /> 	
+							<f:selectItem itemValue="3" itemLabel="Psicóloga" /> 	
+							<f:selectItem itemValue="4" itemLabel="Pedagoga" /> 
+							<f:selectItem itemValue="5" itemLabel="Professora" />							  									
+						</p:selectOneMenu>
+					</div>
+					<div class="ObjetosColuna">
+						<p:outputLabel value="Telefone"/>
+   						<p:inputText onfocus="NumericoInteiroLimite(this, 11)" value="#{profissionaisBean.profissionais.telefone_cteprof}" 
+   							styleClass="TamanhoPP" required="true" requiredMessage="Favor informar o telefone"/>
+   					</div>     					
+   					
+				</div>
+				<div class="ObjetosLinha">
+					<div class="ObjetosColuna">
+   						<p:outputLabel value="Registro"/>
+   						<p:inputText onfocus="NumericoInteiroLimite(this, 100)" value="#{profissionaisBean.profissionais.registro_cteprof}" 
+   							styleClass="TamanhoPP"/>
+   					</div>
+   					
+   					<div class="ObjetosColuna">
+   						<p:outputLabel value="CPF"/>
+   						<p:inputText onfocus="Cpf(this)" value="#{profissionaisBean.profissionais.cpf_cteprof}" 
+   							styleClass="TamanhoPP"/>
+   					</div>
+				</div>
+				<div class="ObjetosLinha">					 
+				       					
+					<div class="ObjetosColuna">
+						<p:outputLabel value="Email" />
+						<p:inputText onfocus="StringMaiuscula(this, 200)" value="#{profissionaisBean.profissionais.email_cteprof}" styleClass="TamanhoP"/>
+					</div>
+					
+					<div class="ObjetosColuna">
+ 						<p:outputLabel value="Endereço"/>
+           				<p:inputText onfocus="StringMaiuscula(this, 200)" value="#{profissionaisBean.profissionais.endereco_cteprof}" 
+           				maxlength="30" styleClass="TextoCaixaAlta TamanhoG" required="true" requiredMessage="por favor informe o logradouro"/>
+    				</div>				
+      			</div>
+
+	      			 
+         		<br/>
+         			
+			     <p:commandButton styleClass="BotaoPrimario" action="#{profissionaisBean.gravar}" value="Gravar" 
+			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />      			
+      			
+      		</h:form>
+   	  </p:dialog>
+   	  
+   	  <p:dialog header="Consulta de Profissionais" widgetVar="dialogodetalhe">
+
+    		<h:form id="formdetalhe">
+    		
+    			      			
+      			
+      		</h:form>
+   	  </p:dialog>
+
+    </ui:define>
+  </ui:composition>   
+</html>
+
+

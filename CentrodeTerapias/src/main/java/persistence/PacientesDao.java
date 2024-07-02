@@ -3,6 +3,9 @@ package persistence;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+
 import entity.Pacientes;
 
 public class PacientesDao extends Dao {
@@ -59,5 +62,64 @@ public class PacientesDao extends Dao {
 		close();
 		
 		return lista;
+	}
+	
+	public void gravar(Pacientes pac)throws Exception{
+		open();
+		
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+		
+		String usuario = "NAO IDENTIFICADO";
+		
+		if (session.getAttribute("loginusulogado")!=null) {
+			usuario = session.getAttribute("loginusulogado").toString();
+		}
+		
+		String sql = "insert into cte_pacientes  " +
+				     "  (id_ctepac, nome_ctepac, datanasc_ctepac, identidade_ctepac, cpf_ctepac, " + 
+				     "  cartsus_ctepac, pai_ctepac, escolpai_ctepac, telpai_ctepac, mae_ctepac, " + 
+				     "  escolmae_ctepac, telmae_ctepac, responsavel_ctepac, emailresp_ctepac, " + 
+				     "  telresp_ctepac, primfilho_ctepac, irmaos_ctepac, pessoasconv_ctepac, " + 
+				     "  endereco_ctepac, bairro_ctepac, cep_ctepac, escola_ctepac, turno_ctepac,  " +
+				     "  turma_ctepac, dataencam_ctepac, respencam_ctepac) " +
+				     "values " +
+				     "  (0, ?, ?, ?, ?, " + 
+				     "  ?, ?, ?, ?, ?, " + 
+				     "  ?, ?, ?, ?, " + 
+				     "  ?, ?, ?, ?, " + 
+				     "  ?, ?, ?, ?, ?,  " +
+				     "  ?, ?, ?) ";
+		
+		stmt = con.prepareStatement(sql);
+		
+		stmt.setString(1, pac.getNome_ctepac());
+		stmt.setString(2, pac.getDatanasc_ctepac());
+		stmt.setString(3, pac.getIdentidade_ctepac());
+		stmt.setString(4, pac.getCpf_ctepac());
+		stmt.setString(5, pac.getCartsus_ctepac());
+		stmt.setString(6, pac.getPai_ctepac());
+		stmt.setString(7, pac.getEscolpai_ctepac());
+		stmt.setString(8, pac.getTelpai_ctepac());
+		stmt.setString(9, pac.getMae_ctepac());
+		stmt.setString(10, pac.getEscolmae_ctepac());
+		stmt.setString(11, pac.getTelmae_ctepac());
+		stmt.setString(12, pac.getResponsavel_ctepac());
+		stmt.setString(13, pac.getEmailresp_ctepac());
+		stmt.setString(14, pac.getTelresp_ctepac());
+		stmt.setString(15, pac.getPrimfilho_ctepac());
+		stmt.setString(16, pac.getIrmaos_ctepac());
+		stmt.setString(17, pac.getPessoasconv_ctepac());
+		stmt.setString(18, pac.getEndereco_ctepac());
+		stmt.setString(19, pac.getBairro_ctepac());
+		stmt.setString(20, pac.getCep_ctepac());
+		stmt.setString(21, pac.getEscola_ctepac());
+		stmt.setString(22, pac.getTurno_ctepac());
+		stmt.setString(23, pac.getTurma_ctepac());
+		stmt.setString(24, pac.getDataencam_ctepac());
+		stmt.setString(25, usuario);
+
+		stmt.executeUpdate();
+		
+		close();
 	}
 }
