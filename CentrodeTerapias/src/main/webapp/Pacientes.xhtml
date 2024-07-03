@@ -63,7 +63,7 @@
     			<p:dataTable value="#{pacientesBean.pacienteslista}" var="pac" id="dataTableDetalhe" rows="20" paginator="true" 
                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}{RowsPerPageDropdown}"
                  currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
-                 rowsPerPageTemplate="5,10,15">
+                 rowsPerPageTemplate="5,10,15" styleClass="Tabela">
 
 					<p:column headerText="Paciente">
    						<p:outputLabel value="#{pac.nome_ctepac}" />

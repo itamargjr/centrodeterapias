@@ -21,12 +21,12 @@ public class PaginasBean {
 	
 	private final String _template = "templates/_template_V2.0.xhtml";
 	
-	// Strings dos arquivos, eles estão sendo usados no componente _Head resources/components
+	// Strings dos arquivos, eles estao sendo usados no componente _Head resources/components
 		private final String reset = "reset_V1.0.css";
-		private final String style = "style_V3.0.css";
+		private final String style = "style_V5.0.css";
 		private final String styleRelatorio = "styleRelatorio_V2.0.css";
-		private final String tamanho320px = "tamanho320px_V1.0.css";
-		private final String variaveis = "variaveis.css";
+		private final String tamanho320px = "tamanho320px_V2.0.css";
+		private final String variaveis = "variaveis_V2.0.css";
 		private final String funcoes = "funcoes_V1.0.js";
 		private final String mascaras = "mascaras_V1.0.js";
 		private final String _relatorioBasico = "templates/_RelatorioBasico_V2.0.xhtml";
@@ -63,9 +63,9 @@ public class PaginasBean {
 		PrimeFaces.current().executeScript(js); // Alterado para o primefaces 8 (itamar)
 	}
 	
-	/* Diferença entre Redirect e Forward e a quantidade de requisições utilizadas,
-	 * os dois servem para mudar a "view"(página) do usuário,
-	 * isso fará diferença dependendo do Bean utlizado (para mais informações consultar documentação: tema grande).
+	/* Diferenca entre Redirect e Forward e a quantidade de requisicoes utilizadas,
+	 * os dois servem para mudar a "view"(pagina) do usuario,
+	 * isso fara diferenca dependendo do Bean utlizado (para mais informacoes consultar documentacao: tema grande).
 	 */
 	public void Redirecionar(String pagina) throws Exception{
 		FacesContext.getCurrentInstance().getExternalContext().redirect(pagina);
@@ -77,8 +77,8 @@ public class PaginasBean {
 	
 	/* *Flash Scope */
 		/* *
-		 * Flash Scope é um recurso que permite trasmitir variáveis e objetos entre views 
-		 * Obs:. O flash Scope toda vez após um request tudo que está no flashScope é apagado da memória
+		 * Flash Scope ï¿½ um recurso que permite trasmitir variaveis e objetos entre views 
+		 * Obs:. O flash Scope toda vez apos um request tudo que esta no flashScope e apagado da memoria
 		 * se precisar que ele "sobreviva" mais um request use a propriedade "Keep" 
 		 * */
 		public void SetPropriedadeFlashScope(String texto, Object obj){

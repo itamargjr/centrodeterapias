@@ -17,10 +17,11 @@
 		margin-right: 8px;
    		margin-top: 1px;
     	padding: 2px 10px 2px 10px;
+    	background: var(--corPrincipal);
 	}
 	
 	.BotaoPrimario.ui-button:hover{
-		background-color: var(--corPrincipal);
+		background-color: var(--corSecundariaClara);
 		box-shadow: 0px 0px 5px var(--corSecundaria);
 		border: 1px solid var(--corPrincipal);
 	}
@@ -32,16 +33,19 @@
 		outline: none; 
 	}
 	
-	.BotaoSecundario.ui-button{
+	.BotaoSecundario.ui-button{ /* Alterado na versão 4.0 */
 		border: none;
 		background-color: #fff;
 		margin-right: 8px;
 	    margin-top: 1px;
 	    padding: 2px 10px 2px 10px;
+	    color: var(--corSecundaria);
 	}
 	
-	.BotaoSecundario.ui-button:hover{
+	.BotaoSecundario.ui-button:hover{ /* Alterado na versão 4.0 */
 		box-shadow: 0px 0px 5px var(--corSecundaria);
+		background: var(--corPrincipal);
+		color: var(--corLetra);
 	}
 	
 	.BotaoSecundario.ui-button:focus{
@@ -122,7 +126,8 @@
 	}
 	
 	.AjusteMenuPrincipal .ui-panelmenu-header{
-		background-color: var(--corLetra);
+		background-color: var(--corPrincipal) !important;
+		color: var(--corLetra) !important;
 	}
 	
 	.AjusteMenuPrincipal .ui-panelmenu-header:active{
@@ -134,11 +139,65 @@
 	}	
 	
 	.AjusteMenuPrincipal .ui-menuitem .ui-menuitem-link:hover{
-		background-color: var(--corLetra);
 		box-shadow: 0px 0px 5px var(--corPrincipal);
 		margin: 0 5px;
 	}
+
 /* End Menu */
+
+/* Tab View */ /* 5.0 */
+
+	.TabView.ui-tabs.ui-tabs-top > .ui-tabs-nav{
+		background-color: var(--corHeader);
+	}
+	
+	.TabViewTabs.ui-tabs-header{
+		background-color: var(--corHEader) !important;
+	}
+	
+	.TabViewTabs.ui-state-active{
+		background-color: var(--corPrincipal) !important;
+		color: black !important;
+	}
+	
+	.TabViewTabs.ui-state-active a {
+		color: var(--corBranco) !important;
+	}
+	
+	.TabViewTabs.ui-tabs-selected{
+		border-color: var(--corPrincipal) !important;
+		color: black !important;
+	}
+
+/* End Tab View */
+
+/* DataTable */ /* 5.0 */
+	
+	.Tabela.ui-datatable table{		
+		border-collapse: unset;
+	}
+	
+	.Tabela.ui-datatable thead th{		
+		text-align: center;
+	}
+	
+	.Tabela.ui-datatable tfoot td{		
+		text-align: right;
+	} 
+	
+	.Tabela.ui-datatable .ui-datatable-header {
+		text-align: center;
+	}
+
+	.ui-datatable .ui-datatable-data .even-row td{
+		background-color:var(--corZebraGrid);
+	}
+	
+	.ui-datatable .ui-datatable-data .odd-row td{		
+		background-color:var(--corBranco);
+	}
+
+/* End Tab View */
 	
 /* Tamanhos */
 	/*
@@ -151,7 +210,7 @@
 	}
 	
 	.TamanhoPPP.ui-inputfield{
-		width: 80.0px;
+		width: 75.0px;
 	}
 	
 	.TamanhoPP.ui-inputfield{
@@ -186,6 +245,10 @@
 		width: 12.5%;
 	}
 	
+	.TamanhoFluidPPP.ui-inputfield{
+		width: 7.5%;
+	}
+	
 	.TamanhoFluidPP.ui-inputfield{
 		width: 25%;
 	}
@@ -216,11 +279,11 @@
 	
 	.TamanhoMIN.ui-inputfield, .TamanhoPP.ui-inputfield, .TamanhoP.ui-inputfield,
 	.TamanhoM.ui-inputfield, .TamanhoG.ui-inputfield, .TamanhoGG.ui-inputfield,
-	.TamanhoXGG.ui-inputfield, .TamanhoMax.ui-inputfield, .TamanhoPPP.ui-inputfield,
+	.TamanhoXGG.ui-inputfield, .TamanhoMax.ui-inputfield, .TamanhoPPP.ui-inputfield, 
 	
 	.TamanhoFluidMIN.ui-inputfield, .TamanhoFluidPP.ui-inputfield, .TamanhoFluidP.ui-inputfield,
 	.TamanhoFluidM.ui-inputfield, .TamanhoFluidG.ui-inputfield, .TamanhoFluidGG.ui-inputfield,
-	.TamanhoFluidXGG.ui-inputfield, .TamanhoFluidMax.ui-inputfield{
+	.TamanhoFluidXGG.ui-inputfield, .TamanhoFluidMax.ui-inputfield, .TamanhoFluidPP.ui-inputfield{
 		margin: 1px 10px 3px 0;
 		padding: 7px 0 5px 8px;
 	}
@@ -233,7 +296,7 @@
 	.TamanhoGG.ui-inputfield:focus, .TamanhoGG.ui-inputfield:hover,
 	.TamanhoXGG.ui-inputfield:focus, .TamanhoXGG.ui-inputfield:hover,
 	.TamanhoMAX.ui-inputfield:focus, .TamanhoMAX.ui-inputfield:hover,
-	.TamanhoPPP.ui-inputfield:focus, .TamanhoPPP.ui-inputfield:hover
+	.TamanhoPPP.ui-inputfield:focus, .TamanhoPPP.ui-inputfield:hover,
 	
 	.TamanhoFluidMIN.ui-inputfield:focus, .TamanhoFluidMIN.ui-inputfield:hover,
 	.TamanhoFluidPP.ui-inputfield:focus, .TamanhoFluidPP.ui-inputfield:hover,
@@ -242,7 +305,8 @@
 	.TamanhoFluidG.ui-inputfield:focus, .TamanhoFluidG.ui-inputfield:hover,
 	.TamanhoFluidGG.ui-inputfield:focus, .TamanhoGG.ui-inputfield:hover,
 	.TamanhoFluidXGG.ui-inputfield:focus, .TamanhoXGG.ui-inputfield:hover,
-	.TamanhoFluidMAX.ui-inputfield:focus, .TamanhoMAX.ui-inputfield:hover{
+	.TamanhoFluidMAX.ui-inputfield:focus, .TamanhoMAX.ui-inputfield:hover,
+	.TamanhoFluidPP.ui-inputfield:focus, .TamanhoFluidPP.ui-inputfield:hover{
 		border-color: var(--corPrincipal);
 		box-shadow: 0px 0px 5px var(--corPrincipal), inset 0 2px 2px #8f8f8f;
 	}
@@ -254,7 +318,7 @@
 	}
 	
 	.TamanhoNumberPPP.ui-inputnumber{
-		width: 80.0px;
+		width: 75.0px;
 	}
 	
 	.TamanhoNumberPP.ui-inputnumber{
@@ -287,6 +351,10 @@
 	
 	.TamanhoNumberFluidMIN.ui-inputnumber{
 		width: 12.5%;
+	}
+	
+	.TamanhoNumberFluidPPP.ui-inputnumber{
+		width: 7.5%;
 	}
 	
 	.TamanhoNumberFluidPP.ui-inputnumber{
@@ -323,7 +391,7 @@
 	
 	.TamanhoNumberFluidMIN.ui-inputnumber, .TamanhoNumberFluidPP.ui-inputnumber, .TamanhoNumberFluidP.ui-inputnumber,
 	.TamanhoNumberFluidM.ui-inputnumber, .TamanhoNumberFluidG.ui-inputnumber, .TamanhoNumberFluidGG.ui-inputnumber,
-	.TamanhoNumberFluidXGG.ui-inputnumber, .TamanhoNumberFluidMax.ui-inputnumber{
+	.TamanhoNumberFluidXGG.ui-inputnumber, .TamanhoNumberFluidMax.ui-inputnumber, .TamanhoNumberFluidPPP.ui-inputnumber{
 		margin: 0 10px 3px 0;
 		padding: 0 10px 0 4px;
 	}
@@ -343,9 +411,10 @@
 	.TamanhoNumberFluidP.ui-inputnumber:focus, .TamanhoNumberFluidP.ui-inputnumber:hover,
 	.TamanhoNumberFluidM.ui-inputnumber:focus, .TamanhoNumberFluidM.ui-inputnumber:hover,
 	.TamanhoNumberFluidG.ui-inputnumber:focus, .TamanhoNumberFluidG.ui-inputnumber:hover,
-	.TamanhoNumberFluidGG.ui-inputnumber:focus, .TamanhoNumberGG.ui-inputnumber:hover,
-	.TamanhoNumberFluidXGG.ui-inputnumber:focus, .TamanhoNumberXGG.ui-inputnumber:hover,
-	.TamanhoNumberFluidMAX.ui-inputnumber:focus, .TamanhoNumberMAX.ui-inputnumber:hover{
+	.TamanhoNumberFluidGG.ui-inputnumber:focus, .TamanhoNumberFluidGG.ui-inputnumber:hover,
+	.TamanhoNumberFluidXGG.ui-inputnumber:focus, .TamanhoNumberFluidXGG.ui-inputnumber:hover,
+	.TamanhoNumberFluidMAX.ui-inputnumber:focus, .TamanhoNumberFluidMAX.ui-inputnumber:hover,
+	.TamanhoNumberFluidPPP.ui-inputnumber:focus, .TamanhoNumberFluidPPP.ui-inputnumber:hover{
 		border-color: var(--corPrincipal);
 		box-shadow: 0px 0px 5px var(--corPrincipal), inset 0 2px 2px #8f8f8f;
 	}
@@ -353,6 +422,10 @@
 	/* TamanhoSelect */
 		.TamanhoSelectMIN.ui-selectonemenu{
 			width: 126.75px !important;
+		}
+				
+		.TamanhoSelectPPP.ui-selectonemenu{
+			width: 90px !important;
 		}
 				
 		.TamanhoSelectPP.ui-selectonemenu{
@@ -382,7 +455,7 @@
 		.TamanhoSelectMIN.ui-selectonemenu, .TamanhoSelectPP.ui-selectonemenu, 
 		.TamanhoSelectP.ui-selectonemenu, .TamanhoSelectM.ui-selectonemenu, 
 		.TamanhoSelectG.ui-selectonemenu, .TamanhoSelectGG.ui-selectonemenu, 
-		.TamanhoSelectXGG.ui-selectonemenu{
+		.TamanhoSelectXGG.ui-selectonemenu, .TamanhoSelectPPP.ui-selectonemenu{
 			margin-right: 10px;
 			margin: 1px 10px 3px 0;
 		}
@@ -393,7 +466,8 @@
 		.TamanhoSelectM.ui-selectonemenu.ui-state-hover, .TamanhoSelectM.ui-selectonemenu.ui-state-focus,
 		.TamanhoSelectG.ui-selectonemenu.ui-state-hover, .TamanhoSelectG.ui-selectonemenu.ui-state-focus,
 		.TamanhoSelectGG.ui-selectonemenu.ui-state-hover, .TamanhoSelectGG.ui-selectonemenu.ui-state-focus,
-		.TamanhoSelectXGG.ui-selectonemenu.ui-state-hover, .TamanhoSelectXGG.ui-selectonemenu.ui-state-focus{
+		.TamanhoSelectXGG.ui-selectonemenu.ui-state-hover, .TamanhoSelectXGG.ui-selectonemenu.ui-state-focus,
+		.TamanhoSelectPPP.ui-selectonemenu.ui-state-hover, .TamanhoSelectPPP.ui-selectonemenu.ui-state-focus{
 			border: 1px solid var(--corPrincipal);
 			box-shadow: 0px 0px 5px var(--corPrincipal);
 		}
@@ -401,7 +475,8 @@
 		.TamanhoSelectMIN .ui-selectonemenu-label, .TamanhoSelectPP .ui-selectonemenu-label, 
 		.TamanhoSelectP .ui-selectonemenu-label, .TamanhoSelectM .ui-selectonemenu-label, 
 		.TamanhoSelectG .ui-selectonemenu-label, .TamanhoSelectGG .ui-selectonemenu-label, 
-		.TamanhoSelectXGG .ui-selectonemenu-label, .TamanhoSelectFluidMAX .ui-selectonemenu-label{
+		.TamanhoSelectXGG .ui-selectonemenu-label, .TamanhoSelectFluidMAX .ui-selectonemenu-label, 
+		.TamanhoSelectPPP .ui-selectonemenu-label, .TamanhoSelectPPP .ui-selectonemenu-label{
 			width: auto !important;
 			text-indent: 9px;
 	
@@ -414,7 +489,8 @@
 		.TamanhoSelectM .ui-selectonemenu-trigger.ui-state-hover, .TamanhoSelectM .ui-selectonemenu-trigger.ui-state-focus,
 		.TamanhoSelectG .ui-selectonemenu-trigger.ui-state-hover, .TamanhoSelectG .ui-selectonemenu-trigger.ui-state-focus,
 		.TamanhoSelectGG .ui-selectonemenu-trigger.ui-state-hover, .TamanhoSelectGG .ui-selectonemenu-trigger.ui-state-focus,
-		.TamanhoSelectXGG .ui-selectonemenu-trigger.ui-state-hover, .TamanhoSelectXGG .ui-selectonemenu-trigger.ui-state-focus{
+		.TamanhoSelectXGG .ui-selectonemenu-trigger.ui-state-hover, .TamanhoSelectXGG .ui-selectonemenu-trigger.ui-state-focus,
+		.TamanhoSelectPPP .ui-selectonemenu-trigger.ui-state-hover, .TamanhoSelectPPP .ui-selectonemenu-trigger.ui-state-focus{
 			background-color: var(--corPrincipal);
 			border-left: 1px solid var(--corPrincipal);
 			box-shadow: none;
@@ -426,7 +502,8 @@
 		.TamanhoSelectM .ui-selectonemenu-list .ui-selectonemenu-list-item.ui-state-hover,
 		.TamanhoSelectG .ui-selectonemenu-list .ui-selectonemenu-list-item.ui-state-hover,
 		.TamanhoSelectGG .ui-selectonemenu-list .ui-selectonemenu-list-item.ui-state-hover,
-		.TamanhoSelectXGG .ui-selectonemenu-list .ui-selectonemenu-list-item.ui-state-hover{
+		.TamanhoSelectXGG .ui-selectonemenu-list .ui-selectonemenu-list-item.ui-state-hover,
+		.TamanhoSelectPPP .ui-selectonemenu-list .ui-selectonemenu-list-item.ui-state-hover{
 			background-color: var(--corLetra);
 			box-shadow: 0px 0px 5px var(--corPrincipal);
 		}
@@ -437,7 +514,8 @@
 		.TamanhoSelectM .ui-selectonemenu-list .ui-selectonemenu-list-item.ui-state-highlight,
 		.TamanhoSelectG .ui-selectonemenu-list .ui-selectonemenu-list-item.ui-state-highlight,
 		.TamanhoSelectGG .ui-selectonemenu-list .ui-selectonemenu-list-item.ui-state-highlight,
-		.TamanhoSelectXGG .ui-selectonemenu-list .ui-selectonemenu-list-item.ui-state-highlight{
+		.TamanhoSelectXGG .ui-selectonemenu-list .ui-selectonemenu-list-item.ui-state-highlight,
+		.TamanhoSelectPPP .ui-selectonemenu-list .ui-selectonemenu-list-item.ui-state-highlight{
 			background-color: var(--corSecundariaClara);
 		}
 	/* Fim TamanhoSelect */
@@ -445,6 +523,10 @@
 	/* TamanhoSpinner */
 		.TamanhoSpinnerMIN input{
 			width: 120.75px;
+		}
+		
+		.TamanhoSpinnerPPP input{
+			width: 75px;
 		}
 		
 		.TamanhoSpinnerPP input{
@@ -477,7 +559,7 @@
 		
 		.TamanhoSpinnerMIN input, .TamanhoSpinnerPP input, .TamanhoSpinnerP input,
 		.TamanhoSpinnerM input, .TamanhoSpinnerG input, .TamanhoSpinnerGG input,
-		.TamanhoSpinnerXGG input, .TamanhoSpinnerMAX input{
+		.TamanhoSpinnerXGG input, .TamanhoSpinnerMAX input, .TamanhoSpinnerPPP input{
 			text-align: left;
 			
 			text-indent: 9px;
@@ -486,7 +568,7 @@
 		
 		.TamanhoSpinnerMIN, .TamanhoSpinnerPP, .TamanhoSpinnerP,
 		.TamanhoSpinnerM, .TamanhoSpinnerG, .TamanhoSpinnerGG,
-		.TamanhoSpinnerXGG, .TamanhoSpinnerMAX{
+		.TamanhoSpinnerXGG, .TamanhoSpinnerMAX, .TamanhoSpinnerPPP{
 			margin-right: 10px;
 		}
 	/*Fim TamanhoSpinner*/
@@ -580,3 +662,14 @@
 		color: #a51b0b;
 	}
 /* End Footer */
+
+/* Customizacao_Itamar_13DEZ2022 */
+	.ui-panel .ui-panel-titlebar {
+    	background: var(--corLetra) !important;
+	}
+
+	.ui-button {
+	    background: var(--corPrincipal);
+	}
+
+/* End Customizacao_Itamar_13DEZ2022 */

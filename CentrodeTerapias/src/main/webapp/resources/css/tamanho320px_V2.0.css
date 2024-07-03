@@ -3,18 +3,18 @@
 */
 
 @media (min-width: 319px) and (max-width: 1023px){
-	.TamanhoSelectMIN, .TamanhoSelectPP, .TamanhoSelectP, .TamanhoSelectM, .TamanhoSelectG, .TamanhoSelectGG,
+	.TamanhoSelectMIN, .TamanhoSelectPPP, .TamanhoSelectPP, .TamanhoSelectP, .TamanhoSelectM, .TamanhoSelectG, .TamanhoSelectGG,
 	.TamanhoSelectXGG{
 		width: 108px !important;
 	}
 	
 	.TamanhoSpinnerMIN input, .TamanhoSpinnerPP input, .TamanhoSpinnerP input,
 	.TamanhoSpinnerM input, .TamanhoSpinnerG input, .TamanhoSpinnerGG input,
-	.TamanhoSpinnerXGG input, .TamanhoSpinnerMAX input{
+	.TamanhoSpinnerXGG input, .TamanhoSpinnerMAX input, .TamanhoSpinnerPPP input{
 		width: 100px;
 	}
 
-	.TamanhoMIN, .TamanhoPP, .TamanhoP, .TamanhoM, .TamanhoG, .TamanhoGG, .TamanhoXGG, .TamanhoMAX{
+	.TamanhoMIN, .TamanhoPPP, .TamanhoPP, .TamanhoP, .TamanhoM, .TamanhoG, .TamanhoGG, .TamanhoXGG, .TamanhoMAX{
 		width: 100px;
 	}
 
