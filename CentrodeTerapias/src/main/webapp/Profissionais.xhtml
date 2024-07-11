@@ -60,7 +60,15 @@
    					</p:column>
 						
 					<p:column headerText="Tipo">
-						<p:outputLabel value="#{prof.tipo_cteprof}"/>
+						<p:outputLabel value="#{prof.tipo_cteprof eq '1' ? 'Assistente Social' : (
+						                	    prof.tipo_cteprof eq '2' ? 'Fisioterapeuta' : (
+						                	    prof.tipo_cteprof eq '3' ? 'Psicóloga' : (
+						                	    prof.tipo_cteprof eq '4' ? 'Pedagoga' : (
+						                	    prof.tipo_cteprof eq '5' ? 'Professora' : (
+						                	    prof.tipo_cteprof eq '6' ? 'Funcionário' : (
+						                	    prof.tipo_cteprof eq '7' ? 'Outros' : '')		                	  
+						                	  ))))		                	  
+						                	  )}"/>
 					</p:column>
 					
 					<p:column headerText="Email">

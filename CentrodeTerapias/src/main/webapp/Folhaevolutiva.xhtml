@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      >
+
+<ui:composition template="#{paginasBean._template}">  
+    <ui:define name="corpo">
+    
+    	<p:messages />
+    	
+    	<p:panel header="Folha Evolutiva">
+    		<h:form id="formbusca">
+    		
+    			<p:growl id="growl" showDetail="true" sticky="true" /> 
+
+   				<div class="ObjetosLinha">
+					<div class="ObjetosColuna">
+						<p:outputLabel value="Tipo" />
+						<p:selectOneMenu value="#{folhaevolutivaBean.folhaevolutiva.tipo_cteprof}" styleClass="TamanhoSelectPP" 
+							required="true" requiredMessage="Favor informar o tipo">
+								<f:selectItem itemValue="" itemLabel="" />
+								<f:selectItem itemValue="1" itemLabel="Assistente Social" />
+								<f:selectItem itemValue="2" itemLabel="Fisioterapeuta" /> 	
+								<f:selectItem itemValue="3" itemLabel="Psicóloga" /> 	
+								<f:selectItem itemValue="4" itemLabel="Pedagoga" /> 
+								<f:selectItem itemValue="5" itemLabel="Professora" />
+								<f:selectItem itemValue="6" itemLabel="Funcionário" />  	
+								
+								<p:ajax event="change" listener="#{folhaevolutivaBean.atualizalistaprofissionais}" update="comboprof" />								
+						</p:selectOneMenu>						
+					</div>
+					
+					<div class="ObjetosColuna">
+						<p:outputLabel value="Profissional" />
+						<p:selectOneMenu value="#{folhaevolutivaBean.folhaevolutiva.id_cteprof}" styleClass="TamanhoSelectM" id="comboprof"
+							required="true" requiredMessage="Favor informar o profissional">
+								<f:selectItem itemValue="" itemLabel="" />
+		                    	<f:selectItems value="#{folhaevolutivaBean.profissionaislista}" var="prof"
+		                            itemValue="#{prof.id_cteprof}" itemLabel="#{prof.nome_cteprof}" />	                        							
+						</p:selectOneMenu>
+						
+					</div>
+				</div>
+				
+				<div class="ObjetosLinha">
+   					<div class="ObjetosColuna">
+						<p:outputLabel value="Paciente"/>
+   						<p:inputText onfocus="StringMaiuscula(this, 60)" value="#{folhaevolutivaBean.folhaevolutiva.nome_ctepac}" styleClass="TamanhoM"/>
+   					</div>
+     			</div>
+     			
+     			<div class="ObjetosLinha">
+	                <div> 
+						<p:outputLabel value="Data Inicial" />
+				        <p:inputText onfocus="Data(this)" value="#{folhaevolutivaBean.folhaevolutiva.dataini}" styleClass="TamanhoMIN"/>
+				    </div>				        
+					<div>	        
+					    <p:outputLabel value="Data Final" />
+					    <p:inputText onfocus="Data(this)" value="#{folhaevolutivaBean.folhaevolutiva.datafim}" styleClass="TamanhoMIN"/>
+					</div>
+				</div>
+	      			 
+         		<br/>
+         			
+			     <p:commandButton styleClass="BotaoPrimario" action="#{folhaevolutivaBean.buscar}" value="Buscar"  
+			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" update="formdados"/>  
+			     	
+			     <p:commandButton styleClass="BotaoSecundario" action="#{folhaevolutivaBean.abrirdialogocadastrar}" value="Cadastrar" 
+			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" update="formcadastro"/>    			
+      			
+      		</h:form>
+    	</p:panel>
+    	
+    	<p:panel>
+    		<h:form id="formdados">
+    			<p:dataTable value="#{folhaevolutivaBean.folhaevolutivalista}" var="evol" id="dataTableDetalhe" rows="20" paginator="true" 
+                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}{RowsPerPageDropdown}"
+                 currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                 rowsPerPageTemplate="5,10,15" styleClass="Tabela">
+
+					<p:column headerText="Tipo">
+   						<p:outputLabel value="#{evol.tipo_cteprof eq '1' ? 'Assistente Social' : (
+						                	    evol.tipo_cteprof eq '2' ? 'Fisioterapeuta' : (
+  						                	    evol.tipo_cteprof eq '3' ? 'Psicóloga' : (
+						                	    evol.tipo_cteprof eq '4' ? 'Pedagoga' : (
+						                	    evol.tipo_cteprof eq '5' ? 'Professora' : (
+						                	    evol.tipo_cteprof eq '6' ? 'Funcionário' : (
+						                	    evol.tipo_cteprof eq '7' ? 'Outros' : '')		                	  
+						                	    ))))		                	  
+						                	    ) }"/>
+   					</p:column>
+   					
+					<p:column headerText="Profissional">
+   						<p:outputLabel value="#{evol.nome_cteprof}" />
+   					</p:column>
+						
+					<p:column headerText="Paciente">
+						<p:outputLabel value="#{evol.nome_ctepac}"/>
+					</p:column>
+					
+					<p:column headerText="Data">
+   						<p:outputLabel value="#{evol.data_folhaevol}" />
+   					</p:column>
+								
+					<p:column>
+						<p:commandLink value="Alterar" action="#{folhaevolutivaBean.abredialogoalterar}" update="formalterar">
+							<f:setPropertyActionListener value="#{evol}" target="#{folhaevolutivaBean.folhaevolutivaalteracao}" />
+						</p:commandLink>
+					</p:column>
+				
+					<p:column>
+						<p:commandLink value="Excluir" action="#{folhaevolutivaBean.abredialogoexclusao}" update="formexcluir">
+							<f:setPropertyActionListener value="#{evol}" target="#{folhaevolutivaBean.folhaevolutivaalteracao}" />
+						</p:commandLink>
+					</p:column>	
+				</p:dataTable>
+    		</h:form>
+    	</p:panel> 
+			
+		<p:dialog header="Cadastro de Acompanhamento" widgetVar="dialogocadastrar">
+
+    		<h:form id="formcadastro">
+    		
+    			<p:growl id="growl" showDetail="true" sticky="true" /> 
+    		
+   				<div class="ObjetosLinha">
+					<div class="ObjetosColuna">
+						<p:outputLabel value="Tipo" />
+						<p:inputText value="#{folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '1' ? 'Assistente Social' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '2' ? 'Fisioterapeuta' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '3' ? 'Psicóloga' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '4' ? 'Pedagoga' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '5' ? 'Professora' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '6' ? 'Funcionário' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '7' ? 'Outros' : '')		                	  
+						                	  ))))		                	  
+						                	  )}" styleClass="TamanhoM" readonly="true"/>
+					</div>
+					
+					<div class="ObjetosColuna">
+						<p:outputLabel value="Profissional" />
+						<p:inputText value="#{folhaevolutivaBean.folhaevolutiva.nome_cteprof}" styleClass="TamanhoM" readonly="true"/>
+					</div>
+				</div>
+				
+				<div class="ObjetosLinha">
+					<div class="ObjetosColuna">
+						<p:outputLabel value="Paciente" />
+						<p:selectOneMenu value="#{folhaevolutivaBean.folhaevolutiva.id_ctepac}" styleClass="TamanhoSelectM"
+							required="true" requiredMessage="Favor informar o paciente">
+							<f:selectItem itemValue="" itemLabel="" />
+	                    	<f:selectItems value="#{folhaevolutivaBean.pacienteslista}" var="pac"
+	                            itemValue="#{pac.id_ctepac}" itemLabel="#{pac.nome_ctepac}" />      							
+						</p:selectOneMenu>
+					</div>
+				</div>
+				
+				<div class="ObjetosLinha">
+					<div class="ObjetosColuna">		
+						<h:outputLabel value="Observações" /> 
+						<p:inputTextarea id="desc" value="#{folhaevolutivaBean.folhaevolutiva.descricao_folhaevol}" rows="2" cols="65" 
+							counter="display" maxlength="200" counterTemplate="{0} caracteres restantes" 
+							autoResize="false" styleClass="TextoCaixaAlta" required="true" requiredMessage="Favor informar o acompanhamento"/>
+						<p:outputLabel id="display"/>	
+					</div>
+				</div>
+	      			 
+         		<br/>
+         			
+			     <p:commandButton styleClass="BotaoPrimario" action="#{folhaevolutivaBean.gravar}" value="Gravar" 
+			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />      			
+      			
+      		</h:form>
+   	  </p:dialog>
+   	  
+   	  <p:dialog header="Alteracao de Acompanhamento" widgetVar="dialogoalterar">
+
+    		<h:form id="formalterar">
+    		
+    			<p:growl id="growl" showDetail="true" sticky="true" /> 
+    		
+   				<div class="ObjetosLinha">
+					<div class="ObjetosColuna">
+						<p:outputLabel value="Tipo" />
+						<p:inputText value="#{folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '1' ? 'Assistente Social' : (
+						                	  folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '2' ? 'Fisioterapeuta' : (
+						                	  folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '3' ? 'Psicóloga' : (
+						                	  folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '4' ? 'Pedagoga' : (
+						                	  folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '5' ? 'Professora' : (
+						                	  folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '6' ? 'Funcionário' : (
+						                	  folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '7' ? 'Outros' : '')		                	  
+						                	  ))))		                	  
+						                	  )}" styleClass="TamanhoM" readonly="true"/>
+					</div>
+					
+					<div class="ObjetosColuna">
+						<p:outputLabel value="Profissional" />
+						<p:inputText value="#{folhaevolutivaBean.folhaevolutivaalteracao.nome_cteprof}" styleClass="TamanhoM" readonly="true"/>
+					</div>
+				</div>
+				
+				<div class="ObjetosLinha">
+					<div class="ObjetosColuna">
+						<p:outputLabel value="Paciente" />
+						<p:inputText value="#{folhaevolutivaBean.folhaevolutivaalteracao.nome_ctepac}" styleClass="TamanhoM" readonly="true"/>
+					</div>
+				</div>
+				
+				<div class="ObjetosLinha">
+					<div class="ObjetosColuna">		
+						<h:outputLabel value="Observações" /> 
+						<p:inputTextarea id="desc" value="#{folhaevolutivaBean.folhaevolutivaalteracao.descricao_folhaevol}" rows="2" cols="65" 
+							counter="display" maxlength="200" counterTemplate="{0} caracteres restantes" 
+							autoResize="false" styleClass="TextoCaixaAlta"/>
+						<p:outputLabel id="display"/>	
+					</div>
+				</div>
+	      			 
+         		<br/>
+         			
+			     <p:commandButton styleClass="BotaoPrimario" action="#{folhaevolutivaBean.alterar}" value="Alterar" 
+			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />      			
+      			
+      		</h:form>
+   	  </p:dialog>
+   	  
+   	  <p:dialog header="Exclusao de Acompanhamento" widgetVar="dialogoexcluir">
+
+    		<h:form id="formexcluir">
+    		
+    			<p:growl id="growl" showDetail="true" sticky="true" /> 
+    		
+   				<div class="ObjetosLinha">
+					<div class="ObjetosColuna">
+						<p:outputLabel value="Tipo" />
+						<p:inputText value="#{folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '1' ? 'Assistente Social' : (
+						                	  folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '2' ? 'Fisioterapeuta' : (
+						                	  folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '3' ? 'Psicóloga' : (
+						                	  folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '4' ? 'Pedagoga' : (
+						                	  folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '5' ? 'Professora' : (
+						                	  folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '6' ? 'Funcionário' : (
+						                	  folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '7' ? 'Outros' : '')		                	  
+						                	  ))))		                	  
+						                	  )}" styleClass="TamanhoM" readonly="true"/>
+					</div>
+					
+					<div class="ObjetosColuna">
+						<p:outputLabel value="Profissional" />
+						<p:inputText value="#{folhaevolutivaBean.folhaevolutivaalteracao.nome_cteprof}" styleClass="TamanhoM" readonly="true"/>
+					</div>
+				</div>
+				
+				<div class="ObjetosLinha">
+					<div class="ObjetosColuna">
+						<p:outputLabel value="Paciente" />
+						<p:inputText value="#{folhaevolutivaBean.folhaevolutivaalteracao.nome_ctepac}" styleClass="TamanhoM" readonly="true"/>
+					</div>
+				</div>
+				
+				<div class="ObjetosLinha">
+					<div class="ObjetosColuna">		
+						<h:outputLabel value="Observações" /> 
+						<p:inputTextarea id="desc" value="#{folhaevolutivaBean.folhaevolutivaalteracao.descricao_folhaevol}" rows="2" cols="65" 
+							counter="display" maxlength="200" counterTemplate="{0} caracteres restantes" 
+							autoResize="false" styleClass="TextoCaixaAlta" readonly="true"/>
+						<p:outputLabel id="display"/>	
+					</div>
+				</div>
+	      			 
+         		<br/>
+         			
+			     <p:commandButton styleClass="BotaoPrimario" action="#{folhaevolutivaBean.excluir}" value="Excluir" 
+			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />      			
+      			
+      		</h:form>
+   	  </p:dialog>
+
+    </ui:define>
+  </ui:composition>   
+</html>
+
+

@@ -24,21 +24,23 @@ public class PacientesDao extends Dao {
 				     "FROM cte_pacientes " +
 				     "WHERE 1=1 ";
 		
-		if ((pac.getNome_ctepac()!=null)&&(!pac.getNome_ctepac().equalsIgnoreCase(""))) {
-			sql = sql + " and nome_ctepac like '%" + pac.getNome_ctepac() + "%'";
-		}
-		
-		if ((pac.getDatanasc_ctepac()!=null)&&(!pac.getDatanasc_ctepac().equalsIgnoreCase(""))) {
-			sql = sql + " and datanasc_ctepac = '" + pac.getDatanasc_ctepac() + "'";
-		}
-		
-		if ((pac.getPai_ctepac()!=null)&&(!pac.getPai_ctepac().equalsIgnoreCase(""))) {
-			sql = sql + " and pai_ctepac like '%" + pac.getPai_ctepac() + "%'";
-		}
-		
-		if ((pac.getMae_ctepac()!=null)&&(!pac.getMae_ctepac().equalsIgnoreCase(""))) {
-			sql = sql + " and mae_ctepac like '%" + pac.getMae_ctepac() + "%'";
-		}
+		if (pac !=null) {
+			if ((pac.getNome_ctepac()!=null)&&(!pac.getNome_ctepac().equalsIgnoreCase(""))) {
+				sql = sql + " and nome_ctepac like '%" + pac.getNome_ctepac() + "%'";
+			}
+			
+			if ((pac.getDatanasc_ctepac()!=null)&&(!pac.getDatanasc_ctepac().equalsIgnoreCase(""))) {
+				sql = sql + " and datanasc_ctepac = '" + pac.getDatanasc_ctepac() + "'";
+			}
+			
+			if ((pac.getPai_ctepac()!=null)&&(!pac.getPai_ctepac().equalsIgnoreCase(""))) {
+				sql = sql + " and pai_ctepac like '%" + pac.getPai_ctepac() + "%'";
+			}
+			
+			if ((pac.getMae_ctepac()!=null)&&(!pac.getMae_ctepac().equalsIgnoreCase(""))) {
+				sql = sql + " and mae_ctepac like '%" + pac.getMae_ctepac() + "%'";
+			}
+		} 			
 		
 		stmt = con.prepareStatement(sql);
 		
