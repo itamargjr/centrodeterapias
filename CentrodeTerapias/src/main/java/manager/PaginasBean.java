@@ -41,6 +41,62 @@ public class PaginasBean {
 	public String getFacesRedirect() {
 		return facesRedirect;
 	}
+	
+	// Rotinas de Acesso
+	
+	public String Instancia() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		
+		AcessoBean acessoBean = context.getApplication().evaluateExpressionGet(context, "#{acessoBean}", AcessoBean.class);
+		
+		return acessoBean.banco();
+	}
+	
+	public String UsuarioLogado() {
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+		
+		if (session.getAttribute("loginusulogado")==null) {
+			return "-";
+		} else {
+			return session.getAttribute("loginusulogado").toString();
+		}
+	}
+	
+	public String validausu(Integer IdTela) {
+		try {
+			FacesContext context = FacesContext.getCurrentInstance();
+			
+			AcessoBean acessoBean = context.getApplication().evaluateExpressionGet(context, "#{acessoBean}", AcessoBean.class);
+			
+			return acessoBean.validausu(IdTela);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "true";
+		}		
+	}
+	
+	public static Boolean isLogado() {
+		try {
+			FacesContext context = FacesContext.getCurrentInstance();
+			
+			AcessoBean acessoBean = context.getApplication().evaluateExpressionGet(context, "#{acessoBean}", AcessoBean.class);
+			
+			return acessoBean.isLogado();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}		
+	}
+	
+	public void logout() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		
+		AcessoBean acessoBean = context.getApplication().evaluateExpressionGet(context, "#{acessoBean}", AcessoBean.class);
+		
+		acessoBean.logout();
+	}
+	
+	// Rotinas de Acesso - Final //////////////////////////////////////////
 
 	public String Principal() {
 		try {

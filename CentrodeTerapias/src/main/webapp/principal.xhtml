@@ -13,20 +13,20 @@
                     <h:form>
                         <p:panelMenu class="AjusteMenuPrincipal"  stateful="false">
 	                        <p:submenu label="Escola" expanded="true">	                                 
-	                                <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{acessoBean.validausu(0)}" value="Encaminhar Aluno" url="EncaminharAluno.xhtml" />                       
-	                                <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{acessoBean.validausu(0)}" value="Consultar Encaminhamento" url="|ConsultarEncaminhamento.xhtml" />
+	                                <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{paginasBean.validausu(1)}" value="Encaminhar Aluno" url="EncaminharAluno.xhtml" />                       
+	                                <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{paginasBean.validausu(2)}" value="Consultar Encaminhamento" url="|ConsultarEncaminhamento.xhtml" />
 	                        </p:submenu>
 	                        <p:submenu label="Cadastros" expanded="true">
-			                        <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{acessoBean.validausu(0)}" value="Pacientes" url="Pacientes.xhtml" />
-			                        <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{acessoBean.validausu(0)}" value="Profissionais" url="Profissionais.xhtml" />
-			                        <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{acessoBean.validausu(0)}" value="Horários" url="Horarios.xhtml" />
+			                        <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{paginasBean.validausu(3)}" value="Pacientes" url="Pacientes.xhtml" />
+			                        <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{paginasBean.validausu(4)}" value="Profissionais" url="Profissionais.xhtml" />
+			                        <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{paginasBean.validausu(5)}" value="Horários" url="Horarios.xhtml" />
 			    			</p:submenu>
 			    			<p:submenu label="Rotinas" expanded="true">
-			                        <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{acessoBean.validausu(0)}" value="Anamnese Social" url="AnamneseSocial.xhtml" />
-			                        <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{acessoBean.validausu(0)}" value="Acompanhamento" url="Acompanhamento.xhtml" />
+			                        <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{paginasBean.validausu(6)}" value="Anamnese Social" url="AnamneseSocial.xhtml" />
+			                        <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{paginasBean.validausu(7)}" value="Acompanhamento" url="Acompanhamento.xhtml" />
 			    			</p:submenu>
 	                        <p:submenu label="Opções" expanded="true">
-			                        <p:menuitem value="Sair" action="#{acessoBean.logout}" />
+			                        <p:menuitem value="Sair" action="#{paginasBean.logout}" />
 			    			</p:submenu>
                         </p:panelMenu>           
                     </h:form>

@@ -5,6 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+
 import entity.Ctrl_usuarios;
 
 public class AcessoDao extends Dao {
@@ -40,8 +43,8 @@ public class AcessoDao extends Dao {
 
 		stmt = con.prepareStatement("select a.codigo_tela, COALESCE(b.id_usu, 0) as id_usu " +
 			                        "from " +
-				                    "  ctrl_sistemas_telas a " +
-			                        "  left outer join ctrl_usuarios_acesso_telas b on " +
+				                    "  ctrl_telas a " +
+			                        "  left outer join ctrl_usuarios_telas b on " +
 				                    "    (a.codigo_tela  = b.codigo_tela and " +
 			                        "     b.id_usu = " + Idusuario + ")" +
 				                    "where a.codigo_sistema = " + Idsistema + 
@@ -66,26 +69,17 @@ public class AcessoDao extends Dao {
 	
 	public String validaItemUsuario (Integer usu, Integer item) throws Exception{
 		
-		String sql, disable = "true"; // disabled do menu = true. Desabilitado
-
-		open();
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		
-		sql = "select count(codigo_tela) as acesso"
-		    + " from ctrl_usuarios_acesso_telas"
-		    + " where id_usu = " + usu
-		    + " and codigo_tela = " + item;
+		List<Integer> acessoslista = (List<Integer>) session.getAttribute("acessoslista");
 		
-		stmt = con.prepareStatement(sql);
-
-		rs = stmt.executeQuery();
+		String disable = "true"; // disabled do menu = true. Desabilitado
 		
-		while (rs.next()) { // usuario tem acesso, passo false para o "disabled". Menu fica habilitado
-			if (rs.getInt("acesso")== 0) {
+		for (int i = 0; i < acessoslista.size(); i++) {
+			if (acessoslista.get(i).equals(item)) {
 				disable = "false";
 			}
-		};
-
-		close();
+		}
 
 		return disable;
 	}
@@ -248,5 +242,37 @@ public class AcessoDao extends Dao {
 		
 		return linhasafetadas;
 	
+	}
+	
+
+	
+	public List<Integer> ResgataAcessos(Integer IdUsu, Integer IdSistema) throws Exception {
+		List<Integer> acessoslista = new ArrayList<Integer>();
+		
+		//System.out.println("resgata acessos usuario " + IdUsu + " sistema " + IdSistema);
+		
+		open();
+		
+		stmt = con.prepareStatement("select " +
+		                            "  a.codigo_tela " +
+				                    "from " +
+		                            "  ctrl_usuarios_telas a, ctrl_telas b " +
+				                    "where " +
+		                            "  a.codigo_tela = b.codigo_tela and " +
+				                    "  b.codigo_sistema = ? and " +
+		                            "  a.id_usu = ?");
+		
+		stmt.setInt(1, IdSistema);
+		stmt.setInt(2, IdUsu);
+		
+		rs = stmt.executeQuery();
+		
+		while (rs.next()) {
+			acessoslista.add(rs.getInt("codigo_tela"));
+		}
+		
+		close();
+		
+		return acessoslista;
 	}
 }

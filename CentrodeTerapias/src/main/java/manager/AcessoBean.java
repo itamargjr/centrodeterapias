@@ -149,6 +149,8 @@ public class AcessoBean implements Serializable {
 		
 		AcessoDao ad = new AcessoDao();
 		
+		List<Integer> acessoslista = new ArrayList<Integer>();
+		
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		
 		try {
@@ -160,20 +162,21 @@ public class AcessoBean implements Serializable {
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 				
 				session.setAttribute("idusulogado", 0);
+				session.setAttribute("acessoslista", acessoslista);
 				
 				return null;
 			}else {
 				
 				usuarios = new Ctrl_usuarios();
 				
-				FacesMessage msg = new FacesMessage("Bem vindo", usuariologado.getLogin_usu());
-				
-				FacesContext.getCurrentInstance().addMessage(null, msg);
-							
 				session.setAttribute("loginusulogado", usuariologado.getLogin_usu());
 				session.setAttribute("idusulogado", usuariologado.getId_usu());
 				
-				//acessosmenulista = ad.CarregaListadeAcessos(4, usuariologado.getId_usu(), usuariologado.getTipo_usu());
+				acessoslista = ad.ResgataAcessos(usuariologado.getId_usu(), 2); // 2 e o ID do CENTRO DE TERAPIAS na tabela ctrl_sistemas
+				
+				session.setAttribute("acessoslista", acessoslista);
+				
+				//System.out.println("Lista de acessos: " + acessoslista);
 				
 				if (usuariologado.getTipo_usu().equalsIgnoreCase("A")) {
 					session.setAttribute("usuadm", "S");
@@ -292,6 +295,8 @@ public class AcessoBean implements Serializable {
 			AcessoDao valida = new AcessoDao();
 			desabilita = valida.validaItemUsuario(usulog, item);
 		}
+		
+		//System.out.println("Usuário " + usulog + " tela " + item + " " + desabilita);
 
 		return desabilita;	
 			
