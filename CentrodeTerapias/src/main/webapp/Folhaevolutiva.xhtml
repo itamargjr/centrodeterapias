@@ -66,7 +66,7 @@
 	      			 
          		<br/>
          			
-			     <p:commandButton styleClass="BotaoPrimario" action="#{folhaevolutivaBean.buscar}" value="Buscar"  
+			     <p:commandButton styleClass="BotaoPrimario" action="#{folhaevolutivaBean.buscar}" value="Buscar" ajax="false" 
 			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" update="formdados"/>  
 			     	
 			     <p:commandButton styleClass="BotaoSecundario" action="#{folhaevolutivaBean.abrirdialogocadastrar}" value="Cadastrar" 
@@ -138,7 +138,7 @@
 						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '6' ? 'Funcionário' : (
 						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '7' ? 'Outros' : '')		                	  
 						                	  ))))		                	  
-						                	  )}" styleClass="TamanhoM" readonly="true"/>
+						                	  )}" styleClass="TamanhoP" readonly="true"/>
 					</div>
 					
 					<div class="ObjetosColuna">
@@ -147,7 +147,12 @@
 					</div>
 				</div>
 				
-				<div class="ObjetosLinha">
+				<div class="ObjetosLinha">				
+					<div class="ObjetosColuna">
+						<p:outputLabel value="Data" />
+						<p:inputText onfocus="Data(this)" value="#{folhaevolutivaBean.folhaevolutiva.data_folhaevol}" styleClass="TamanhoPP" 
+							required="true" requiredMessage="Favor informar a data"/>
+					</div>				
 					<div class="ObjetosColuna">
 						<p:outputLabel value="Paciente" />
 						<p:selectOneMenu value="#{folhaevolutivaBean.folhaevolutiva.id_ctepac}" styleClass="TamanhoSelectM"
@@ -156,7 +161,15 @@
 	                    	<f:selectItems value="#{folhaevolutivaBean.pacienteslista}" var="pac"
 	                            itemValue="#{pac.id_ctepac}" itemLabel="#{pac.nome_ctepac}" />      							
 						</p:selectOneMenu>
-					</div>
+					</div>													
+					<div class = "ObjetosColuna">
+						<p:outputLabel value = "Status"/>
+               			<p:selectOneMenu value="#{folhaevolutivaBean.folhaevolutiva.status_folhaevol}" class = "TamanhoSelectMIN" required="true" requiredMessage="Favor informar o status">
+            				<f:selectItem itemLabel="" itemValue="" />
+            				<f:selectItem itemLabel="Ativo" itemValue="A" />
+            				<f:selectItem itemLabel="Inativo" itemValue="I" />
+        				</p:selectOneMenu>
+	     			</div>
 				</div>
 				
 				<div class="ObjetosLinha">
@@ -205,9 +218,21 @@
 				
 				<div class="ObjetosLinha">
 					<div class="ObjetosColuna">
+						<p:outputLabel value="Data" />
+						<p:inputText value="#{folhaevolutivaBean.folhaevolutiva.data_folhaevol}" styleClass="TamanhoPP" readonly="true"/>
+					</div>				
+					<div class="ObjetosColuna">
 						<p:outputLabel value="Paciente" />
 						<p:inputText value="#{folhaevolutivaBean.folhaevolutivaalteracao.nome_ctepac}" styleClass="TamanhoM" readonly="true"/>
-					</div>
+					</div>													
+					<div class="ObjetosColuna">	
+						<p:outputLabel value = "Status"/>
+               			<p:selectOneMenu value="#{folhaevolutivaBean.folhaevolutivaalteracao.status_folhaevol}" class = "TamanhoSelectMIN" required="true" requiredMessage="Favor informar o status">
+            				<f:selectItem itemLabel="" itemValue="" />
+            				<f:selectItem itemLabel="Ativo" itemValue="A" />
+            				<f:selectItem itemLabel="Inativo" itemValue="I" />
+        				</p:selectOneMenu>
+	     			</div>
 				</div>
 				
 				<div class="ObjetosLinha">
@@ -256,8 +281,16 @@
 				
 				<div class="ObjetosLinha">
 					<div class="ObjetosColuna">
+						<p:outputLabel value="Data" />
+						<p:inputText value="#{folhaevolutivaBean.folhaevolutiva.data_folhaevol}" styleClass="TamanhoPP" readonly="true"/>
+					</div>				
+					<div class="ObjetosColuna">
 						<p:outputLabel value="Paciente" />
 						<p:inputText value="#{folhaevolutivaBean.folhaevolutivaalteracao.nome_ctepac}" styleClass="TamanhoM" readonly="true"/>
+					</div>
+					<div class = "ObjetosColuna">	
+	    				<p:outputLabel value="Status"/>
+	    				<p:inputText value ="#{folhaevolutivaBean.folhaevolutivaalteracao.status_folhaevol eq 'A' ? 'ATIVA' : 'INATIVA'}" class ="TamanhoPP" readonly="true"/>
 					</div>
 				</div>
 				

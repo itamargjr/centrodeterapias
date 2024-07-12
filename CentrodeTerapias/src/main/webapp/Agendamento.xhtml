@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      >
+
+<ui:composition template="#{paginasBean._template}">  
+    <ui:define name="corpo">
+    
+    	<p:messages />
+    	
+    	<p:panel header="Folha Evolutiva">
+    		<h:form id="formbusca">
+    		
+    			<p:growl id="growl" showDetail="true" sticky="true" /> 
+
+   				<div class="ObjetosLinha">
+					<div class="ObjetosColuna">
+						<p:outputLabel value="Tipo" />
+						<p:selectOneMenu value="#{gendaBean.agenda.tipo_cteprof}" styleClass="TamanhoSelectPP" 
+							required="true" requiredMessage="Favor informar o tipo">
+								<f:selectItem itemValue="" itemLabel="" />
+								<f:selectItem itemValue="1" itemLabel="Assistente Social" />
+								<f:selectItem itemValue="2" itemLabel="Fisioterapeuta" /> 	
+								<f:selectItem itemValue="3" itemLabel="Psicóloga" /> 	
+								<f:selectItem itemValue="4" itemLabel="Pedagoga" /> 
+								<f:selectItem itemValue="5" itemLabel="Professora" />
+								<f:selectItem itemValue="6" itemLabel="Funcionário" />  	
+								
+								<p:ajax event="change" listener="#{gendaBean.atualizalistaprofissionais}" update="comboprof" />								
+						</p:selectOneMenu>						
+					</div>
+					
+					<div class="ObjetosColuna">
+						<p:outputLabel value="Profissional" />
+						<p:selectOneMenu value="#{gendaBean.agenda.id_cteprof}" styleClass="TamanhoSelectM" id="comboprof"
+							required="true" requiredMessage="Favor informar o profissional">
+								<f:selectItem itemValue="" itemLabel="" />
+		                    	<f:selectItems value="#{gendaBean.profissionaislista}" var="prof"
+		                            itemValue="#{prof.id_cteprof}" itemLabel="#{prof.nome_cteprof}" />	                        							
+						</p:selectOneMenu>
+						
+					</div>
+				</div>
+	      			 
+         		<br/>
+         			
+			     <p:commandButton styleClass="BotaoPrimario" action="#{gendaBean.buscar}" value="Buscar" ajax="false" 
+			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" update="formdados"/>     			
+      			
+      		</h:form>
+    	</p:panel>
+    	
+    	<p:panel>
+    		<h:form id="formdados">
+    			<p:schedule id="agenda" value="#{agendaBean.eventModel}" widgetVar="myschedule" timeZone="GMT+2">
+    			
+    			
+    			</p:schedule>   			      			      			
+      		</h:form>
+   	  </p:panel>
+
+    </ui:define>
+  </ui:composition>   
+</html>
+
+

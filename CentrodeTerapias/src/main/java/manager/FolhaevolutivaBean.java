@@ -1,5 +1,6 @@
 package manager;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -127,6 +128,13 @@ public class FolhaevolutivaBean {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Selecione o profissional corretamente", ""));
 		} else {
 			try {
+				
+				java.util.Date data = new java.util.Date();
+				
+				SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+				
+				folhaevolutiva.setData_folhaevol(formatador.format(data));
+				
 				ProfissionaisDao pd = new ProfissionaisDao();
 				
 				folhaevolutiva.setNome_cteprof(pd.buscanomepeloid(folhaevolutiva.getId_cteprof()));
