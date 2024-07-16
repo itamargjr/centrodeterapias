@@ -7,6 +7,7 @@ public class Agenda {
 	private Integer id_cteprof;	
 	private Integer id_ctepac;	
 	private String status_agenda;
+	private String obs_agenda;
 	
 	private String descricao_horario;
 	private String tipo_cteprof;	
@@ -18,7 +19,7 @@ public class Agenda {
 	}
 
 	public Agenda(Integer id_agenda, String data_agenda, Integer id_horario, Integer id_cteprof, Integer id_ctepac,
-			String status_agenda, String descricao_horario, String tipo_cteprof, String nome_cteprof,
+			String status_agenda, String obs_agenda, String descricao_horario, String tipo_cteprof, String nome_cteprof,
 			String nome_ctepac) {
 		super();
 		this.id_agenda = id_agenda;
@@ -27,10 +28,19 @@ public class Agenda {
 		this.id_cteprof = id_cteprof;
 		this.id_ctepac = id_ctepac;
 		this.status_agenda = status_agenda;
+		this.obs_agenda = obs_agenda;
 		this.descricao_horario = descricao_horario;
 		this.tipo_cteprof = tipo_cteprof;
 		this.nome_cteprof = nome_cteprof;
 		this.nome_ctepac = nome_ctepac;
+	}
+
+	public String getObs_agenda() {
+		return obs_agenda;
+	}
+
+	public void setObs_agenda(String obs_agenda) {
+		this.obs_agenda = obs_agenda;
 	}
 
 	public Integer getId_agenda() {
@@ -117,7 +127,7 @@ public class Agenda {
 	public String toString() {
 		return "Agenda [id_agenda=" + id_agenda + ", data_agenda=" + data_agenda + ", id_horario=" + id_horario
 				+ ", id_cteprof=" + id_cteprof + ", id_ctepac=" + id_ctepac + ", status_agenda=" + status_agenda
-				+ ", descricao_horario=" + descricao_horario + ", tipo_cteprof=" + tipo_cteprof + ", nome_cteprof="
-				+ nome_cteprof + ", nome_ctepac=" + nome_ctepac + "]";
+				+ ", obs_agenda=" + obs_agenda + ", descricao_horario=" + descricao_horario + ", tipo_cteprof="
+				+ tipo_cteprof + ", nome_cteprof=" + nome_cteprof + ", nome_ctepac=" + nome_ctepac + "]";
 	}
 }
