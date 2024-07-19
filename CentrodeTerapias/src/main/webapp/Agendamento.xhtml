@@ -20,7 +20,7 @@
    				<div class="ObjetosLinha">
 					<div class="ObjetosColuna">
 						<p:outputLabel value="Tipo" />
-						<p:selectOneMenu value="#{gendaBean.agenda.tipo_cteprof}" styleClass="TamanhoSelectPP" 
+						<p:selectOneMenu value="#{agendaBean.agenda.tipo_cteprof}" styleClass="TamanhoSelectPP" 
 							required="true" requiredMessage="Favor informar o tipo">
 								<f:selectItem itemValue="" itemLabel="" />
 								<f:selectItem itemValue="1" itemLabel="Assistente Social" />
@@ -30,17 +30,19 @@
 								<f:selectItem itemValue="5" itemLabel="Professora" />
 								<f:selectItem itemValue="6" itemLabel="Funcionário" />  	
 								
-								<p:ajax event="change" listener="#{gendaBean.atualizalistaprofissionais}" update="comboprof" />								
+								<p:ajax event="change" listener="#{agendaBean.atualizalistaprofissionais}" update="comboprof formdados" />								
 						</p:selectOneMenu>						
 					</div>
 					
 					<div class="ObjetosColuna">
 						<p:outputLabel value="Profissional" />
-						<p:selectOneMenu value="#{gendaBean.agenda.id_cteprof}" styleClass="TamanhoSelectM" id="comboprof"
+						<p:selectOneMenu value="#{agendaBean.agenda.id_cteprof}" styleClass="TamanhoSelectM" id="comboprof"
 							required="true" requiredMessage="Favor informar o profissional">
-								<f:selectItem itemValue="" itemLabel="" />
-		                    	<f:selectItems value="#{gendaBean.profissionaislista}" var="prof"
-		                            itemValue="#{prof.id_cteprof}" itemLabel="#{prof.nome_cteprof}" />	                        							
+							<f:selectItem itemValue="" itemLabel="" />
+		                    <f:selectItems value="#{agendaBean.profissionaislista}" var="prof"
+		                            itemValue="#{prof.id_cteprof}" itemLabel="#{prof.nome_cteprof}" />	  
+		                            
+							<p:ajax event="change" listener="#{agendaBean.atualizalistaprofissionais}" update="formdados" />                      							
 						</p:selectOneMenu>
 						
 					</div>
@@ -48,14 +50,14 @@
 	      			 
          		<br/>
          			
-			     <p:commandButton styleClass="BotaoPrimario" action="#{gendaBean.buscar}" value="Buscar" ajax="false" 
+			     <p:commandButton styleClass="BotaoPrimario" action="#{agendaBean.buscar}" value="Buscar" ajax="false" 
 			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" update="formdados"/>     			
       			
       		</h:form>
     	</p:panel>
     	
     	<p:panel>
-    		<h:form id="formdados">
+    		<h:form id="formdados" rendered="#{agendaBean.mostraragenda}">
     		
     			<p:growl id="messages" showDetail="true"/>
     		
@@ -63,7 +65,8 @@
     			
     				<p:ajax event="dateSelect" listener="#{agendaBean.onDateSelect}" update="messages eventDetails" oncomplete="PF('eventDialog').show();"/>
     				
-		            <p:ajax event="eventSelect" listener="#{agendaBean.onEventSelect}" update="messages eventDetails" oncomplete="PF('eventDialog').show();"/>
+		            <p:ajax event="eventSelect" listener="#{agendaBean.onEventSelect}" update="formdialogoconsulta"/>
+		            
 		            <p:ajax event="eventMove" listener="#{agendaBean.onEventMove}" update="messages"/>
 		            <p:ajax event="eventResize" listener="#{agendaBean.onEventResize}" update="messages"/>
     			
@@ -88,8 +91,60 @@
 		                <p:commandButton type="reset" value="Reset" styleClass="font-bold ui-button-outlined"/>
 		                <p:commandButton id="addButton" value="Save" action="#{agendaBean.addEvent}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();"/>
 		            </div>
-		        </p:dialog>  			      			      			
-      		</h:form>
+		        </p:dialog>  
+			</h:form>
+			
+		        <p:dialog header="Consulta Agendamento" widgetVar="dialogoconsulta">
+		    		<h:form id="formdialogoconsulta">
+		    		
+		    			<p:growl id="growl" showDetail="true" sticky="true" /> 
+		    			
+		    			<div class="ObjetosLinha">	
+		   					<div class="ObjetosColuna">
+								<p:outputLabel value="Tipo" />
+								<p:inputText value="#{agendaBean.agenda.tipo_cteprof eq '1' ? 'Assistente Social' : (
+							                	      agendaBean.agenda.tipo_cteprof eq '2' ? 'Fisioterapeuta' : (
+							                	      agendaBean.agenda.tipo_cteprof eq '3' ? 'Psicóloga' : (
+							                	      agendaBean.agenda.tipo_cteprof eq '4' ? 'Pedagoga' : (
+							                	      agendaBean.agenda.tipo_cteprof eq '5' ? 'Professora' : (
+							                	      agendaBean.agenda.tipo_cteprof eq '6' ? 'Funcionário' : (
+							                	      agendaBean.agenda.tipo_cteprof eq '7' ? 'Outros' : '')		                	  
+							                	    ))))		                	  
+							                	    )}" styleClass="TamanhoPP" readonly="true"/>
+							</div>
+		   				
+		   					<div class="ObjetosColuna">
+								<p:outputLabel value="Profissional"/>
+		   						<p:inputText value="#{agendaBean.agenda.nome_cteprof}" styleClass="TamanhoM" readonly="true"/>
+		   					</div>   							   					
+						</div>
+						<div class="ObjetosLinha">
+							<div class="ObjetosColuna">
+		   						<p:outputLabel value="Paciente"/>
+		   						<p:inputText value="#{agendaBean.event.title}" styleClass="TamanhoM" readonly="true"/>
+		   					</div>
+		   					
+		   					<div class="ObjetosColuna">
+		   						<p:outputLabel value="Horário"/>
+		   						<p:inputText value="#{agendaBean.agenda.descricao_horario}"	styleClass="TamanhoPP"/>
+		   					</div>
+						</div>
+						<div class="ObjetosLinha">
+							<div class="ObjetosColuna">		
+								<h:outputLabel value="Observações" /> 
+								<p:inputTextarea id="desc" value="#{agendaBean.agenda.obs_agenda}" rows="2" cols="65" 
+									autoResize="false" styleClass="TextoCaixaAlta" readonly="true"/>
+							</div>
+						</div>
+		
+			      			 
+		         		<br/>
+		         			
+					     <p:commandButton styleClass="BotaoPrimario" value="Fechar" onclick="PF('dialogoconsulta').hide();" />      			
+		      			
+		      		</h:form>
+		   	  </p:dialog>			      			      			
+      		
    	  </p:panel>
 
     </ui:define>

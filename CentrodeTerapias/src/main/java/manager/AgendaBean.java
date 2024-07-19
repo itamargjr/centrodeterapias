@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -15,6 +14,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.PrimeFaces;
 import org.primefaces.event.ScheduleEntryMoveEvent;
 import org.primefaces.event.ScheduleEntryResizeEvent;
 import org.primefaces.event.SelectEvent;
@@ -39,6 +39,8 @@ public class AgendaBean {
 	private Agenda agenda;
 	
 	private List<Agenda> agendalista;
+	
+	public Boolean mostraragenda = false;
 	
 	private boolean slotEventOverlap = true;
     private boolean showWeekNumbers = false;
@@ -83,6 +85,8 @@ public class AgendaBean {
 		
 		eventModel = new DefaultScheduleModel();
 		
+		 mostraragenda = false;
+		
 		try {
 			
 			java.util.Date data = new java.util.Date();
@@ -109,6 +113,14 @@ public class AgendaBean {
         //addEvents2EventModel(LocalDateTime.now());
         //addEvents2EventModel(LocalDateTime.now().minusMonths(6));
 
+	}
+
+	public Boolean getMostraragenda() {
+		return mostraragenda;
+	}
+
+	public void setMostraragenda(Boolean mostraragenda) {
+		this.mostraragenda = mostraragenda;
 	}
 
 	public List<Agenda> getAgendalista() {
@@ -155,6 +167,31 @@ public class AgendaBean {
 	    return dateToConvert.toInstant()
 	      .atZone(ZoneId.systemDefault())
 	      .toLocalDateTime();
+	}
+	
+	public void atualizalistaprofissionais() {
+		try {
+			
+			java.util.Date data = new java.util.Date();
+			
+			SimpleDateFormat mes = new SimpleDateFormat("MM");
+			SimpleDateFormat ano = new SimpleDateFormat("yyyy");
+			
+			String dataS = "01/" + mes.format(data) + "/" + ano.format(data);
+			
+			AgendaDao ad = new AgendaDao();
+			
+			agendalista = ad.buscagendadomes(dataS);
+			
+			for (Agenda ag : agendalista) {
+				adicionarAgendamento(ag);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
+		}
 	}
 	
 	private void adicionarAgendamento(Agenda ag) {
@@ -276,6 +313,12 @@ public class AgendaBean {
 			AgendaDao ad = new AgendaDao();
 			
 			agenda = ad.buscagendaporid(event.getDescription());
+			
+			//System.out.println(agenda);
+			
+			//PrimeFaces.current().executeScript("PF('formdialogoconsulta').update();");
+			
+			PrimeFaces.current().executeScript("PF('dialogoconsulta').show();");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
