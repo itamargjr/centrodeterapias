@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import entity.Agenda;
+import entity.Horarios;
 
 public class AgendaDao extends Dao {
 	
@@ -43,7 +44,7 @@ public class AgendaDao extends Dao {
 		return agenda;
 	}
 	
-	public List<Agenda> buscagendadomes(String datainicial)throws Exception{
+	public List<Agenda> buscagendadomes(String datainicial, Integer idProf)throws Exception{
 		List<Agenda> lista = new ArrayList<Agenda>();
 		
 		open();
@@ -97,6 +98,84 @@ public class AgendaDao extends Dao {
 		close();
 		
 		return lista;
+	}
+	
+	public List<Horarios> horariosdisponiveis(Agenda agenda)throws Exception{
+		List<Horarios> lista = new ArrayList<Horarios>();
+		
+		open();
+		
+		String sql = "SELECT id_horario, descricao_horario from cte_agendahorarios " +
+					 "where id_horario not in " +
+					 "  ( select id_horario " +
+					 "    from cte_agenda " +
+					 "    where data_agenda = '" + agenda.getData_agenda() + "' and " +
+					 "           id_cteprof = " + agenda.getId_cteprof() + ")";
+		
+		stmt = con.prepareStatement(sql);
+		
+		rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			Horarios h = new Horarios(rs.getInt("id_horario"), rs.getString("descricao_horario"));
+			
+			lista.add(h);
+		}
+		
+		close();
+		
+		return lista;
+	}
+	
+	public Integer gravar(Agenda agenda)throws Exception{
+		
+		Integer id = 0;
+		
+		open();
+		
+		String sql = "insert into cte_agenda " +
+		             "  (id_agenda, data_agenda, id_horario, id_cteprof, id_ctepac, status_agenda, obs_agenda) " +				
+					 "values " +
+					 "  (0, ?, ?, ?, ?, ?, ?)";
+		
+		stmt = con.prepareStatement(sql);
+		
+		stmt.setString(1, agenda.getData_agenda());
+		stmt.setInt(2,agenda.getId_horario());
+		stmt.setInt(3,agenda.getId_cteprof());
+		stmt.setInt(4,agenda.getId_ctepac()); 
+		stmt.setString(5,agenda.getStatus_agenda());
+		stmt.setString(6,agenda.getObs_agenda());
+		
+		stmt.executeUpdate();
+		
+		sql = "select id_agenda from cte_agenda " +
+		      "where " +
+			  "  data_agenda = ? and " +
+		      "  id_horario = ? and " +
+			  "  id_cteprof = ? and " +
+		      "  id_ctepac = ? and " +
+			  "  status_agenda = ? and " +
+		      "  obs_agenda = ? ";
+		
+		stmt = con.prepareStatement(sql);
+		
+		stmt.setString(1, agenda.getData_agenda());
+		stmt.setInt(2,agenda.getId_horario());
+		stmt.setInt(3,agenda.getId_cteprof());
+		stmt.setInt(4,agenda.getId_ctepac()); 
+		stmt.setString(5,agenda.getStatus_agenda());
+		stmt.setString(6,agenda.getObs_agenda());
+		
+		rs = stmt.executeQuery();
+		
+		if (rs.next()) {
+			id = rs.getInt("id_agenda");
+		}
+		
+		close();
+		
+		return id;
 	}
 
 }

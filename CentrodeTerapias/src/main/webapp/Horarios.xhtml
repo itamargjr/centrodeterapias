@@ -27,7 +27,7 @@
 	      			 
          		<br/>
          			
-			     <p:commandButton styleClass="BotaoPrimario" action="#{horariosBean.Buscar}" value="Buscar"  
+			     <p:commandButton styleClass="BotaoPrimario" action="#{horariosBean.Buscar}" value="Buscar" ajax="false" 
 			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" update="formdados"/>  
 			     	
 			     <p:commandButton styleClass="BotaoSecundario" action="#{horariosBean.AbrirDialogoCadastro}" value="Cadastrar" 

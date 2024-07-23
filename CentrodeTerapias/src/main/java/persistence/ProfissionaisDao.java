@@ -51,28 +51,30 @@ public class ProfissionaisDao extends Dao {
 	public List<Profissionais> buscaportipo(String tipo)throws Exception{
 		List<Profissionais> lista = new ArrayList<Profissionais>();
 		
-		open();
-		
-		String sql = "select " +
-				     "  id_cteprof, tipo_cteprof, nome_cteprof, registro_cteprof,  " + 
-				     "  endereco_cteprof, telefone_cteprof, cpf_cteprof, email_cteprof " +
-				     "FROM cte_profissionais " +
-				     "WHERE tipo_cteprof = '" + tipo + "'";
-		
-		stmt = con.prepareStatement(sql);
-		
-		rs = stmt.executeQuery();
-		
-		while (rs.next()) {
-			Profissionais p = new Profissionais(rs.getInt("id_cteprof"), rs.getString("tipo_cteprof"), 
-												rs.getString("nome_cteprof"), rs.getString("registro_cteprof"), 
-												rs.getString("endereco_cteprof"), rs.getString("telefone_cteprof"), 
-												rs.getString("cpf_cteprof"), rs.getString("email_cteprof"));
-		
-			lista.add(p);
+		if ((tipo!=null)&&(!tipo.equalsIgnoreCase(""))) {
+			open();
+			
+			String sql = "select " +
+					     "  id_cteprof, tipo_cteprof, nome_cteprof, registro_cteprof,  " + 
+					     "  endereco_cteprof, telefone_cteprof, cpf_cteprof, email_cteprof " +
+					     "FROM cte_profissionais " +
+					     "WHERE tipo_cteprof = '" + tipo + "'";
+			
+			stmt = con.prepareStatement(sql);
+			
+			rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				Profissionais p = new Profissionais(rs.getInt("id_cteprof"), rs.getString("tipo_cteprof"), 
+													rs.getString("nome_cteprof"), rs.getString("registro_cteprof"), 
+													rs.getString("endereco_cteprof"), rs.getString("telefone_cteprof"), 
+													rs.getString("cpf_cteprof"), rs.getString("email_cteprof"));
+			
+				lista.add(p);
+			}
+			
+			close();
 		}
-		
-		close();
 		
 		return lista;
 	}
@@ -80,19 +82,21 @@ public class ProfissionaisDao extends Dao {
 	public String buscanomepeloid(Integer id)throws Exception{
 		String nome = "";
 		
-		open();
-		
-		String sql = "select nome_cteprof FROM cte_profissionais WHERE id_cteprof = " + id;
-		
-		stmt = con.prepareStatement(sql);
-		
-		rs = stmt.executeQuery();
-		
-		if (rs.next()) {
-			nome = rs.getString("nome_cteprof");
+		if (id!=null) {
+			open();
+			
+			String sql = "select nome_cteprof FROM cte_profissionais WHERE id_cteprof = " + id;
+			
+			stmt = con.prepareStatement(sql);
+			
+			rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				nome = rs.getString("nome_cteprof");
+			}
+			
+			close();
 		}
-		
-		close();
 		
 		return nome;
 	}

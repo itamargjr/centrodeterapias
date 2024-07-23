@@ -33,7 +33,8 @@
 								<p:ajax event="change" listener="#{agendaBean.atualizalistaprofissionais}" update="comboprof formdados" />								
 						</p:selectOneMenu>						
 					</div>
-					
+				</div>
+				<div class="ObjetosLinha">
 					<div class="ObjetosColuna">
 						<p:outputLabel value="Profissional" />
 						<p:selectOneMenu value="#{agendaBean.agenda.id_cteprof}" styleClass="TamanhoSelectM" id="comboprof"
@@ -61,11 +62,13 @@
     		
     			<p:growl id="messages" showDetail="true"/>
     		
-    			<p:schedule id="agenda" value="#{agendaBean.eventModel}" widgetVar="myschedule" timeZone="GMT-3">
+    			<p:schedule id="agenda" value="#{agendaBean.eventModel}" widgetVar="myschedule" timeZone="GMT-3" timeFormat="hh:mm">
     			
-    				<p:ajax event="dateSelect" listener="#{agendaBean.onDateSelect}" update="messages eventDetails" oncomplete="PF('eventDialog').show();"/>
+    				<p:ajax event="dateSelect" listener="#{agendaBean.onDateSelect}" update="formdialogocadastro"
+    					/>
     				
-		            <p:ajax event="eventSelect" listener="#{agendaBean.onEventSelect}" update="formdialogoconsulta"/>
+		            <p:ajax event="eventSelect" listener="#{agendaBean.onEventSelect}" update="formdialogoconsulta"
+    					/>
 		            
 		            <p:ajax event="eventMove" listener="#{agendaBean.onEventMove}" update="messages"/>
 		            <p:ajax event="eventResize" listener="#{agendaBean.onEventResize}" update="messages"/>
@@ -94,56 +97,127 @@
 		        </p:dialog>  
 			</h:form>
 			
-		        <p:dialog header="Consulta Agendamento" widgetVar="dialogoconsulta">
-		    		<h:form id="formdialogoconsulta">
+			<p:dialog header="Consulta Agendamento" widgetVar="dialogoconsulta">
+				<h:form id="formdialogoconsulta">
 		    		
-		    			<p:growl id="growl" showDetail="true" sticky="true" /> 
+					<p:growl id="growl" showDetail="true" sticky="true" /> 
 		    			
-		    			<div class="ObjetosLinha">	
-		   					<div class="ObjetosColuna">
-								<p:outputLabel value="Tipo" />
-								<p:inputText value="#{agendaBean.agenda.tipo_cteprof eq '1' ? 'Assistente Social' : (
-							                	      agendaBean.agenda.tipo_cteprof eq '2' ? 'Fisioterapeuta' : (
-							                	      agendaBean.agenda.tipo_cteprof eq '3' ? 'Psicóloga' : (
-							                	      agendaBean.agenda.tipo_cteprof eq '4' ? 'Pedagoga' : (
-							                	      agendaBean.agenda.tipo_cteprof eq '5' ? 'Professora' : (
-							                	      agendaBean.agenda.tipo_cteprof eq '6' ? 'Funcionário' : (
-							                	      agendaBean.agenda.tipo_cteprof eq '7' ? 'Outros' : '')		                	  
-							                	    ))))		                	  
-							                	    )}" styleClass="TamanhoPP" readonly="true"/>
-							</div>
-		   				
-		   					<div class="ObjetosColuna">
-								<p:outputLabel value="Profissional"/>
-		   						<p:inputText value="#{agendaBean.agenda.nome_cteprof}" styleClass="TamanhoM" readonly="true"/>
-		   					</div>   							   					
+					<div class="ObjetosLinha">	
+	   					<div class="ObjetosColuna">
+							<p:outputLabel value="Tipo" />
+							<p:inputText value="#{agendaBean.agenda.tipo_cteprof eq '1' ? 'Assistente Social' : (
+						                	      agendaBean.agenda.tipo_cteprof eq '2' ? 'Fisioterapeuta' : (
+						                	      agendaBean.agenda.tipo_cteprof eq '3' ? 'Psicóloga' : (
+						                	      agendaBean.agenda.tipo_cteprof eq '4' ? 'Pedagoga' : (
+						                	      agendaBean.agenda.tipo_cteprof eq '5' ? 'Professora' : (
+						                	      agendaBean.agenda.tipo_cteprof eq '6' ? 'Funcionário' : (
+						                	      agendaBean.agenda.tipo_cteprof eq '7' ? 'Outros' : '')		                	  
+						                	    ))))		                	  
+						                	    )}" styleClass="TamanhoPP" readonly="true"/>
 						</div>
-						<div class="ObjetosLinha">
-							<div class="ObjetosColuna">
-		   						<p:outputLabel value="Paciente"/>
-		   						<p:inputText value="#{agendaBean.event.title}" styleClass="TamanhoM" readonly="true"/>
-		   					</div>
-		   					
-		   					<div class="ObjetosColuna">
-		   						<p:outputLabel value="Horário"/>
-		   						<p:inputText value="#{agendaBean.agenda.descricao_horario}"	styleClass="TamanhoPP"/>
-		   					</div>
+	   				
+	   					<div class="ObjetosColuna">
+							<p:outputLabel value="Profissional"/>
+	   						<p:inputText value="#{agendaBean.agenda.nome_cteprof}" styleClass="TamanhoM" readonly="true"/>
+	   					</div>   							   					
+					</div>
+					<div class="ObjetosLinha">
+						<div class="ObjetosColuna">
+	   						<p:outputLabel value="Paciente"/>
+	   						<p:inputText value="#{agendaBean.event.title}" styleClass="TamanhoM" readonly="true"/>
+	   					</div>
+	   					
+	   					<div class="ObjetosColuna">
+	   						<p:outputLabel value="Horário"/>
+	   						<p:inputText value="#{agendaBean.agenda.descricao_horario}"	styleClass="TamanhoPP"/>
+	   					</div>
+					</div>
+					<div class="ObjetosLinha">
+						<div class="ObjetosColuna">		
+							<h:outputLabel value="Observações" /> 
+							<p:inputTextarea id="desc" value="#{agendaBean.agenda.obs_agenda}" rows="2" cols="65" 
+								autoResize="false" styleClass="TextoCaixaAlta" readonly="true"/>
 						</div>
-						<div class="ObjetosLinha">
-							<div class="ObjetosColuna">		
-								<h:outputLabel value="Observações" /> 
-								<p:inputTextarea id="desc" value="#{agendaBean.agenda.obs_agenda}" rows="2" cols="65" 
-									autoResize="false" styleClass="TextoCaixaAlta" readonly="true"/>
-							</div>
-						</div>
+					</div>
 		
 			      			 
-		         		<br/>
+					<br/>
 		         			
-					     <p:commandButton styleClass="BotaoPrimario" value="Fechar" onclick="PF('dialogoconsulta').hide();" />      			
+					<p:commandButton styleClass="BotaoPrimario" value="Fechar" onclick="PF('dialogoconsulta').hide();" />      			
 		      			
-		      		</h:form>
-		   	  </p:dialog>			      			      			
+				</h:form>
+			</p:dialog>
+			
+			<p:dialog header="Cadastro de Agendamento" widgetVar="dialogocadastro">
+	    		<h:form id="formdialogocadastro">
+	    		
+	    			<p:growl id="growlcad" showDetail="true" sticky="true" /> 
+	    			
+	    			<div class="ObjetosLinha">	
+	   					<div class="ObjetosColuna">
+							<p:outputLabel value="Tipo" />
+							<p:inputText value="#{agendaBean.agenda.tipo_cteprof eq '1' ? 'Assistente Social' : (
+						                	      agendaBean.agenda.tipo_cteprof eq '2' ? 'Fisioterapeuta' : (
+						                	      agendaBean.agenda.tipo_cteprof eq '3' ? 'Psicóloga' : (
+						                	      agendaBean.agenda.tipo_cteprof eq '4' ? 'Pedagoga' : (
+						                	      agendaBean.agenda.tipo_cteprof eq '5' ? 'Professora' : (
+						                	      agendaBean.agenda.tipo_cteprof eq '6' ? 'Funcionário' : (
+						                	      agendaBean.agenda.tipo_cteprof eq '7' ? 'Outros' : '')		                	  
+						                	    ))))		                	  
+						                	    )}" styleClass="TamanhoPP" readonly="true"/>
+						</div>
+	   				
+	   					<div class="ObjetosColuna">
+							<p:outputLabel value="Profissional"/>
+	   						<p:inputText value="#{agendaBean.agenda.nome_cteprof}" styleClass="TamanhoM" readonly="true"/>
+	   					</div>   							   					
+					</div>
+					<div class="ObjetosLinha">
+						<div class="ObjetosColuna">	
+	   					
+		   					<div class="ObjetosColuna">
+		   						<p:outputLabel value="Horário"/>
+								<p:selectOneListbox value="#{agendaBean.agenda.id_horario}">
+						            <f:selectItems value="#{agendaBean.horarioslista}" var="hor"
+			                            itemValue="#{hor.id_horario}" itemLabel="#{hor.descricao_horario}" />
+						        </p:selectOneListbox>
+		   					</div>
+		   					
+							<p:outputLabel value="Paciente" />
+							<p:selectOneMenu value="#{agendaBean.agenda.id_ctepac}" styleClass="TamanhoSelectM"
+								required="true" requiredMessage="Favor informar o paciente">
+								<f:selectItem itemValue="" itemLabel="" />
+		                    	<f:selectItems value="#{agendaBean.pacienteslista}" var="pac"
+		                            itemValue="#{pac.id_ctepac}" itemLabel="#{pac.nome_ctepac}" />      							
+							</p:selectOneMenu>
+						</div>
+					</div>					
+					<div class="ObjetosLinha">
+						<div class="ObjetosColuna">
+							<p:outputLabel value="Status" />
+							<p:selectOneMenu value="#{agendaBean.agenda.status_agenda}" styleClass="TamanhoSelectPP">
+								<f:selectItem itemValue="A" itemLabel="Ativo" />
+								<f:selectItem itemValue="I" itemLabel="Inativo" />						
+							</p:selectOneMenu>
+						</div>
+					</div>
+					<div class="ObjetosLinha">
+						<div class="ObjetosColuna">		
+							<h:outputLabel value="Observações" /> 
+							<p:inputTextarea id="obs" value="#{agendaBean.agenda.obs_agenda}" rows="2" cols="65" 
+								counter="display" maxlength="200" counterTemplate="{0} caracteres restantes" 
+								autoResize="false" styleClass="TextoCaixaAlta" required="true" requiredMessage="Favor informar a observação"/>
+							<p:outputLabel id="display"/>
+						</div>
+					</div>
+	
+		      			 
+	         		<br/>
+	         			
+				     <p:commandButton styleClass="BotaoPrimario" value="Gravar" action="#{agendaBean.gravar}" update="formdados"/>      			
+	      			
+	      		</h:form>
+			</p:dialog>			      			      			
       		
    	  </p:panel>
 

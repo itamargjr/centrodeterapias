@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -23,7 +25,12 @@ import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.ScheduleModel;
 
 import entity.Agenda;
+import entity.Horarios;
+import entity.Pacientes;
+import entity.Profissionais;
 import persistence.AgendaDao;
+import persistence.PacientesDao;
+import persistence.ProfissionaisDao;
 
 import org.primefaces.model.ScheduleEvent;
 
@@ -39,6 +46,9 @@ public class AgendaBean {
 	private Agenda agenda;
 	
 	private List<Agenda> agendalista;
+	private List<Profissionais> profissionaislista;
+	public List<Pacientes> pacienteslista;
+	public List<Horarios> horarioslista;
 	
 	public Boolean mostraragenda = false;
 	
@@ -83,36 +93,43 @@ public class AgendaBean {
 	public AgendaBean() {
 		agenda = new Agenda();
 		
+		profissionaislista = new ArrayList<Profissionais>();
+		
 		eventModel = new DefaultScheduleModel();
 		
 		 mostraragenda = false;
-		
-		try {
-			
-			java.util.Date data = new java.util.Date();
-			
-			SimpleDateFormat mes = new SimpleDateFormat("MM");
-			SimpleDateFormat ano = new SimpleDateFormat("yyyy");
-			
-			String dataS = "01/" + mes.format(data) + "/" + ano.format(data);
-			
-			AgendaDao ad = new AgendaDao();
-			
-			agendalista = ad.buscagendadomes(dataS);
-			
-			for (Agenda ag : agendalista) {
-				adicionarAgendamento(ag);
-			}
-			
+		 
+		 try {
+			pacienteslista = new PacientesDao().findAll(null);
 		} catch (Exception e) {
 			e.printStackTrace();
 			
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
 		}
+	}
 
-        //addEvents2EventModel(LocalDateTime.now());
-        //addEvents2EventModel(LocalDateTime.now().minusMonths(6));
+	public List<Horarios> getHorarioslista() {
+		return horarioslista;
+	}
 
+	public void setHorarioslista(List<Horarios> horarioslista) {
+		this.horarioslista = horarioslista;
+	}
+
+	public List<Pacientes> getPacienteslista() {
+		return pacienteslista;
+	}
+
+	public void setPacienteslista(List<Pacientes> pacienteslista) {
+		this.pacienteslista = pacienteslista;
+	}
+
+	public List<Profissionais> getProfissionaislista() {
+		return profissionaislista;
+	}
+
+	public void setProfissionaislista(List<Profissionais> profissionaislista) {
+		this.profissionaislista = profissionaislista;
 	}
 
 	public Boolean getMostraragenda() {
@@ -172,20 +189,9 @@ public class AgendaBean {
 	public void atualizalistaprofissionais() {
 		try {
 			
-			java.util.Date data = new java.util.Date();
+			profissionaislista = new ProfissionaisDao().buscaportipo(agenda.getTipo_cteprof());
 			
-			SimpleDateFormat mes = new SimpleDateFormat("MM");
-			SimpleDateFormat ano = new SimpleDateFormat("yyyy");
-			
-			String dataS = "01/" + mes.format(data) + "/" + ano.format(data);
-			
-			AgendaDao ad = new AgendaDao();
-			
-			agendalista = ad.buscagendadomes(dataS);
-			
-			for (Agenda ag : agendalista) {
-				adicionarAgendamento(ag);
-			}
+			mostraragenda = false;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -196,11 +202,11 @@ public class AgendaBean {
 	
 	private void adicionarAgendamento(Agenda ag) {
 		try {
-			DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+			DateFormat df = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 			
 			Calendar cal = Calendar.getInstance();
 			
-			cal.setTime(df.parse(ag.getData_agenda()));
+			cal.setTime(df.parse(ag.getData_agenda() + " " + ag.getDescricao_horario()));
 			
 			LocalDateTime data = convertToLocalDateTimeViaInstant(cal.getTime());
 			
@@ -209,8 +215,9 @@ public class AgendaBean {
 	                .startDate(data)
 	                .endDate(data)
 	                .description(ag.getId_agenda().toString())
-	                .borderColor("orange")
-	                .build();
+	                .borderColor("orange")	         
+	                .build();			
+			
 	        eventModel.addEvent(event);
 	        
 		} catch (Exception e) {
@@ -339,6 +346,28 @@ public class AgendaBean {
                 .startDate(selectEvent.getObject())
                 .endDate(selectEvent.getObject().plusHours(1))                
                 .build();
+    	
+    	try {
+    		
+    		ProfissionaisDao pd = new ProfissionaisDao();
+    		
+    		agenda.setNome_cteprof(pd.buscanomepeloid(agenda.getId_cteprof()));		
+    		
+    		String data = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(event.getStartDate());
+    		
+    		agenda.setData_agenda(data);
+			
+			AgendaDao ad = new AgendaDao();
+			
+			horarioslista = ad.horariosdisponiveis(agenda);
+			
+			PrimeFaces.current().executeScript("PF('dialogocadastro').show();");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
+		}
     }
 
     public void onEventMove(ScheduleEntryMoveEvent event) {
@@ -682,10 +711,52 @@ public class AgendaBean {
     public LocalDate getInitialDate() {
         return LocalDate.now().plusDays(1);
     }
-
 	
 	public void buscar() {
-		
+		try {
+			
+			java.util.Date data = new java.util.Date();
+			
+			SimpleDateFormat mes = new SimpleDateFormat("MM");
+			SimpleDateFormat ano = new SimpleDateFormat("yyyy");
+			
+			String dataS = "01/" + mes.format(data) + "/" + ano.format(data);
+			
+			AgendaDao ad = new AgendaDao();
+			
+			agendalista = ad.buscagendadomes(dataS, agenda.getId_cteprof());
+			
+			for (Agenda ag : agendalista) {
+				adicionarAgendamento(ag);
+			}
+			
+			mostraragenda = true;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
+		}
+	}
+	
+	public void gravar() {
+		try {
+			
+			AgendaDao ad = new AgendaDao();
+			
+			agenda.setId_agenda(ad.gravar(agenda));
+			
+			adicionarAgendamento(agenda);
+			
+			PrimeFaces.current().executeScript("PF('dialogocadastro').hide();");
+			
+			mostraragenda = true;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
+		}
 	}
 
 }
