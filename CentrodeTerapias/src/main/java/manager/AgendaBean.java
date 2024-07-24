@@ -29,6 +29,7 @@ import entity.Horarios;
 import entity.Pacientes;
 import entity.Profissionais;
 import persistence.AgendaDao;
+import persistence.HorariosDao;
 import persistence.PacientesDao;
 import persistence.ProfissionaisDao;
 
@@ -715,6 +716,8 @@ public class AgendaBean {
 	public void buscar() {
 		try {
 			
+			eventModel = new DefaultScheduleModel();
+			
 			java.util.Date data = new java.util.Date();
 			
 			SimpleDateFormat mes = new SimpleDateFormat("MM");
@@ -745,6 +748,10 @@ public class AgendaBean {
 			AgendaDao ad = new AgendaDao();
 			
 			agenda.setId_agenda(ad.gravar(agenda));
+			
+			HorariosDao hd = new HorariosDao();
+			
+			agenda.setDescricao_horario(hd.retornadescricaohorario(agenda.getId_horario()));
 			
 			adicionarAgendamento(agenda);
 			

@@ -51,4 +51,28 @@ public class HorariosDao extends Dao {
 		
 		close();
 	}
+	
+	public String retornadescricaohorario(Integer id)throws Exception{
+		String horario = "";
+		
+		open();
+		
+		String sql = "select descricao_horario " +
+				     "FROM cte_agendahorarios " +
+				     "WHERE id_horario=? ";
+		
+		stmt = con.prepareStatement(sql);
+		
+		stmt.setInt(1, id);
+		
+		rs = stmt.executeQuery();
+		
+		if (rs.next()) {
+			horario = rs.getString("descricao_horario");
+		}
+		
+		close();
+		
+		return horario;
+	}
 }
