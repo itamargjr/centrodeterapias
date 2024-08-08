@@ -30,9 +30,14 @@
 								<f:selectItem itemValue="1" itemLabel="Assistente Social" />
 								<f:selectItem itemValue="2" itemLabel="Fisioterapeuta" /> 	
 								<f:selectItem itemValue="3" itemLabel="Psicóloga" /> 	
-								<f:selectItem itemValue="4" itemLabel="Pedagoga" /> 
-								<f:selectItem itemValue="5" itemLabel="Professora" />
-								<f:selectItem itemValue="6" itemLabel="Funcionário" />  									
+								<f:selectItem itemValue="4" itemLabel="Psicopedagoga" /> 
+								<f:selectItem itemValue="5" itemLabel="Fonoaudióloga" />
+								<f:selectItem itemValue="6" itemLabel="Técnica de Enfermagem" />
+								<f:selectItem itemValue="7" itemLabel="Psicomotricista" /> 
+								<f:selectItem itemValue="8" itemLabel="Músico" /> 
+								<f:selectItem itemValue="9" itemLabel="Terapeuta Ocupacional" />
+								<f:selectItem itemValue="10" itemLabel="Nutricionista" /> 
+								<f:selectItem itemValue="11" itemLabel="Dentista" />    									
 						</p:selectOneMenu>
 					</div>
 				</div>
@@ -63,12 +68,16 @@
 						<p:outputLabel value="#{prof.tipo_cteprof eq '1' ? 'Assistente Social' : (
 						                	    prof.tipo_cteprof eq '2' ? 'Fisioterapeuta' : (
 						                	    prof.tipo_cteprof eq '3' ? 'Psicóloga' : (
-						                	    prof.tipo_cteprof eq '4' ? 'Pedagoga' : (
-						                	    prof.tipo_cteprof eq '5' ? 'Professora' : (
-						                	    prof.tipo_cteprof eq '6' ? 'Funcionário' : (
-						                	    prof.tipo_cteprof eq '7' ? 'Outros' : '')		                	  
+						                	    prof.tipo_cteprof eq '4' ? 'Psicopedagoga' : (
+						                	    prof.tipo_cteprof eq '5' ? 'Fonoaudióloga' : (
+						                	    prof.tipo_cteprof eq '6' ? 'Técnica de Enfermagem' : (
+						                	    prof.tipo_cteprof eq '7' ? 'Psicomotricista' : (
+						                	    prof.tipo_cteprof eq '8' ? 'Músico' : (
+						                	    prof.tipo_cteprof eq '9' ? 'Terapeuta Ocupacional' : (
+						                	    prof.tipo_cteprof eq '10' ? 'Nutricionista' : (
+						                	    prof.tipo_cteprof eq '11' ? 'Dentista' : '')		                	  
 						                	  ))))		                	  
-						                	  )}"/>
+						                	  )))))}"/>
 					</p:column>
 					
 					<p:column headerText="Email">
@@ -101,12 +110,17 @@
 						<p:outputLabel value="Tipo" />
 						<p:selectOneMenu value="#{profissionaisBean.profissionais.tipo_cteprof}" styleClass="TamanhoSelectMIN"
 							 required="true" requiredMessage="por favor informe o nome do tipo">
-							<f:selectItem itemValue="6" itemLabel="Funcionário" />
-							<f:selectItem itemValue="1" itemLabel="Assistente Social" />
-							<f:selectItem itemValue="2" itemLabel="Fisioterapeuta" /> 	
-							<f:selectItem itemValue="3" itemLabel="Psicóloga" /> 	
-							<f:selectItem itemValue="4" itemLabel="Pedagoga" /> 
-							<f:selectItem itemValue="5" itemLabel="Professora" />							  									
+								<f:selectItem itemValue="1" itemLabel="Assistente Social" />
+								<f:selectItem itemValue="2" itemLabel="Fisioterapeuta" /> 	
+								<f:selectItem itemValue="3" itemLabel="Psicóloga" /> 	
+								<f:selectItem itemValue="4" itemLabel="Psicopedagoga" /> 
+								<f:selectItem itemValue="5" itemLabel="Fonoaudióloga" />
+								<f:selectItem itemValue="6" itemLabel="Técnica de Enfermagem" />
+								<f:selectItem itemValue="7" itemLabel="Psicomotricista" /> 
+								<f:selectItem itemValue="8" itemLabel="Músico" /> 
+								<f:selectItem itemValue="9" itemLabel="Terapeuta Ocupacional" />
+								<f:selectItem itemValue="10" itemLabel="Nutricionista" /> 
+								<f:selectItem itemValue="11" itemLabel="Dentista" />							  									
 						</p:selectOneMenu>
 					</div>
 					<div class="ObjetosColuna">

@@ -26,9 +26,14 @@
 								<f:selectItem itemValue="1" itemLabel="Assistente Social" />
 								<f:selectItem itemValue="2" itemLabel="Fisioterapeuta" /> 	
 								<f:selectItem itemValue="3" itemLabel="Psicóloga" /> 	
-								<f:selectItem itemValue="4" itemLabel="Pedagoga" /> 
-								<f:selectItem itemValue="5" itemLabel="Professora" />
-								<f:selectItem itemValue="6" itemLabel="Funcionário" />  	
+								<f:selectItem itemValue="4" itemLabel="Psicopedagoga" /> 
+								<f:selectItem itemValue="5" itemLabel="Fonoaudióloga" />
+								<f:selectItem itemValue="6" itemLabel="Técnica de Enfermagem" />
+								<f:selectItem itemValue="7" itemLabel="Psicomotricista" /> 
+								<f:selectItem itemValue="8" itemLabel="Músico" /> 
+								<f:selectItem itemValue="9" itemLabel="Terapeuta Ocupacional" />
+								<f:selectItem itemValue="10" itemLabel="Nutricionista" /> 
+								<f:selectItem itemValue="11" itemLabel="Dentista" />  	
 								
 								<p:ajax event="change" listener="#{agendaBean.atualizalistaprofissionais}" update="comboprof formdados" />								
 						</p:selectOneMenu>						
@@ -106,14 +111,18 @@
 	   					<div class="ObjetosColuna">
 							<p:outputLabel value="Tipo" />
 							<p:inputText value="#{agendaBean.agenda.tipo_cteprof eq '1' ? 'Assistente Social' : (
-						                	      agendaBean.agenda.tipo_cteprof eq '2' ? 'Fisioterapeuta' : (
-						                	      agendaBean.agenda.tipo_cteprof eq '3' ? 'Psicóloga' : (
-						                	      agendaBean.agenda.tipo_cteprof eq '4' ? 'Pedagoga' : (
-						                	      agendaBean.agenda.tipo_cteprof eq '5' ? 'Professora' : (
-						                	      agendaBean.agenda.tipo_cteprof eq '6' ? 'Funcionário' : (
-						                	      agendaBean.agenda.tipo_cteprof eq '7' ? 'Outros' : '')		                	  
-						                	    ))))		                	  
-						                	    )}" styleClass="TamanhoPP" readonly="true"/>
+						                	  agendaBean.agenda.tipo_cteprof eq '2' ? 'Fisioterapeuta' : (
+						                	  agendaBean.agenda.tipo_cteprof eq '3' ? 'Psicóloga' : (
+						                	  agendaBean.agenda.tipo_cteprof eq '4' ? 'Psicopedagoga' : (
+						                	  agendaBean.agenda.tipo_cteprof eq '5' ? 'Fonoaudióloga' : (
+						                	  agendaBean.agenda.tipo_cteprof eq '6' ? 'Técnica de Enfermagem' : (
+						                	  agendaBean.agenda.tipo_cteprof eq '7' ? 'Psicomotricista' : (
+						                	  agendaBean.agenda.tipo_cteprof eq '8' ? 'Músico' : (
+						                	  agendaBean.agenda.tipo_cteprof eq '9' ? 'Terapeuta Ocupacional' : (
+						                	  agendaBean.agenda.tipo_cteprof eq '10' ? 'Nutricionista' : (
+						                	  agendaBean.agenda.tipo_cteprof eq '11' ? 'Dentista' : '')		                	  
+						                	  ))))		                	  
+						                	  )))))}" styleClass="TamanhoPP" readonly="true"/>
 						</div>
 	   				
 	   					<div class="ObjetosColuna">
@@ -157,14 +166,18 @@
 	   					<div class="ObjetosColuna">
 							<p:outputLabel value="Tipo" />
 							<p:inputText value="#{agendaBean.agenda.tipo_cteprof eq '1' ? 'Assistente Social' : (
-						                	      agendaBean.agenda.tipo_cteprof eq '2' ? 'Fisioterapeuta' : (
-						                	      agendaBean.agenda.tipo_cteprof eq '3' ? 'Psicóloga' : (
-						                	      agendaBean.agenda.tipo_cteprof eq '4' ? 'Pedagoga' : (
-						                	      agendaBean.agenda.tipo_cteprof eq '5' ? 'Professora' : (
-						                	      agendaBean.agenda.tipo_cteprof eq '6' ? 'Funcionário' : (
-						                	      agendaBean.agenda.tipo_cteprof eq '7' ? 'Outros' : '')		                	  
-						                	    ))))		                	  
-						                	    )}" styleClass="TamanhoPP" readonly="true"/>
+						                	  agendaBean.agenda.tipo_cteprof eq '2' ? 'Fisioterapeuta' : (
+						                	  agendaBean.agenda.tipo_cteprof eq '3' ? 'Psicóloga' : (
+						                	  agendaBean.agenda.tipo_cteprof eq '4' ? 'Psicopedagoga' : (
+						                	  agendaBean.agenda.tipo_cteprof eq '5' ? 'Fonoaudióloga' : (
+						                	  agendaBean.agenda.tipo_cteprof eq '6' ? 'Técnica de Enfermagem' : (
+						                	  agendaBean.agenda.tipo_cteprof eq '7' ? 'Psicomotricista' : (
+						                	  agendaBean.agenda.tipo_cteprof eq '8' ? 'Músico' : (
+						                	  agendaBean.agenda.tipo_cteprof eq '9' ? 'Terapeuta Ocupacional' : (
+						                	  agendaBean.agenda.tipo_cteprof eq '10' ? 'Nutricionista' : (
+						                	  agendaBean.agenda.tipo_cteprof eq '11' ? 'Dentista' : '')		                	  
+						                	  ))))		                	  
+						                	  )))))}" styleClass="TamanhoPP" readonly="true"/>
 						</div>
 	   				
 	   					<div class="ObjetosColuna">
@@ -206,7 +219,7 @@
 							<h:outputLabel value="Observações" /> 
 							<p:inputTextarea id="obs" value="#{agendaBean.agenda.obs_agenda}" rows="2" cols="65" 
 								counter="display" maxlength="200" counterTemplate="{0} caracteres restantes" 
-								autoResize="false" styleClass="TextoCaixaAlta" required="true" requiredMessage="Favor informar a observação"/>
+								autoResize="false" styleClass="TextoCaixaAlta"/>
 							<p:outputLabel id="display"/>
 						</div>
 					</div>

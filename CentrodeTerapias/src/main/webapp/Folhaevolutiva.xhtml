@@ -26,9 +26,14 @@
 								<f:selectItem itemValue="1" itemLabel="Assistente Social" />
 								<f:selectItem itemValue="2" itemLabel="Fisioterapeuta" /> 	
 								<f:selectItem itemValue="3" itemLabel="Psicóloga" /> 	
-								<f:selectItem itemValue="4" itemLabel="Pedagoga" /> 
-								<f:selectItem itemValue="5" itemLabel="Professora" />
-								<f:selectItem itemValue="6" itemLabel="Funcionário" />  	
+								<f:selectItem itemValue="4" itemLabel="Psicopedagoga" /> 
+								<f:selectItem itemValue="5" itemLabel="Fonoaudióloga" />
+								<f:selectItem itemValue="6" itemLabel="Técnica de Enfermagem" />
+								<f:selectItem itemValue="7" itemLabel="Psicomotricista" /> 
+								<f:selectItem itemValue="8" itemLabel="Músico" /> 
+								<f:selectItem itemValue="9" itemLabel="Terapeuta Ocupacional" />
+								<f:selectItem itemValue="10" itemLabel="Nutricionista" /> 
+								<f:selectItem itemValue="11" itemLabel="Dentista" />  	
 								
 								<p:ajax event="change" listener="#{folhaevolutivaBean.atualizalistaprofissionais}" update="comboprof" />								
 						</p:selectOneMenu>						
@@ -85,13 +90,17 @@
 					<p:column headerText="Tipo">
    						<p:outputLabel value="#{evol.tipo_cteprof eq '1' ? 'Assistente Social' : (
 						                	    evol.tipo_cteprof eq '2' ? 'Fisioterapeuta' : (
-  						                	    evol.tipo_cteprof eq '3' ? 'Psicóloga' : (
-						                	    evol.tipo_cteprof eq '4' ? 'Pedagoga' : (
-						                	    evol.tipo_cteprof eq '5' ? 'Professora' : (
-						                	    evol.tipo_cteprof eq '6' ? 'Funcionário' : (
-						                	    evol.tipo_cteprof eq '7' ? 'Outros' : '')		                	  
-						                	    ))))		                	  
-						                	    ) }"/>
+						                	    evol.tipo_cteprof eq '3' ? 'Psicóloga' : (
+						                	    evol.tipo_cteprof eq '4' ? 'Psicopedagoga' : (
+						                	    evol.tipo_cteprof eq '5' ? 'Fonoaudióloga' : (
+						                	    evol.tipo_cteprof eq '6' ? 'Técnica de Enfermagem' : (
+						                	    evol.tipo_cteprof eq '7' ? 'Psicomotricista' : (
+						                	    evol.tipo_cteprof eq '8' ? 'Músico' : (
+						                	    evol.tipo_cteprof eq '9' ? 'Terapeuta Ocupacional' : (
+						                	    evol.tipo_cteprof eq '10' ? 'Nutricionista' : (
+						                	    evol.tipo_cteprof eq '11' ? 'Dentista' : '')		                	  
+						                	  ))))		                	  
+						                	  )))))}"/>
    					</p:column>
    					
 					<p:column headerText="Profissional">
@@ -133,17 +142,21 @@
 						<p:inputText value="#{folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '1' ? 'Assistente Social' : (
 						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '2' ? 'Fisioterapeuta' : (
 						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '3' ? 'Psicóloga' : (
-						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '4' ? 'Pedagoga' : (
-						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '5' ? 'Professora' : (
-						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '6' ? 'Funcionário' : (
-						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '7' ? 'Outros' : '')		                	  
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '4' ? 'Psicopedagoga' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '5' ? 'Fonoaudióloga' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '6' ? 'Técnica de Enfermagem' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '7' ? 'Psicomotricista' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '8' ? 'Músico' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '9' ? 'Terapeuta Ocupacional' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '10' ? 'Nutricionista' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '11' ? 'Dentista' : '')		                	  
 						                	  ))))		                	  
-						                	  )}" styleClass="TamanhoP" readonly="true"/>
+						                	  )))))}" styleClass="TamanhoPP" readonly="true"/>
 					</div>
 					
 					<div class="ObjetosColuna">
 						<p:outputLabel value="Profissional" />
-						<p:inputText value="#{folhaevolutivaBean.folhaevolutiva.nome_cteprof}" styleClass="TamanhoM" readonly="true"/>
+						<p:inputText value="#{folhaevolutivaBean.folhaevolutiva.nome_cteprof}" styleClass="TamanhoPP" readonly="true"/>
 					</div>
 				</div>
 				
@@ -155,7 +168,7 @@
 					</div>				
 					<div class="ObjetosColuna">
 						<p:outputLabel value="Paciente" />
-						<p:selectOneMenu value="#{folhaevolutivaBean.folhaevolutiva.id_ctepac}" styleClass="TamanhoSelectM"
+						<p:selectOneMenu value="#{folhaevolutivaBean.folhaevolutiva.id_ctepac}" styleClass="TamanhoSelectPP"
 							required="true" requiredMessage="Favor informar o paciente">
 							<f:selectItem itemValue="" itemLabel="" />
 	                    	<f:selectItems value="#{folhaevolutivaBean.pacienteslista}" var="pac"
@@ -199,15 +212,19 @@
    				<div class="ObjetosLinha">
 					<div class="ObjetosColuna">
 						<p:outputLabel value="Tipo" />
-						<p:inputText value="#{folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '1' ? 'Assistente Social' : (
-						                	  folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '2' ? 'Fisioterapeuta' : (
-						                	  folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '3' ? 'Psicóloga' : (
-						                	  folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '4' ? 'Pedagoga' : (
-						                	  folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '5' ? 'Professora' : (
-						                	  folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '6' ? 'Funcionário' : (
-						                	  folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '7' ? 'Outros' : '')		                	  
+						<p:inputText value="#{folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '1' ? 'Assistente Social' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '2' ? 'Fisioterapeuta' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '3' ? 'Psicóloga' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '4' ? 'Psicopedagoga' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '5' ? 'Fonoaudióloga' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '6' ? 'Técnica de Enfermagem' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '7' ? 'Psicomotricista' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '8' ? 'Músico' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '9' ? 'Terapeuta Ocupacional' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '10' ? 'Nutricionista' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '11' ? 'Dentista' : '')		                	  
 						                	  ))))		                	  
-						                	  )}" styleClass="TamanhoM" readonly="true"/>
+						                	  )))))}" styleClass="TamanhoM" readonly="true"/>
 					</div>
 					
 					<div class="ObjetosColuna">
@@ -262,15 +279,19 @@
    				<div class="ObjetosLinha">
 					<div class="ObjetosColuna">
 						<p:outputLabel value="Tipo" />
-						<p:inputText value="#{folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '1' ? 'Assistente Social' : (
-						                	  folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '2' ? 'Fisioterapeuta' : (
-						                	  folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '3' ? 'Psicóloga' : (
-						                	  folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '4' ? 'Pedagoga' : (
-						                	  folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '5' ? 'Professora' : (
-						                	  folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '6' ? 'Funcionário' : (
-						                	  folhaevolutivaBean.folhaevolutivaalteracao.tipo_cteprof eq '7' ? 'Outros' : '')		                	  
+						<p:inputText value="#{folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '1' ? 'Assistente Social' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '2' ? 'Fisioterapeuta' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '3' ? 'Psicóloga' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '4' ? 'Psicopedagoga' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '5' ? 'Fonoaudióloga' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '6' ? 'Técnica de Enfermagem' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '7' ? 'Psicomotricista' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '8' ? 'Músico' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '9' ? 'Terapeuta Ocupacional' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '10' ? 'Nutricionista' : (
+						                	  folhaevolutivaBean.folhaevolutiva.tipo_cteprof eq '11' ? 'Dentista' : '')		                	  
 						                	  ))))		                	  
-						                	  )}" styleClass="TamanhoM" readonly="true"/>
+						                	  )))))}" styleClass="TamanhoM" readonly="true"/>
 					</div>
 					
 					<div class="ObjetosColuna">
