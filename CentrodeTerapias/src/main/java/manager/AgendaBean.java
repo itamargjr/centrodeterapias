@@ -1,5 +1,7 @@
 package manager;
 
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -9,12 +11,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletResponse;
 
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.ScheduleEntryMoveEvent;
@@ -28,10 +33,12 @@ import entity.Agenda;
 import entity.Horarios;
 import entity.Pacientes;
 import entity.Profissionais;
+import net.sf.jasperreports.engine.JasperRunManager;
 import persistence.AgendaDao;
 import persistence.HorariosDao;
 import persistence.PacientesDao;
 import persistence.ProfissionaisDao;
+import report.DSReportAgendaDiaria;
 
 import org.primefaces.model.ScheduleEvent;
 
@@ -742,6 +749,20 @@ public class AgendaBean {
 		}
 	}
 	
+	public void buscardiario() {
+		try {
+			
+			AgendaDao ad = new AgendaDao();
+			
+			agendalista = ad.buscagendadiaria(agenda);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
+		}
+	}
+	
 	public void gravar() {
 		try {
 			
@@ -764,6 +785,42 @@ public class AgendaBean {
 			
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
 		}
+	}
+	
+	public String imprimir() {
+		
+		if (agendalista.size()==0) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Sem dados para imprimir", ""));
+		} else {
+			try{
+				
+				DSReportAgendaDiaria ds = new DSReportAgendaDiaria(agendalista);
+				
+				Map<String, Object> param = new HashMap<>();
+				
+				String logo = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/imagens/logonovo.png");
+				
+				param.put("pLogo", logo);
+				
+				InputStream	arquivo = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/reports/agendadiaria.jasper");
+
+				byte[] pdf = JasperRunManager.runReportToPdf(arquivo, param, ds);
+				HttpServletResponse res = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+				
+				res.setContentType("application/pdf");
+				res.setContentLength(pdf.length);
+				OutputStream out = res.getOutputStream();
+				out.write(pdf, 0, pdf.length);
+				out.flush();
+				out.close();
+				
+				FacesContext.getCurrentInstance().responseComplete();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return null;
 	}
 
 }

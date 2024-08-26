@@ -48,7 +48,10 @@
 			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" update="formdados"/>  
 			     	
 			     <p:commandButton styleClass="BotaoSecundario" action="#{profissionaisBean.AbrirDialogoCadastro}" value="Cadastrar" 
-			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" update="formcadastro"/>    			
+			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" update="formcadastro"/>  
+			     	
+			     <p:commandButton styleClass="BotaoSecundario" action="#{profissionaisBean.imprimir}" value="Imprimir" 
+			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" update="formcadastro"/>   			
       			
       		</h:form>
     	</p:panel>
@@ -86,7 +89,7 @@
 					
 					<p:column>
 						<p:commandLink value="Detalhe" action="#{profissionaisBean.abrirdialogodetalhe}" update="formdetalhe">
-							<f:setPropertyActionListener value="#{pac}" target="#{profissionaisBean.profissionais}" />
+							<f:setPropertyActionListener value="#{prof}" target="#{profissionaisBean.profissionais}" />
 						</p:commandLink>
 					</p:column>
 				</p:dataTable>
@@ -103,7 +106,7 @@
    					<div class="ObjetosColuna">
 						<p:outputLabel value="Nome"/>
    						<p:inputText onfocus="StringMaiuscula(this, 60)" value="#{profissionaisBean.profissionais.nome_cteprof}" 
-   							styleClass="TamanhoM" required="true" requiredMessage="por favor informe o nome do profissional"/>
+   							styleClass="TamanhoP" required="true" requiredMessage="por favor informe o nome do profissional"/>
    					</div> 
    					
    					<div class="ObjetosColuna">
@@ -123,37 +126,35 @@
 								<f:selectItem itemValue="11" itemLabel="Dentista" />							  									
 						</p:selectOneMenu>
 					</div>
-					<div class="ObjetosColuna">
-						<p:outputLabel value="Telefone"/>
-   						<p:inputText onfocus="NumericoInteiroLimite(this, 11)" value="#{profissionaisBean.profissionais.telefone_cteprof}" 
-   							styleClass="TamanhoPP" required="true" requiredMessage="Favor informar o telefone"/>
-   					</div>     					
-   					
 				</div>
 				<div class="ObjetosLinha">
 					<div class="ObjetosColuna">
    						<p:outputLabel value="Registro"/>
    						<p:inputText onfocus="NumericoInteiroLimite(this, 100)" value="#{profissionaisBean.profissionais.registro_cteprof}" 
    							styleClass="TamanhoPP"/>
-   					</div>
-   					
+   					</div>   					
    					<div class="ObjetosColuna">
    						<p:outputLabel value="CPF"/>
    						<p:inputText onfocus="Cpf(this)" value="#{profissionaisBean.profissionais.cpf_cteprof}" 
    							styleClass="TamanhoPP"/>
    					</div>
 				</div>
-				<div class="ObjetosLinha">					 
-				       					
+				<div class="ObjetosLinha">
 					<div class="ObjetosColuna">
+						<p:outputLabel value="Telefone"/>
+   						<p:inputText onfocus="NumericoInteiroLimite(this, 11)" value="#{profissionaisBean.profissionais.telefone_cteprof}" 
+   							styleClass="TamanhoPP" required="true" requiredMessage="Favor informar o telefone"/>
+   					</div>     					
+   					<div class="ObjetosColuna">
 						<p:outputLabel value="Email" />
 						<p:inputText onfocus="StringMaiuscula(this, 200)" value="#{profissionaisBean.profissionais.email_cteprof}" styleClass="TamanhoP"/>
 					</div>
-					
+				</div>
+				<div class="ObjetosLinha">	
 					<div class="ObjetosColuna">
  						<p:outputLabel value="Endereço"/>
            				<p:inputText onfocus="StringMaiuscula(this, 200)" value="#{profissionaisBean.profissionais.endereco_cteprof}" 
-           				maxlength="30" styleClass="TextoCaixaAlta TamanhoG" required="true" requiredMessage="por favor informe o logradouro"/>
+           				maxlength="30" styleClass="TamanhoG" required="true" requiredMessage="por favor informe o logradouro"/>
     				</div>				
       			</div>
 
@@ -170,7 +171,67 @@
 
     		<h:form id="formdetalhe">
     		
-    			      			
+    			<div class="ObjetosLinha">
+   					<div class="ObjetosColuna">
+						<p:outputLabel value="Nome"/>
+   						<p:inputText onfocus="StringMaiuscula(this, 60)" value="#{profissionaisBean.profissionais.nome_cteprof}" 
+   							styleClass="TamanhoPP" readonly="true"/>
+   					</div> 
+   					
+   					<div class="ObjetosColuna">
+						<p:outputLabel value="Tipo" />
+						<p:inputText value="#{profissionaisBean.profissionais.tipo_cteprof eq '1' ? 'Assistente Social' : (
+						                	  profissionaisBean.profissionais.tipo_cteprof eq '2' ? 'Fisioterapeuta' : (
+						                	  profissionaisBean.profissionais.tipo_cteprof eq '3' ? 'Psicóloga' : (
+						                	  profissionaisBean.profissionais.tipo_cteprof eq '4' ? 'Psicopedagoga' : (
+						                	  profissionaisBean.profissionais.tipo_cteprof eq '5' ? 'Fonoaudióloga' : (
+						                	  profissionaisBean.profissionais.tipo_cteprof eq '6' ? 'Técnica de Enfermagem' : (
+						                	  profissionaisBean.profissionais.tipo_cteprof eq '7' ? 'Psicomotricista' : (
+						                	  profissionaisBean.profissionais.tipo_cteprof eq '8' ? 'Músico' : (
+						                	  profissionaisBean.profissionais.tipo_cteprof eq '9' ? 'Terapeuta Ocupacional' : (
+						                	  profissionaisBean.profissionais.tipo_cteprof eq '10' ? 'Nutricionista' : (
+						                	  profissionaisBean.profissionais.tipo_cteprof eq '11' ? 'Dentista' : '')		                	  
+						                	  ))))		                	  
+						                	  )))))}" 
+   							styleClass="TamanhoPP" readonly="true"/>
+					</div>
+				</div>
+				<div class="ObjetosLinha">
+					<div class="ObjetosColuna">
+   						<p:outputLabel value="Registro"/>
+   						<p:inputText onfocus="NumericoInteiroLimite(this, 100)" value="#{profissionaisBean.profissionais.registro_cteprof}" 
+   							styleClass="TamanhoPP" readonly="true"/>
+   					</div>   					
+   					<div class="ObjetosColuna">
+   						<p:outputLabel value="CPF"/>
+   						<p:inputText onfocus="Cpf(this)" value="#{profissionaisBean.profissionais.cpf_cteprof}" 
+   							styleClass="TamanhoPP" readonly="true"/>
+   					</div>
+				</div>
+				<div class="ObjetosLinha">
+					<div class="ObjetosColuna">
+						<p:outputLabel value="Telefone"/>
+   						<p:inputText onfocus="NumericoInteiroLimite(this, 11)" value="#{profissionaisBean.profissionais.telefone_cteprof}" 
+   							styleClass="TamanhoPP" readonly="true"/>
+   					</div>     					
+   					<div class="ObjetosColuna">
+						<p:outputLabel value="Email" />
+						<p:inputText onfocus="StringMaiuscula(this, 200)" value="#{profissionaisBean.profissionais.email_cteprof}" 
+							styleClass="TamanhoP" readonly="true"/>
+					</div>
+				</div>
+				<div class="ObjetosLinha">	
+					<div class="ObjetosColuna">
+ 						<p:outputLabel value="Endereço"/>
+           				<p:inputText onfocus="StringMaiuscula(this, 200)" value="#{profissionaisBean.profissionais.endereco_cteprof}" 
+           				maxlength="30" styleClass="TamanhoG" readonly="true"/>
+    				</div>				
+      			</div>
+      			
+      			<br/>
+         			
+			     <p:commandButton styleClass="BotaoPrimario" action="#{profissionaisBean.excluir}" value="Excluir" 
+			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />  	      			
       			
       		</h:form>
    	  </p:dialog>

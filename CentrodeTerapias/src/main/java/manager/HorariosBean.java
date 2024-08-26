@@ -68,6 +68,28 @@ public class HorariosBean {
 			
 			pd.gravar(horarios);
 			
+			horarioslista.add(horarios);
+			
+			horarios = new Horarios();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
+		}
+	}
+	
+	public void excluir() {
+		try {
+			
+			HorariosDao pd = new HorariosDao(); 
+			
+			pd.excluir(horarios);
+			
+			horarioslista.remove(horarios);
+			
+			horarios = new Horarios();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			

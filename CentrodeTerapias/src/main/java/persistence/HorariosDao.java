@@ -52,6 +52,20 @@ public class HorariosDao extends Dao {
 		close();
 	}
 	
+	public void excluir(Horarios hor)throws Exception{
+		open();
+		
+		String sql = "delete from cte_agendahorarios where id_horario = ? ";
+		
+		stmt = con.prepareStatement(sql);
+		
+		stmt.setInt(1, hor.getId_horario());
+
+		stmt.executeUpdate();
+		
+		close();
+	}
+	
 	public String retornadescricaohorario(Integer id)throws Exception{
 		String horario = "";
 		

@@ -46,6 +46,12 @@
 					<p:column headerText="Horário">
    						<p:outputLabel value="#{hor.descricao_horario}" />
    					</p:column>
+   					
+   					<p:column>
+						<p:commandLink value="Excluir" action="#{horariosBean.excluir}" update="formdados" >
+							<f:setPropertyActionListener target="#{horariosBean.horarios}" value="#{hor}"/>
+						</p:commandLink>
+					</p:column>
 				</p:dataTable>
     		</h:form>
     	</p:panel>
@@ -59,7 +65,7 @@
    				<div class="ObjetosLinha">
    					<div class="ObjetosColuna">
 						<p:outputLabel value="Horário"/>
-   						<p:inputText onfocus="StringMaiuscula(this, 60)" value="#{horariosBean.horarios.descricao_horario}" 
+   						<p:inputText onfocus="StringMaiuscula(this, 5)" value="#{horariosBean.horarios.descricao_horario}" 
    							styleClass="TamanhoM" required="true" requiredMessage="por favor informe o horário"/>
    					</div>				
       			</div>

@@ -36,7 +36,7 @@ public class AcessoBean implements Serializable {
 
 	public Ctrl_usuarios usuarios; 
 	
-	private Boolean renderizarBotaocadastrarUsuario;
+	private Boolean renderizarBotaocadastrarUsuario; 
 	private Boolean renderizarBotaoAtualizarUsuario;
 	private Boolean renderizarBotaoExcluirUsuario;
 	

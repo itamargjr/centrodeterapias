@@ -124,5 +124,19 @@ public class ProfissionaisDao extends Dao {
 		
 		close();
 	}
+	
+	public void excluir(Profissionais prof)throws Exception{
+		open();
+		
+		String sql = "delete from cte_profissionais where id_cteprof = ?";
+		
+		stmt = con.prepareStatement(sql);
+		
+		stmt.setInt(1, prof.getId_cteprof());
+
+		stmt.executeUpdate();
+		
+		close();
+	}
 
 }

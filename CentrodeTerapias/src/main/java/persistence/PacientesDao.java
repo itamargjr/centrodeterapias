@@ -20,7 +20,7 @@ public class PacientesDao extends Dao {
 				     "  escolmae_ctepac, telmae_ctepac, responsavel_ctepac, emailresp_ctepac, " + 
 				     "  telresp_ctepac, primfilho_ctepac, irmaos_ctepac, pessoasconv_ctepac, " + 
 				     "  endereco_ctepac, bairro_ctepac, cep_ctepac, escola_ctepac, turno_ctepac,  " +
-				     "  turma_ctepac, dataencam_ctepac, respencam_ctepac " +
+				     "  turma_ctepac, dataencam_ctepac, respencam_ctepac, status_ctepac " +
 				     "FROM cte_pacientes " +
 				     "WHERE 1=1 ";
 		
@@ -40,6 +40,10 @@ public class PacientesDao extends Dao {
 			if ((pac.getMae_ctepac()!=null)&&(!pac.getMae_ctepac().equalsIgnoreCase(""))) {
 				sql = sql + " and mae_ctepac like '%" + pac.getMae_ctepac() + "%'";
 			}
+			
+			if ((pac.getStatus_ctepac()!=null)&&(!pac.getStatus_ctepac().equalsIgnoreCase(""))) {
+				sql = sql + " and status_ctepac = '" + pac.getStatus_ctepac() + "'";
+			}
 		} 			
 		
 		stmt = con.prepareStatement(sql);
@@ -56,7 +60,7 @@ public class PacientesDao extends Dao {
 										rs.getString("pessoasconv_ctepac"), rs.getString("endereco_ctepac"), 
 										rs.getString("bairro_ctepac"), rs.getString("cep_ctepac"), rs.getString("escola_ctepac"), 
 										rs.getString("turno_ctepac"), rs.getString("turma_ctepac"), rs.getString("dataencam_ctepac"), 
-										rs.getString("respencam_ctepac"));
+										rs.getString("respencam_ctepac"), rs.getString("status_ctepac"));
 		
 			lista.add(p);
 		}
@@ -83,14 +87,14 @@ public class PacientesDao extends Dao {
 				     "  escolmae_ctepac, telmae_ctepac, responsavel_ctepac, emailresp_ctepac, " + 
 				     "  telresp_ctepac, primfilho_ctepac, irmaos_ctepac, pessoasconv_ctepac, " + 
 				     "  endereco_ctepac, bairro_ctepac, cep_ctepac, escola_ctepac, turno_ctepac,  " +
-				     "  turma_ctepac, dataencam_ctepac, respencam_ctepac) " +
+				     "  turma_ctepac, dataencam_ctepac, respencam_ctepac, status_ctepac) " +
 				     "values " +
 				     "  (0, ?, ?, ?, ?, " + 
 				     "  ?, ?, ?, ?, ?, " + 
 				     "  ?, ?, ?, ?, " + 
 				     "  ?, ?, ?, ?, " + 
 				     "  ?, ?, ?, ?, ?,  " +
-				     "  ?, ?, ?) ";
+				     "  ?, ?, ?, ?) ";
 		
 		stmt = con.prepareStatement(sql);
 		
@@ -119,6 +123,7 @@ public class PacientesDao extends Dao {
 		stmt.setString(23, pac.getTurma_ctepac());
 		stmt.setString(24, pac.getDataencam_ctepac());
 		stmt.setString(25, usuario);
+		stmt.setString(25, pac.getStatus_ctepac());
 
 		stmt.executeUpdate();
 		

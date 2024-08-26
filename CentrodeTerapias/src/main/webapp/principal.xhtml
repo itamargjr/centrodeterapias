@@ -13,8 +13,7 @@
                     <h:form>
                         <p:panelMenu class="AjusteMenuPrincipal"  stateful="false">
 	                        <p:submenu label="Escola" expanded="true">	                                 
-	                                <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{paginasBean.validausu(1)}" value="Encaminhar Aluno" url="EncaminharAluno.xhtml" />                       
-	                                <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{paginasBean.validausu(2)}" value="Consultar Encaminhamento" url="|ConsultarEncaminhamento.xhtml" />
+	                                <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{paginasBean.validausu(1)}" value="Encaminhar Aluno" url="EncaminharAluno.xhtml" /> 
 	                        </p:submenu>
 	                        <p:submenu label="Cadastros" expanded="true">
 			                        <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{paginasBean.validausu(3)}" value="Pacientes" url="Pacientes.xhtml" />
@@ -22,9 +21,9 @@
 			                        <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{paginasBean.validausu(5)}" value="Horários" url="Horarios.xhtml" />
 			    			</p:submenu>
 			    			<p:submenu label="Rotinas" expanded="true">
-			                        <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{paginasBean.validausu(6)}" value="Anamnese Social" url="AnamneseSocial.xhtml" />
 			                        <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{paginasBean.validausu(7)}" value="Folha Evolutiva" url="Folhaevolutiva.xhtml" />
 			                        <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{paginasBean.validausu(7)}" value="Agendamento" url="Agendamento.xhtml" />
+			                        <p:menuitem onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" disabled="#{paginasBean.validausu(7)}" value="Agenda Diária" url="AgendamentoDiario.xhtml" />
 			    			</p:submenu>
 	                        <p:submenu label="Opções" expanded="true">
 			                        <p:menuitem value="Sair" action="#{paginasBean.logout}" />

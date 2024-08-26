@@ -32,7 +32,7 @@ public class PaginasBean {
 		private final String _relatorioBasico = "templates/_RelatorioBasico_V2.0.xhtml";
 	//
 	
-	public String getFichaTecnicaImpressao() {
+	public String getFichaTecnicaImpressao() { 
 		return fichaTecnicaImpressao;
 	}
 	public String getIndex() {

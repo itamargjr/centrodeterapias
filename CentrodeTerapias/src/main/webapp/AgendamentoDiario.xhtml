@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      >
+
+<ui:composition template="#{paginasBean._template}">  
+    <ui:define name="corpo">
+    
+    	<p:messages />
+    	
+    	<p:panel header="Agendamento Diário">
+    		<h:form id="formbusca">
+    		
+    			<p:growl id="growl" showDetail="true" sticky="true" /> 
+
+   				<div class="ObjetosLinha">
+					<div class="ObjetosColuna">
+						<p:outputLabel value="Tipo" />
+						<p:selectOneMenu value="#{agendaBean.agenda.tipo_cteprof}" styleClass="TamanhoSelectPP" 
+							required="true" requiredMessage="Favor informar o tipo">
+								<f:selectItem itemValue="" itemLabel="" />
+								<f:selectItem itemValue="1" itemLabel="Assistente Social" />
+								<f:selectItem itemValue="2" itemLabel="Fisioterapeuta" /> 	
+								<f:selectItem itemValue="3" itemLabel="Psicóloga" /> 	
+								<f:selectItem itemValue="4" itemLabel="Psicopedagoga" /> 
+								<f:selectItem itemValue="5" itemLabel="Fonoaudióloga" />
+								<f:selectItem itemValue="6" itemLabel="Técnica de Enfermagem" />
+								<f:selectItem itemValue="7" itemLabel="Psicomotricista" /> 
+								<f:selectItem itemValue="8" itemLabel="Músico" /> 
+								<f:selectItem itemValue="9" itemLabel="Terapeuta Ocupacional" />
+								<f:selectItem itemValue="10" itemLabel="Nutricionista" /> 
+								<f:selectItem itemValue="11" itemLabel="Dentista" />  	
+								
+								<p:ajax event="change" listener="#{agendaBean.atualizalistaprofissionais}" update="comboprof formdados" />								
+						</p:selectOneMenu>						
+					</div>
+				</div>
+				<div class="ObjetosLinha">
+					<div class="ObjetosColuna">
+						<p:outputLabel value="Profissional" />
+						<p:selectOneMenu value="#{agendaBean.agenda.id_cteprof}" styleClass="TamanhoSelectM" id="comboprof"
+							required="true" requiredMessage="Favor informar o profissional">
+							<f:selectItem itemValue="" itemLabel="" />
+		                    <f:selectItems value="#{agendaBean.profissionaislista}" var="prof"
+		                            itemValue="#{prof.id_cteprof}" itemLabel="#{prof.nome_cteprof}" />	  
+		                            
+							<p:ajax event="change" listener="#{agendaBean.atualizalistaprofissionais}" update="formdados" />                      							
+						</p:selectOneMenu>
+						
+					</div>
+				</div>
+	      		<div class="ObjetosLinha">
+	                <div> 
+						<p:outputLabel value="Data" />
+				        <p:inputText onfocus="Data(this)" value="#{agendaBean.agenda.data_agenda}" styleClass="TamanhoMIN"
+							required="true" requiredMessage="Favor informar a data"/>
+				    </div>
+				</div>	 
+         		<br/>
+         		<div class="ObjetosLinha">
+	                <div>	
+			     		<p:commandButton styleClass="BotaoPrimario" action="#{agendaBean.buscardiario}" value="Buscar" ajax="false" 
+			     			onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" update="formdados"/> 
+					</div>
+					<div>	
+			     		<p:commandButton styleClass="BotaoSecundario" action="#{agendaBean.imprimir}" value="Imprimir" ajax="false" 
+			     			onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" update="formdados"/> 
+					</div>
+				</div>    			
+      			
+      		</h:form>
+    	</p:panel>
+    	
+    	<p:panel>
+    		<h:form id="formdados">
+    		
+    			<p:growl id="messages" showDetail="true"/>
+    		
+    			<p:dataTable value="#{agendaBean.agendalista}" var="ag" id="dataTableDetalhe" rows="20" paginator="true" 
+                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}{RowsPerPageDropdown}"
+                 currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                 rowsPerPageTemplate="5,10,15" styleClass="Tabela">
+
+					<p:column headerText="Profissional">
+   						<p:outputLabel value="#{ag.nome_cteprof}" />
+   					</p:column>
+						
+					<p:column headerText="Paciente">
+   						<p:outputLabel value="#{ag.nome_ctepac}" />
+   					</p:column>
+					
+					<p:column headerText="Data">
+   						<p:outputLabel value="#{ag.data_agenda}" />
+   					</p:column>
+					
+					<p:column headerText="Horário">
+						<p:outputLabel value="#{ag.descricao_horario}"/>
+					</p:column> 
+					
+					<p:column headerText="Observação">
+						<p:outputLabel value="#{ag.obs_agenda}"/>
+					</p:column>
+				</p:dataTable>  
+			</h:form>      			      			     		
+   	  </p:panel>
+
+    </ui:define>
+  </ui:composition>   
+</html>
+
+

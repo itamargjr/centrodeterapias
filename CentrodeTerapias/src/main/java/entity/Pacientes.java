@@ -27,17 +27,19 @@ public class Pacientes {
 	private String turma_ctepac;
 	private String dataencam_ctepac;
 	private String respencam_ctepac;
+	private String status_ctepac;
 	
 	public Pacientes() {
 		super();
 	}
 	
-	public Pacientes(Integer id_ctepac, String nome_ctepac, String datanasc_ctepac, String identidade_ctepac, String cpf_ctepac,
-			String cartsus_ctepac, String pai_ctepac, String escolpai_ctepac, String telpai_ctepac, String mae_ctepac,
-			String escolmae_ctepac, String telmae_ctepac, String responsavel_ctepac, String emailresp_ctepac,
-			String telresp_ctepac, String primfilho_ctepac, String irmaos_ctepac, String pessoasconv_ctepac,
-			String endereco_ctepac, String bairro_ctepac, String cep_ctepac, String escola_ctepac, String turno_ctepac,
-			String turma_ctepac, String dataencam_ctepac, String respencam_ctepac) {
+	public Pacientes(Integer id_ctepac, String nome_ctepac, String datanasc_ctepac, String identidade_ctepac,
+			String cpf_ctepac, String cartsus_ctepac, String pai_ctepac, String escolpai_ctepac, String telpai_ctepac,
+			String mae_ctepac, String escolmae_ctepac, String telmae_ctepac, String responsavel_ctepac,
+			String emailresp_ctepac, String telresp_ctepac, String primfilho_ctepac, String irmaos_ctepac,
+			String pessoasconv_ctepac, String endereco_ctepac, String bairro_ctepac, String cep_ctepac,
+			String escola_ctepac, String turno_ctepac, String turma_ctepac, String dataencam_ctepac,
+			String respencam_ctepac, String status_ctepac) {
 		super();
 		this.id_ctepac = id_ctepac;
 		this.nome_ctepac = nome_ctepac;
@@ -65,8 +67,17 @@ public class Pacientes {
 		this.turma_ctepac = turma_ctepac;
 		this.dataencam_ctepac = dataencam_ctepac;
 		this.respencam_ctepac = respencam_ctepac;
+		this.status_ctepac = status_ctepac;
 	}
-	
+
+	public String getStatus_ctepac() {
+		return status_ctepac;
+	}
+
+	public void setStatus_ctepacString(String status_ctepac) {
+		this.status_ctepac = status_ctepac;
+	}
+
 	public Integer getId_ctepac() {
 		return id_ctepac;
 	}
@@ -223,19 +234,20 @@ public class Pacientes {
 	public void setRespencam_ctepac(String respencam_ctepac) {
 		this.respencam_ctepac = respencam_ctepac;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Pacientes [id_ctepac=" + id_ctepac + ", nome_ctepac=" + nome_ctepac + ", datanasc_ctepac="
-				+ datanasc_ctepac + ", identidade_ctepac=" + identidade_ctepac + ", cpf_ctepac=" + cpf_ctepac + ", cartsus_ctepac=" + cartsus_ctepac
-				+ ", pai_ctepac=" + pai_ctepac + ", escolpai_ctepac=" + escolpai_ctepac + ", telpai_ctepac="
-				+ telpai_ctepac + ", mae_ctepac=" + mae_ctepac + ", escolmae_ctepac=" + escolmae_ctepac
-				+ ", telmae_ctepac=" + telmae_ctepac + ", responsavel_ctepac=" + responsavel_ctepac
-				+ ", emailresp_ctepac=" + emailresp_ctepac + ", telresp_ctepac=" + telresp_ctepac
+				+ datanasc_ctepac + ", identidade_ctepac=" + identidade_ctepac + ", cpf_ctepac=" + cpf_ctepac
+				+ ", cartsus_ctepac=" + cartsus_ctepac + ", pai_ctepac=" + pai_ctepac + ", escolpai_ctepac="
+				+ escolpai_ctepac + ", telpai_ctepac=" + telpai_ctepac + ", mae_ctepac=" + mae_ctepac
+				+ ", escolmae_ctepac=" + escolmae_ctepac + ", telmae_ctepac=" + telmae_ctepac + ", responsavel_ctepac="
+				+ responsavel_ctepac + ", emailresp_ctepac=" + emailresp_ctepac + ", telresp_ctepac=" + telresp_ctepac
 				+ ", primfilho_ctepac=" + primfilho_ctepac + ", irmaos_ctepac=" + irmaos_ctepac
 				+ ", pessoasconv_ctepac=" + pessoasconv_ctepac + ", endereco_ctepac=" + endereco_ctepac
 				+ ", bairro_ctepac=" + bairro_ctepac + ", cep_ctepac=" + cep_ctepac + ", escola_ctepac=" + escola_ctepac
 				+ ", turno_ctepac=" + turno_ctepac + ", turma_ctepac=" + turma_ctepac + ", dataencam_ctepac="
-				+ dataencam_ctepac + ", respencam_ctepac=" + respencam_ctepac + "]";
+				+ dataencam_ctepac + ", respencam_ctepac=" + respencam_ctepac + ", status_ctepac="
+				+ status_ctepac + "]";
 	}
 }

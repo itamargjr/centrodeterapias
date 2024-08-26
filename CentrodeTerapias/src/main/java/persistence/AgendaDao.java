@@ -100,6 +100,46 @@ public class AgendaDao extends Dao {
 		return lista;
 	}
 	
+	public List<Agenda> buscagendadiaria(Agenda ag)throws Exception{
+		List<Agenda> lista = new ArrayList<Agenda>();		
+		
+		open();
+		
+		String sql = "select "+                                                     
+					 "	a.id_agenda, a.data_agenda, a.id_horario, " +
+					 "  a.id_cteprof, a.id_ctepac, a.status_agenda, " +
+					 "  a.obs_agenda, b.descricao_horario, " +
+					 "  c.tipo_cteprof, c.nome_cteprof, d.nome_ctepac "+ 
+					 "from "+
+					 "	cte_agenda a, cte_agendahorarios b, "+
+					 "	cte_profissionais c, cte_pacientes d "+
+					 "where "+
+					 "  a.id_horario  = b.id_horario and " +
+					 "	a.id_cteprof = c.id_cteprof and "+
+					 "  a.id_ctepac = d.id_ctepac and " + 
+					 "  STR_TO_DATE(a.data_agenda, '%d/%m/%Y') = " +
+					 "  STR_TO_DATE('" + ag.getData_agenda() + "', '%d/%m/%Y') " +
+					 "order by a.data_agenda, b.descricao_horario";
+		
+		stmt = con.prepareStatement(sql);
+		
+		//System.out.println(sql);
+		
+		rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			Agenda a = new Agenda(rs.getInt("id_agenda"), rs.getString("data_agenda"), rs.getInt("id_horario"), 
+								  rs.getInt("id_cteprof"), rs.getInt("id_ctepac"), rs.getString("status_agenda"), 
+								  rs.getString("obs_agenda"), rs.getString("descricao_horario"),  
+								  rs.getString("tipo_cteprof"),rs.getString("nome_cteprof"), rs.getString("nome_ctepac"));
+			lista.add(a);
+		}
+		
+		close();
+		
+		return lista;
+	}
+	
 	public List<Horarios> horariosdisponiveis(Agenda agenda)throws Exception{
 		List<Horarios> lista = new ArrayList<Horarios>();
 		

@@ -12,7 +12,7 @@
     
     	<p:messages />
     	
-    	<p:panel header="Cadastro de Pacientes">
+    	<p:panel header="Encaminhamento de Alunos">
     		<h:form id="formbusca">
     		
     			<p:growl id="growl" showDetail="true" sticky="true" /> 
@@ -49,14 +49,11 @@
 	      			 
          		<br/>
          			
-			     <p:commandButton styleClass="BotaoPrimario" action="#{pacientesBean.Buscar}" value="Buscar"  
+			     <p:commandButton styleClass="BotaoPrimario" action="#{pacientesBean.BuscarAlunosEncaminhados}" value="Buscar"  
 			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" update="formdados"/>  
 			     	
 			     <p:commandButton styleClass="BotaoSecundario" action="#{pacientesBean.AbrirDialogoCadastro}" value="Cadastrar" 
-			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" update="formcadastro"/>   
-			     	
-			     <p:commandButton styleClass="BotaoSecundario" action="#{pacientesBean.imprimir}" value="Imprimir" 
-			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" update="formcadastro"/>  			
+			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" update="formcadastro"/>    			
       			
       		</h:form>
     	</p:panel>
@@ -101,7 +98,7 @@
     		</h:form>
     	</p:panel>
 			
-		<p:dialog header="Cadastro de Pacientes" widgetVar="dialogocadastro">
+		<p:dialog header="Cadastro de Encaminhamento de Alunos" widgetVar="dialogocadastro">
 
     		<h:form id="formcadastro">
     		
@@ -306,13 +303,13 @@
 	      			 
          		<br/>
          			
-			    <p:commandButton styleClass="BotaoPrimario" action="#{pacientesBean.gravar}" value="Gravar" 
+			    <p:commandButton styleClass="BotaoPrimario" action="#{pacientesBean.gravarEncaminhado}" value="Gravar" 
 			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />      			
       			
       		</h:form>
    	  </p:dialog>
    	  
-   	  <p:dialog header="Consulta de Pacientes" widgetVar="dialogodetalhe">
+   	  <p:dialog header="Consulta de Encaminhamento de Alunos" widgetVar="dialogodetalhe">
 
     		<h:form id="formdetalhe">
     		
