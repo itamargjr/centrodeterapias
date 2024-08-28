@@ -107,202 +107,206 @@
     		
     			<p:growl id="growl" showDetail="true" sticky="true" /> 
     		
-   				<div class="ObjetosLinha">
-   					<div class="ObjetosColuna">
-						<p:outputLabel value="Nome"/>
-     						<p:inputText onfocus="StringMaiuscula(this, 60)" value="#{pacientesBean.pacientes.nome_ctepac}" 
-     							styleClass="TamanhoM" required="true" requiredMessage="por favor informe o nome do paciente"/>
-     					</div> 
-					<div class="ObjetosColuna">
-						<p:outputLabel value="Data de Nascimento" />
-						<p:inputText  onfocus="Data(this)" value="#{pacientesBean.pacientes.datanasc_ctepac}" 
-							class="TamanhoMIN" required="true" requiredMessage="por favor informe a data de nascimento"/>
-					</div>
-     			</div>
-				<div class="ObjetosLinha">		
-   					<div class="ObjetosColuna">
-   						<p:outputLabel value="Cartão SUS"/>
-   						<p:inputText onfocus="NumericoInteiroLimite(this, 100)" value="#{pacientesBean.pacientes.cartsus_ctepac}" 
-   							styleClass="TamanhoPP"/>
-   					</div>
-   					<div class="ObjetosColuna">
-     						<p:outputLabel value="Identidade"/>
-     						<p:inputText onfocus="NumericoInteiroLimite(this, 11)" value="#{pacientesBean.pacientes.identidade_ctepac}" 
-     							styleClass="TamanhoPP"/>
-   					</div>
-				</div>
-				<div class="ObjetosLinha">					  					
-   					<div class="ObjetosColuna">
-   						<p:outputLabel value="CPF"/>
-   						<p:inputText onfocus="Cpf(this)" value="#{pacientesBean.pacientes.cpf_ctepac}" 
-   							styleClass="TamanhoPP"/>
-   					</div>
-   					
-   					<div class="ObjetosColuna">
-   						<p:outputLabel value="1º filho"/>
-   						<p:selectOneMenu value="#{pacientesBean.pacientes.primfilho_ctepac}" styleClass="TamanhoSelectMIN" required="true" requiredMessage="por favor informe o sexo">
-							<f:selectItem itemValue="" itemLabel="" />
-							<f:selectItem itemValue="S" itemLabel="Sim" />
-							<f:selectItem itemValue="N" itemLabel="Não" /> 								
-						</p:selectOneMenu>
-					</div>
-				</div>
-				<div class="ObjetosLinha">	
-					<div class="ObjetosColuna">
-						<p:outputLabel value="Irmãos/Quantos/Idades" />
-						<p:inputText onfocus="StringMaiuscula(this, 200)" value="#{pacientesBean.pacientes.irmaos_ctepac}" 
-							styleClass="TamanhoPP"/>
-					</div>
-					<div class="ObjetosColuna">
-						<p:outputLabel value="Pessoas que Convivem" />
-						<p:inputText onfocus="StringMaiuscula(this, 200)" value="#{pacientesBean.pacientes.pessoasconv_ctepac}" 
-							styleClass="TamanhoPP"/>
-					</div>
-				</div>
-				<div class="ObjetosLinha">
-					<div class="ObjetosColuna">
-     						<p:outputLabel value="Nome do Pai"/>
-     						<p:inputText onfocus="StringMaiuscula(this, 60)" value="#{pacientesBean.pacientes.pai_ctepac}" 
-     							styleClass="TamanhoPP"/>
-     					</div> 
-				       					
-					<div class="ObjetosColuna">
-						<p:outputLabel value="Escolaridade" />
-						<p:selectOneMenu value="#{pacientesBean.pacientes.escolpai_ctepac}" styleClass="TamanhoSelectMIN" required="true" requiredMessage="por favor informe o bairro que o candidato reside">
-							<f:selectItem itemValue="" itemLabel="" />
-							<f:selectItem itemValue="1" itemLabel="Fundamental - Incompleto" />
-							<f:selectItem itemValue="2" itemLabel="Fundamental - Completo" /> 
-							<f:selectItem itemValue="3" itemLabel="Médio - Incompleto" />
-							<f:selectItem itemValue="4" itemLabel="Médio - Completo" />
-							<f:selectItem itemValue="5" itemLabel="Superior - Incompleto" />
-							<f:selectItem itemValue="6" itemLabel="Superior - Completo" />
-							<f:selectItem itemValue="7" itemLabel="Pós-graduação" />
-							<f:selectItem itemValue="8" itemLabel="Mestrado" />
-							<f:selectItem itemValue="9" itemLabel="Doutorado" />									
-						</p:selectOneMenu>
-					</div>
-					
-					<div class="ObjetosColuna">
-						<p:outputLabel value="Telefone"/>
-   						<p:inputText onfocus="NumericoInteiroLimite(this, 11)" value="#{pacientesBean.pacientes.telpai_ctepac}" styleClass="TamanhoPP"/>
-   					</div> 
-				</div>
-				<div class="ObjetosLinha">
-					<div class="ObjetosColuna">
-     						<p:outputLabel value="Nome da Mãe"/>
-     						<p:inputText onfocus="StringMaiuscula(this, 60)" value="#{pacientesBean.pacientes.mae_ctepac}" 
-     							styleClass="TamanhoPP"/>
-     					</div> 
-				       					
-					<div class="ObjetosColuna">
-						<p:outputLabel value="Escolaridade" />
-						<p:selectOneMenu value="#{pacientesBean.pacientes.escolmae_ctepac}" styleClass="TamanhoSelectMIN" required="true" requiredMessage="por favor informe o bairro que o candidato reside">
-							<f:selectItem itemValue="" itemLabel="" />
-							<f:selectItem itemValue="1" itemLabel="Fundamental - Incompleto" />
-							<f:selectItem itemValue="2" itemLabel="Fundamental - Completo" /> 
-							<f:selectItem itemValue="3" itemLabel="Médio - Incompleto" />
-							<f:selectItem itemValue="4" itemLabel="Médio - Completo" />
-							<f:selectItem itemValue="5" itemLabel="Superior - Incompleto" />
-							<f:selectItem itemValue="6" itemLabel="Superior - Completo" />
-							<f:selectItem itemValue="7" itemLabel="Pós-graduação" />
-							<f:selectItem itemValue="8" itemLabel="Mestrado" />
-							<f:selectItem itemValue="9" itemLabel="Doutorado" />									
-						</p:selectOneMenu>
-					</div>
-					
-					<div class="ObjetosColuna">
-						<p:outputLabel value="Telefone"/>
-     						<p:inputText onfocus="NumericoInteiroLimite(this, 11)" value="#{pacientesBean.pacientes.telmae_ctepac}" styleClass="TamanhoPP"/>
-     					</div> 
-				</div>
-				<div class="ObjetosLinha">
-					<div class="ObjetosColuna">
-     						<p:outputLabel value="Responsavel"/>
-     						<p:inputText onfocus="StringMaiuscula(this, 60)" value="#{pacientesBean.pacientes.responsavel_ctepac}" 
-     							styleClass="TamanhoPP"/>
-     					</div> 
-				       					
-					<div class="ObjetosColuna">
-						<p:outputLabel value="Email" />
-						<p:inputText onfocus="StringMaiuscula(this, 200)" value="#{pacientesBean.pacientes.emailresp_ctepac}" 
-							styleClass="TamanhoPP"/>
-					</div>
-					
-					<div class="ObjetosColuna">
-						<p:outputLabel value="Telefone"/>
-     						<p:inputText onfocus="NumericoInteiroLimite(this, 11)" value="#{pacientesBean.pacientes.telresp_ctepac}" 
-     						styleClass="TamanhoPP" style="width: 178px;"/>
-     					</div> 
-				</div>
-
-				<div class="ObjetosLinha">
-					<div class="ObjetosColuna">
-  						<p:outputLabel value="Endereço"/>
-            			<p:inputText onfocus="StringMaiuscula(this, 200)" value="#{pacientesBean.pacientes.endereco_ctepac}" 
-            				maxlength="30" styleClass="TamanhoM" required="true" requiredMessage="por favor informe o logradouro"/>
-     				</div>
-     			</div>	
-
-				<div class="ObjetosLinha">
-	      			<div class="ObjetosColuna">
-						<p:outputLabel value="Bairro" />
-						<p:selectOneMenu value="#{pacientesBean.pacientes.bairro_ctepac}" styleClass="TamanhoSelectPP" required="true" 
-							requiredMessage="por favor informe o bairro">
-							<f:selectItem itemValue="" itemLabel="" />
-							<f:selectItem itemValue="Bairro da Mina" itemLabel="Bairro da Mina" />
-							<f:selectItem itemValue="Cabral" itemLabel="Cabral" /> 
-							<f:selectItem itemValue="Cabuis" itemLabel="Cabuis" />
-							<f:selectItem itemValue="Centro" itemLabel="Centro" />
-							<f:selectItem itemValue="Frigorífico" itemLabel="Frigorífico" />
-							<f:selectItem itemValue="Manoel Reis" itemLabel="Manoel Reis" />
-							<f:selectItem itemValue="N. S. de Fátima" itemLabel="N. S. de Fátima" />
-							<f:selectItem itemValue="Nova Cidade" itemLabel="Nova Cidade" />
-							<f:selectItem itemValue="Novo Horizonte" itemLabel="Novo Horizonte" />
-							<f:selectItem itemValue="Olinda" itemLabel="Olinda" />
-							<f:selectItem itemValue="Paiol" itemLabel="Paiol" />
-							<f:selectItem itemValue="Santos Dumont" itemLabel="Santos Dumont" />
-							<f:selectItem itemValue="Tropical" itemLabel="Tropical" />
-							<f:selectItem itemValue="Outro" itemLabel="Outro Município" />								
-						</p:selectOneMenu>
-					</div>
-					<div class="ObjetosColuna">
-    						<p:outputLabel value="CEP"/>
-	        			<p:inputText onfocus="Cep(this)" value="#{pacientesBean.pacientes.cep_ctepac}" maxlength="11" styleClass="TextoCaixaAlta TamanhoMIN" required="true" requiredMessage="por favor informe o CEP"/>
-					</div>					
-      			</div>	
-
-				<div class="ObjetosLinha">    					
-					<div class="ObjetosColuna">
-     						<p:outputLabel value="Escola"/>
-     						<p:inputText onfocus="StringMaiuscula(this, 100)" value="#{pacientesBean.pacientes.escola_ctepac}" 
-     							styleClass="TamanhoPP"/>
-     					</div>  
-     					<div class="ObjetosColuna">
-						<p:outputLabel value="Turno" />
-						<p:selectOneMenu value="#{pacientesBean.pacientes.turno_ctepac}" styleClass="TamanhoSelectPP">
-							<f:selectItem itemValue="" itemLabel="" />
-							<f:selectItem itemValue="M" itemLabel="Manhã" />
-							<f:selectItem itemValue="T" itemLabel="Tarde" /> 
-							<f:selectItem itemValue="N" itemLabel="Noite" />
-							<f:selectItem itemValue="I" itemLabel="Integral" />						
-						</p:selectOneMenu>
-					</div> 
-				</div>	
-
-				<div class="ObjetosLinha">
-					<div class="ObjetosColuna">
-     						<p:outputLabel value="Turma"/>
-     						<p:inputText onfocus="StringMaiuscula(this, 10)" value="#{pacientesBean.pacientes.turma_ctepac}" 
-     							styleClass="TamanhoPPP"/>
-     					</div>
-     					
-					<div class="ObjetosColuna">
-						<p:outputLabel value="Data Encaminhamento" />
-						<p:inputText  onfocus="Data(this)" value="#{pacientesBean.pacientes.dataencam_ctepac}" 
-							class="TamanhoMIN" required="true" requiredMessage="por favor informe a data de encaminhamento"/>
-					</div>
-     			</div>
-
+    			<p:tabView style="margin-top: 10px;" styleClass="TabView">
+      				<p:tab title="Dados Pessoais" titleStyleClass="TabViewTabs"> 
+		   				<div class="ObjetosLinha">
+		   					<div class="ObjetosColuna">
+								<p:outputLabel value="Nome"/>
+		     					<p:inputText onfocus="StringMaiuscula(this, 60)" value="#{pacientesBean.pacientes.nome_ctepac}" 
+		     							styleClass="TamanhoM" required="true" requiredMessage="por favor informe o nome do paciente"/>
+		     				</div> 
+							<div class="ObjetosColuna">
+								<p:outputLabel value="Data de Nascimento" />
+								<p:inputText  onfocus="Data(this)" value="#{pacientesBean.pacientes.datanasc_ctepac}" 
+									class="TamanhoMIN" required="true" requiredMessage="por favor informe a data de nascimento"/>
+							</div>
+		     			</div>
+						<div class="ObjetosLinha">		
+		   					<div class="ObjetosColuna">
+		   						<p:outputLabel value="Cartão SUS"/>
+		   						<p:inputText onfocus="NumericoInteiroLimite(this, 100)" value="#{pacientesBean.pacientes.cartsus_ctepac}" 
+		   							styleClass="TamanhoPP"/>
+		   					</div>
+		   					<div class="ObjetosColuna">
+		     					<p:outputLabel value="Identidade"/>
+		     					<p:inputText onfocus="NumericoInteiroLimite(this, 11)" value="#{pacientesBean.pacientes.identidade_ctepac}" 
+		     							styleClass="TamanhoPP"/>
+		   					</div>
+						</div>
+						<div class="ObjetosLinha">					  					
+		   					<div class="ObjetosColuna">
+		   						<p:outputLabel value="CPF"/>
+		   						<p:inputText onfocus="Cpf(this)" value="#{pacientesBean.pacientes.cpf_ctepac}" 
+		   							styleClass="TamanhoPP"/>
+		   					</div>
+		   				</div>
+		   			</p:tab>
+		   			<p:tab title="Família" titleStyleClass="TabViewTabs"> 
+						<div class="ObjetosLinha">	
+		   					<div class="ObjetosColuna">
+		   						<p:outputLabel value="1º filho"/>
+		   						<p:selectOneMenu value="#{pacientesBean.pacientes.primfilho_ctepac}" styleClass="TamanhoSelectMIN">
+									<f:selectItem itemValue="" itemLabel="" />
+									<f:selectItem itemValue="S" itemLabel="Sim" />
+									<f:selectItem itemValue="N" itemLabel="Não" /> 								
+								</p:selectOneMenu>
+							</div>
+						</div>
+						<div class="ObjetosLinha">	
+							<div class="ObjetosColuna">
+								<p:outputLabel value="Irmãos/Quantos/Idades" />
+								<p:inputText onfocus="StringMaiuscula(this, 200)" value="#{pacientesBean.pacientes.irmaos_ctepac}" 
+									styleClass="TamanhoPP"/>
+							</div>
+							<div class="ObjetosColuna">
+								<p:outputLabel value="Pessoas que Convivem" />
+								<p:inputText onfocus="StringMaiuscula(this, 200)" value="#{pacientesBean.pacientes.pessoasconv_ctepac}" 
+									styleClass="TamanhoPP"/>
+							</div>
+						</div>
+						<div class="ObjetosLinha">
+							<div class="ObjetosColuna">
+	     						<p:outputLabel value="Nome do Pai"/>
+	     						<p:inputText onfocus="StringMaiuscula(this, 60)" value="#{pacientesBean.pacientes.pai_ctepac}" 
+	     							styleClass="TamanhoPP"/>
+	     					</div> 
+						       					
+							<div class="ObjetosColuna">
+								<p:outputLabel value="Escolaridade" />
+								<p:selectOneMenu value="#{pacientesBean.pacientes.escolpai_ctepac}" styleClass="TamanhoSelectMIN">
+									<f:selectItem itemValue="" itemLabel="" />
+									<f:selectItem itemValue="1" itemLabel="Fundamental - Incompleto" />
+									<f:selectItem itemValue="2" itemLabel="Fundamental - Completo" /> 
+									<f:selectItem itemValue="3" itemLabel="Médio - Incompleto" />
+									<f:selectItem itemValue="4" itemLabel="Médio - Completo" />
+									<f:selectItem itemValue="5" itemLabel="Superior - Incompleto" />
+									<f:selectItem itemValue="6" itemLabel="Superior - Completo" />
+									<f:selectItem itemValue="7" itemLabel="Pós-graduação" />
+									<f:selectItem itemValue="8" itemLabel="Mestrado" />
+									<f:selectItem itemValue="9" itemLabel="Doutorado" />									
+								</p:selectOneMenu>
+							</div>
+							
+							<div class="ObjetosColuna">
+								<p:outputLabel value="Telefone"/>
+		   						<p:inputText onfocus="NumericoInteiroLimite(this, 11)" value="#{pacientesBean.pacientes.telpai_ctepac}" styleClass="TamanhoPP"/>
+		   					</div> 
+						</div>
+						<div class="ObjetosLinha">
+							<div class="ObjetosColuna">
+	     						<p:outputLabel value="Nome da Mãe"/>
+	     						<p:inputText onfocus="StringMaiuscula(this, 60)" value="#{pacientesBean.pacientes.mae_ctepac}" 
+	     							styleClass="TamanhoPP"/>
+	     					</div> 
+						       					
+							<div class="ObjetosColuna">
+								<p:outputLabel value="Escolaridade" />
+								<p:selectOneMenu value="#{pacientesBean.pacientes.escolmae_ctepac}" styleClass="TamanhoSelectMIN">
+									<f:selectItem itemValue="" itemLabel="" />
+									<f:selectItem itemValue="1" itemLabel="Fundamental - Incompleto" />
+									<f:selectItem itemValue="2" itemLabel="Fundamental - Completo" /> 
+									<f:selectItem itemValue="3" itemLabel="Médio - Incompleto" />
+									<f:selectItem itemValue="4" itemLabel="Médio - Completo" />
+									<f:selectItem itemValue="5" itemLabel="Superior - Incompleto" />
+									<f:selectItem itemValue="6" itemLabel="Superior - Completo" />
+									<f:selectItem itemValue="7" itemLabel="Pós-graduação" />
+									<f:selectItem itemValue="8" itemLabel="Mestrado" />
+									<f:selectItem itemValue="9" itemLabel="Doutorado" />									
+								</p:selectOneMenu>
+							</div>
+							
+							<div class="ObjetosColuna">
+								<p:outputLabel value="Telefone"/>
+		     						<p:inputText onfocus="NumericoInteiroLimite(this, 11)" value="#{pacientesBean.pacientes.telmae_ctepac}" styleClass="TamanhoPP"/>
+		     					</div> 
+						</div>
+					</p:tab>
+		   			<p:tab title="Outros" titleStyleClass="TabViewTabs"> 
+						<div class="ObjetosLinha">
+							<div class="ObjetosColuna">
+		     					<p:outputLabel value="Responsavel"/>
+		     					<p:inputText onfocus="StringMaiuscula(this, 60)" value="#{pacientesBean.pacientes.responsavel_ctepac}" 
+		     							styleClass="TamanhoPP"/>
+		     				</div> 
+						       					
+							<div class="ObjetosColuna">
+								<p:outputLabel value="Email" />
+								<p:inputText onfocus="StringMaiuscula(this, 200)" value="#{pacientesBean.pacientes.emailresp_ctepac}" 
+									styleClass="TamanhoPP"/>
+							</div>
+							
+							<div class="ObjetosColuna">
+								<p:outputLabel value="Telefone"/>
+		     					<p:inputText onfocus="NumericoInteiroLimite(this, 11)" value="#{pacientesBean.pacientes.telresp_ctepac}" 
+		     						styleClass="TamanhoPP" style="width: 178px;"/>
+		     				</div> 
+						</div>
+		
+						<div class="ObjetosLinha">
+							<div class="ObjetosColuna">
+		  						<p:outputLabel value="Endereço"/>
+		            			<p:inputText onfocus="StringMaiuscula(this, 200)" value="#{pacientesBean.pacientes.endereco_ctepac}" 
+		            				maxlength="30" styleClass="TamanhoM" required="true" requiredMessage="por favor informe o logradouro"/>
+		     				</div>
+		     			</div>	
+		
+						<div class="ObjetosLinha">
+			      			<div class="ObjetosColuna">
+								<p:outputLabel value="Bairro" />
+								<p:selectOneMenu value="#{pacientesBean.pacientes.bairro_ctepac}" styleClass="TamanhoSelectPP" >
+									<f:selectItem itemValue="" itemLabel="" />
+									<f:selectItem itemValue="Bairro da Mina" itemLabel="Bairro da Mina" />
+									<f:selectItem itemValue="Cabral" itemLabel="Cabral" /> 
+									<f:selectItem itemValue="Cabuis" itemLabel="Cabuis" />
+									<f:selectItem itemValue="Centro" itemLabel="Centro" />
+									<f:selectItem itemValue="Frigorífico" itemLabel="Frigorífico" />
+									<f:selectItem itemValue="Manoel Reis" itemLabel="Manoel Reis" />
+									<f:selectItem itemValue="N. S. de Fátima" itemLabel="N. S. de Fátima" />
+									<f:selectItem itemValue="Nova Cidade" itemLabel="Nova Cidade" />
+									<f:selectItem itemValue="Novo Horizonte" itemLabel="Novo Horizonte" />
+									<f:selectItem itemValue="Olinda" itemLabel="Olinda" />
+									<f:selectItem itemValue="Paiol" itemLabel="Paiol" />
+									<f:selectItem itemValue="Santos Dumont" itemLabel="Santos Dumont" />
+									<f:selectItem itemValue="Tropical" itemLabel="Tropical" />
+									<f:selectItem itemValue="Outro" itemLabel="Outro Município" />								
+								</p:selectOneMenu>
+							</div>
+							<div class="ObjetosColuna">
+		    					<p:outputLabel value="CEP"/>
+			        			<p:inputText onfocus="Cep(this)" value="#{pacientesBean.pacientes.cep_ctepac}" maxlength="11" styleClass="TextoCaixaAlta TamanhoMIN" />
+							</div>					
+		      			</div>	
+		
+						<div class="ObjetosLinha">    					
+							<div class="ObjetosColuna">
+		     						<p:outputLabel value="Escola"/>
+		     						<p:inputText onfocus="StringMaiuscula(this, 100)" value="#{pacientesBean.pacientes.escola_ctepac}" styleClass="TamanhoPP"/>
+	     					</div>  
+	     					<div class="ObjetosColuna">
+								<p:outputLabel value="Turno" />
+								<p:selectOneMenu value="#{pacientesBean.pacientes.turno_ctepac}" styleClass="TamanhoSelectPP">
+									<f:selectItem itemValue="" itemLabel="" />
+									<f:selectItem itemValue="M" itemLabel="Manhã" />
+									<f:selectItem itemValue="T" itemLabel="Tarde" /> 
+									<f:selectItem itemValue="N" itemLabel="Noite" />
+									<f:selectItem itemValue="I" itemLabel="Integral" />						
+								</p:selectOneMenu>
+							</div> 
+						</div>	
+		
+						<div class="ObjetosLinha">
+							<div class="ObjetosColuna">
+	     						<p:outputLabel value="Turma"/>
+	     						<p:inputText onfocus="StringMaiuscula(this, 10)" value="#{pacientesBean.pacientes.turma_ctepac}" styleClass="TamanhoPPP"/>
+	     					</div>
+		     					
+							<div class="ObjetosColuna">
+								<p:outputLabel value="Data Encaminhamento" />
+								<p:inputText  onfocus="Data(this)" value="#{pacientesBean.pacientes.dataencam_ctepac}" class="TamanhoMIN"/>
+							</div>
+		     			</div>
+		     		</p:tab>
+				</p:tabView>
 	      			 
          		<br/>
          			
@@ -316,202 +320,171 @@
 
     		<h:form id="formdetalhe">
     		
-    			<div class="ObjetosLinha">
-   					<div class="ObjetosColuna">
-						<p:outputLabel value="Nome"/>
-     						<p:inputText onfocus="StringMaiuscula(this, 60)" value="#{pacientesBean.pacientes.nome_ctepac}" 
-     							styleClass="TamanhoM" required="true" requiredMessage="por favor informe o nome do paciente"/>
-     					</div> 
-					<div class="ObjetosColuna">
-						<p:outputLabel value="Data de Nascimento" />
-						<p:inputText  onfocus="Data(this)" value="#{pacientesBean.pacientes.datanasc_ctepac}" 
-							class="TamanhoMIN" required="true" requiredMessage="por favor informe a data de nascimento"/>
-					</div>
-     			</div>
-				<div class="ObjetosLinha">		
-   					<div class="ObjetosColuna">
-   						<p:outputLabel value="Cartão SUS"/>
-   						<p:inputText onfocus="NumericoInteiroLimite(this, 100)" value="#{pacientesBean.pacientes.cartsus_ctepac}" 
-   							styleClass="TamanhoPP"/>
-   					</div>
-   					<div class="ObjetosColuna">
-     						<p:outputLabel value="Identidade"/>
-     						<p:inputText onfocus="NumericoInteiroLimite(this, 11)" value="#{pacientesBean.pacientes.identidade_ctepac}" 
-     							styleClass="TamanhoPP"/>
-   					</div>
-				</div>
-				<div class="ObjetosLinha">					  					
-   					<div class="ObjetosColuna">
-   						<p:outputLabel value="CPF"/>
-   						<p:inputText onfocus="Cpf(this)" value="#{pacientesBean.pacientes.cpf_ctepac}" 
-   							styleClass="TamanhoPP"/>
-   					</div>
-   					
-   					<div class="ObjetosColuna">
-   						<p:outputLabel value="1º filho"/>
-   						<p:selectOneMenu value="#{pacientesBean.pacientes.primfilho_ctepac}" styleClass="TamanhoSelectMIN" required="true" requiredMessage="por favor informe o sexo">
-							<f:selectItem itemValue="" itemLabel="" />
-							<f:selectItem itemValue="S" itemLabel="Sim" />
-							<f:selectItem itemValue="N" itemLabel="Não" /> 								
-						</p:selectOneMenu>
-					</div>
-				</div>
-				<div class="ObjetosLinha">	
-					<div class="ObjetosColuna">
-						<p:outputLabel value="Irmãos/Quantos/Idades" />
-						<p:inputText onfocus="StringMaiuscula(this, 200)" value="#{pacientesBean.pacientes.irmaos_ctepac}" 
-							styleClass="TamanhoPP"/>
-					</div>
-					<div class="ObjetosColuna">
-						<p:outputLabel value="Pessoas que Convivem" />
-						<p:inputText onfocus="StringMaiuscula(this, 200)" value="#{pacientesBean.pacientes.pessoasconv_ctepac}" 
-							styleClass="TamanhoPP"/>
-					</div>
-				</div>
-				<div class="ObjetosLinha">
-					<div class="ObjetosColuna">
-     						<p:outputLabel value="Nome do Pai"/>
-     						<p:inputText onfocus="StringMaiuscula(this, 60)" value="#{pacientesBean.pacientes.pai_ctepac}" 
-     							styleClass="TamanhoPP"/>
-     					</div> 
-				       					
-					<div class="ObjetosColuna">
-						<p:outputLabel value="Escolaridade" />
-						<p:selectOneMenu value="#{pacientesBean.pacientes.escolpai_ctepac}" styleClass="TamanhoSelectMIN" required="true" requiredMessage="por favor informe o bairro que o candidato reside">
-							<f:selectItem itemValue="" itemLabel="" />
-							<f:selectItem itemValue="1" itemLabel="Fundamental - Incompleto" />
-							<f:selectItem itemValue="2" itemLabel="Fundamental - Completo" /> 
-							<f:selectItem itemValue="3" itemLabel="Médio - Incompleto" />
-							<f:selectItem itemValue="4" itemLabel="Médio - Completo" />
-							<f:selectItem itemValue="5" itemLabel="Superior - Incompleto" />
-							<f:selectItem itemValue="6" itemLabel="Superior - Completo" />
-							<f:selectItem itemValue="7" itemLabel="Pós-graduação" />
-							<f:selectItem itemValue="8" itemLabel="Mestrado" />
-							<f:selectItem itemValue="9" itemLabel="Doutorado" />									
-						</p:selectOneMenu>
-					</div>
-					
-					<div class="ObjetosColuna">
-						<p:outputLabel value="Telefone"/>
-   						<p:inputText onfocus="NumericoInteiroLimite(this, 11)" value="#{pacientesBean.pacientes.telpai_ctepac}" styleClass="TamanhoPP"/>
-   					</div> 
-				</div>
-				<div class="ObjetosLinha">
-					<div class="ObjetosColuna">
-     						<p:outputLabel value="Nome da Mãe"/>
-     						<p:inputText onfocus="StringMaiuscula(this, 60)" value="#{pacientesBean.pacientes.mae_ctepac}" 
-     							styleClass="TamanhoPP"/>
-     					</div> 
-				       					
-					<div class="ObjetosColuna">
-						<p:outputLabel value="Escolaridade" />
-						<p:selectOneMenu value="#{pacientesBean.pacientes.escolmae_ctepac}" styleClass="TamanhoSelectMIN" required="true" requiredMessage="por favor informe o bairro que o candidato reside">
-							<f:selectItem itemValue="" itemLabel="" />
-							<f:selectItem itemValue="1" itemLabel="Fundamental - Incompleto" />
-							<f:selectItem itemValue="2" itemLabel="Fundamental - Completo" /> 
-							<f:selectItem itemValue="3" itemLabel="Médio - Incompleto" />
-							<f:selectItem itemValue="4" itemLabel="Médio - Completo" />
-							<f:selectItem itemValue="5" itemLabel="Superior - Incompleto" />
-							<f:selectItem itemValue="6" itemLabel="Superior - Completo" />
-							<f:selectItem itemValue="7" itemLabel="Pós-graduação" />
-							<f:selectItem itemValue="8" itemLabel="Mestrado" />
-							<f:selectItem itemValue="9" itemLabel="Doutorado" />									
-						</p:selectOneMenu>
-					</div>
-					
-					<div class="ObjetosColuna">
-						<p:outputLabel value="Telefone"/>
-     						<p:inputText onfocus="NumericoInteiroLimite(this, 11)" value="#{pacientesBean.pacientes.telmae_ctepac}" styleClass="TamanhoPP"/>
-     					</div> 
-				</div>
-				<div class="ObjetosLinha">
-					<div class="ObjetosColuna">
-     						<p:outputLabel value="Responsavel"/>
-     						<p:inputText onfocus="StringMaiuscula(this, 60)" value="#{pacientesBean.pacientes.responsavel_ctepac}" 
-     							styleClass="TamanhoPP"/>
-     					</div> 
-				       					
-					<div class="ObjetosColuna">
-						<p:outputLabel value="Email" />
-						<p:inputText onfocus="StringMaiuscula(this, 200)" value="#{pacientesBean.pacientes.emailresp_ctepac}" 
-							styleClass="TamanhoPP"/>
-					</div>
-					
-					<div class="ObjetosColuna">
-						<p:outputLabel value="Telefone"/>
-     						<p:inputText onfocus="NumericoInteiroLimite(this, 11)" value="#{pacientesBean.pacientes.telresp_ctepac}" 
-     						styleClass="TamanhoPP" style="width: 178px;"/>
-     					</div> 
-				</div>
-
-				<div class="ObjetosLinha">
-					<div class="ObjetosColuna">
-  						<p:outputLabel value="Endereço"/>
-            			<p:inputText onfocus="StringMaiuscula(this, 200)" value="#{pacientesBean.pacientes.endereco_ctepac}" 
-            				maxlength="30" styleClass="TamanhoM" required="true" requiredMessage="por favor informe o logradouro"/>
-     				</div>
-     			</div>	
-
-				<div class="ObjetosLinha">
-	      			<div class="ObjetosColuna">
-						<p:outputLabel value="Bairro" />
-						<p:selectOneMenu value="#{pacientesBean.pacientes.bairro_ctepac}" styleClass="TamanhoSelectPP" required="true" 
-							requiredMessage="por favor informe o bairro">
-							<f:selectItem itemValue="" itemLabel="" />
-							<f:selectItem itemValue="Bairro da Mina" itemLabel="Bairro da Mina" />
-							<f:selectItem itemValue="Cabral" itemLabel="Cabral" /> 
-							<f:selectItem itemValue="Cabuis" itemLabel="Cabuis" />
-							<f:selectItem itemValue="Centro" itemLabel="Centro" />
-							<f:selectItem itemValue="Frigorífico" itemLabel="Frigorífico" />
-							<f:selectItem itemValue="Manoel Reis" itemLabel="Manoel Reis" />
-							<f:selectItem itemValue="N. S. de Fátima" itemLabel="N. S. de Fátima" />
-							<f:selectItem itemValue="Nova Cidade" itemLabel="Nova Cidade" />
-							<f:selectItem itemValue="Novo Horizonte" itemLabel="Novo Horizonte" />
-							<f:selectItem itemValue="Olinda" itemLabel="Olinda" />
-							<f:selectItem itemValue="Paiol" itemLabel="Paiol" />
-							<f:selectItem itemValue="Santos Dumont" itemLabel="Santos Dumont" />
-							<f:selectItem itemValue="Tropical" itemLabel="Tropical" />
-							<f:selectItem itemValue="Outro" itemLabel="Outro Município" />								
-						</p:selectOneMenu>
-					</div>
-					<div class="ObjetosColuna">
-    						<p:outputLabel value="CEP"/>
-	        			<p:inputText onfocus="Cep(this)" value="#{pacientesBean.pacientes.cep_ctepac}" maxlength="11" styleClass="TextoCaixaAlta TamanhoMIN" required="true" requiredMessage="por favor informe o CEP"/>
-					</div>					
-      			</div>	
-
-				<div class="ObjetosLinha">    					
-					<div class="ObjetosColuna">
-     						<p:outputLabel value="Escola"/>
-     						<p:inputText onfocus="StringMaiuscula(this, 100)" value="#{pacientesBean.pacientes.escola_ctepac}" 
-     							styleClass="TamanhoPP"/>
-     					</div>  
-     					<div class="ObjetosColuna">
-						<p:outputLabel value="Turno" />
-						<p:selectOneMenu value="#{pacientesBean.pacientes.turno_ctepac}" styleClass="TamanhoSelectPP">
-							<f:selectItem itemValue="" itemLabel="" />
-							<f:selectItem itemValue="M" itemLabel="Manhã" />
-							<f:selectItem itemValue="T" itemLabel="Tarde" /> 
-							<f:selectItem itemValue="N" itemLabel="Noite" />
-							<f:selectItem itemValue="I" itemLabel="Integral" />						
-						</p:selectOneMenu>
-					</div> 
-				</div>	
-
-				<div class="ObjetosLinha">
-					<div class="ObjetosColuna">
-     						<p:outputLabel value="Turma"/>
-     						<p:inputText onfocus="StringMaiuscula(this, 10)" value="#{pacientesBean.pacientes.turma_ctepac}" 
-     							styleClass="TamanhoPPP"/>
-     					</div>
-     					
-					<div class="ObjetosColuna">
-						<p:outputLabel value="Data Encaminhamento" />
-						<p:inputText  onfocus="Data(this)" value="#{pacientesBean.pacientes.dataencam_ctepac}" 
-							class="TamanhoMIN" required="true" requiredMessage="por favor informe a data de encaminhamento"/>
-					</div>
-     			</div>      			
-      			
+    			<p:tabView style="margin-top: 10px;" styleClass="TabView">
+      				<p:tab title="Dados Pessoais" titleStyleClass="TabViewTabs"> 
+    		
+		    			<div class="ObjetosLinha">
+		   					<div class="ObjetosColuna">
+								<p:outputLabel value="Nome"/>
+	     						<p:inputText value="#{pacientesBean.pacientes.nome_ctepac}" styleClass="TamanhoM" readonly="true"/>
+	     					</div> 
+							<div class="ObjetosColuna">
+								<p:outputLabel value="Data de Nascimento" />
+								<p:inputText value="#{pacientesBean.pacientes.datanasc_ctepac}" class="TamanhoMIN" readonly="true"/>
+							</div>
+		     			</div>
+						<div class="ObjetosLinha">		
+		   					<div class="ObjetosColuna">
+		   						<p:outputLabel value="Cartão SUS"/>
+		   						<p:inputText value="#{pacientesBean.pacientes.cartsus_ctepac}" styleClass="TamanhoPP" readonly="true"/>
+		   					</div>
+		   					<div class="ObjetosColuna">
+		     					<p:outputLabel value="Identidade"/>
+		     					<p:inputText value="#{pacientesBean.pacientes.identidade_ctepac}" styleClass="TamanhoPP" readonly="true"/>
+		   					</div>
+						</div>
+						<div class="ObjetosLinha">					  					
+		   					<div class="ObjetosColuna">
+		   						<p:outputLabel value="CPF"/>
+		   						<p:inputText value="#{pacientesBean.pacientes.cpf_ctepac}" styleClass="TamanhoPP" readonly="true"/>
+		   					</div>
+		   				</div>
+   					</p:tab>
+		   			<p:tab title="Família" titleStyleClass="TabViewTabs">
+		   				<div class="ObjetosLinha">	
+		   					<div class="ObjetosColuna">
+		   						<p:outputLabel value="1º filho"/>
+		   						<p:inputText value="#{pacientesBean.pacientes.primfilho_ctepac eq 'S' ? 'Sim' : 'Não'}" styleClass="TamanhoPP" readonly="true"/>
+							</div>
+						</div>
+						<div class="ObjetosLinha">	
+							<div class="ObjetosColuna">
+								<p:outputLabel value="Irmãos/Quantos/Idades" />
+								<p:inputText value="#{pacientesBean.pacientes.irmaos_ctepac}" styleClass="TamanhoPP" readonly="true"/>
+							</div>
+							<div class="ObjetosColuna">
+								<p:outputLabel value="Pessoas que Convivem" />
+								<p:inputText value="#{pacientesBean.pacientes.pessoasconv_ctepac}" styleClass="TamanhoPP" readonly="true"/>
+							</div>
+						</div>
+						<div class="ObjetosLinha">
+							<div class="ObjetosColuna">
+	     						<p:outputLabel value="Nome do Pai"/>
+	     						<p:inputText value="#{pacientesBean.pacientes.pai_ctepac}" styleClass="TamanhoPP" readonly="true"/>
+	     					</div> 
+						       					
+							<div class="ObjetosColuna">
+								<p:outputLabel value="Escolaridade" />
+								<p:inputText value="#{pacientesBean.pacientes.escolpai_ctepac eq '1' ? 'Fundamental - Incompleto' : (
+						                	    pacientesBean.pacientes.escolpai_ctepac eq '2' ? 'Fundamental - Completo' : (
+						                	    pacientesBean.pacientes.escolpai_ctepac eq '3' ? 'Médio - Incompleto' : (
+						                	    pacientesBean.pacientes.escolpai_ctepac eq '4' ? 'Médio - Completo' : (
+						                	    pacientesBean.pacientes.escolpai_ctepac eq '5' ? 'Superior - Incompleto' : (
+						                	    pacientesBean.pacientes.escolpai_ctepac eq '6' ? 'Superior - Completo' : (
+						                	    pacientesBean.pacientes.escolpai_ctepac eq '7' ? 'Pós-graduação' : (
+						                	    pacientesBean.pacientes.escolpai_ctepac eq '8' ? 'Mestrado' : (
+						                	    pacientesBean.pacientes.escolpai_ctepac eq '9' ? 'Doutorado' : '')		                	  
+						                	  ))))		                	  
+						                	  )))}" styleClass="TamanhoPP" readonly="true"/>
+							</div>
+							
+							<div class="ObjetosColuna">
+								<p:outputLabel value="Telefone"/>
+		   						<p:inputText value="#{pacientesBean.pacientes.telpai_ctepac}" styleClass="TamanhoPP" readonly="true"/>
+		   					</div> 
+						</div>
+						<div class="ObjetosLinha">
+							<div class="ObjetosColuna">
+	     						<p:outputLabel value="Nome da Mãe"/>
+	     						<p:inputText value="#{pacientesBean.pacientes.mae_ctepac}" styleClass="TamanhoPP" readonly="true"/>
+	     					</div> 
+						       					
+							<div class="ObjetosColuna">
+								<p:outputLabel value="Escolaridade" />
+								<p:inputText value="#{pacientesBean.pacientes.escolmae_ctepac eq '1' ? 'Fundamental - Incompleto' : (
+						                	    pacientesBean.pacientes.escolmae_ctepac eq '2' ? 'Fundamental - Completo' : (
+						                	    pacientesBean.pacientes.escolmae_ctepac eq '3' ? 'Médio - Incompleto' : (
+						                	    pacientesBean.pacientes.escolmae_ctepac eq '4' ? 'Médio - Completo' : (
+						                	    pacientesBean.pacientes.escolmae_ctepac eq '5' ? 'Superior - Incompleto' : (
+						                	    pacientesBean.pacientes.escolmae_ctepac eq '6' ? 'Superior - Completo' : (
+						                	    pacientesBean.pacientes.escolmae_ctepac eq '7' ? 'Pós-graduação' : (
+						                	    pacientesBean.pacientes.escolmae_ctepac eq '8' ? 'Mestrado' : (
+						                	    pacientesBean.pacientes.escolmae_ctepac eq '9' ? 'Doutorado' : '')		                	  
+						                	  ))))		                	  
+						                	  )))}" styleClass="TamanhoPP" readonly="true" />
+							</div>
+							
+							<div class="ObjetosColuna">
+								<p:outputLabel value="Telefone"/>
+	     						<p:inputText value="#{pacientesBean.pacientes.telmae_ctepac}" styleClass="TamanhoPP" readonly="true" />
+	     					</div> 
+						</div>
+					</p:tab>
+		   			<p:tab title="Outros" titleStyleClass="TabViewTabs"> 
+						<div class="ObjetosLinha">
+							<div class="ObjetosColuna">
+	     						<p:outputLabel value="Responsavel"/>
+	     						<p:inputText value="#{pacientesBean.pacientes.responsavel_ctepac}" styleClass="TamanhoPP" readonly="true"/>
+	     					</div> 
+						       					
+							<div class="ObjetosColuna">
+								<p:outputLabel value="Email" />
+								<p:inputText value="#{pacientesBean.pacientes.emailresp_ctepac}" styleClass="TamanhoPP" readonly="true"/>
+							</div>
+							
+							<div class="ObjetosColuna">
+								<p:outputLabel value="Telefone"/>
+	     						<p:inputText value="#{pacientesBean.pacientes.telresp_ctepac}" styleClass="TamanhoPP" style="width: 178px;" readonly="true"/>
+	     					</div> 
+						</div>
+		
+						<div class="ObjetosLinha">
+							<div class="ObjetosColuna">
+		  						<p:outputLabel value="Endereço"/>
+		            			<p:inputText value="#{pacientesBean.pacientes.endereco_ctepac}" styleClass="TamanhoM" readonly="true"/>
+		     				</div>
+		     			</div>	
+		
+						<div class="ObjetosLinha">
+			      			<div class="ObjetosColuna">
+								<p:outputLabel value="Bairro" />
+								<p:inputText value="#{pacientesBean.pacientes.bairro_ctepac}" styleClass="TamanhoPP" readonly="true"/>
+							</div>
+							<div class="ObjetosColuna">
+		    					<p:outputLabel value="CEP"/>
+			        			<p:inputText value="#{pacientesBean.pacientes.cep_ctepac}" styleClass="TamanhoMIN" readonly="true"/>
+							</div>					
+		      			</div>	
+		
+						<div class="ObjetosLinha">    					
+							<div class="ObjetosColuna">
+		     					<p:outputLabel value="Escola"/>
+		     					<p:inputText value="#{pacientesBean.pacientes.escola_ctepac}" styleClass="TamanhoPP" readonly="true"/>
+		     				</div>  
+		     				<div class="ObjetosColuna">
+								<p:outputLabel value="Turno" />
+								<p:inputText value="#{pacientesBean.pacientes.turno_ctepac}" styleClass="TamanhoPP" readonly="true"/>
+							</div> 
+						</div>	
+		
+						<div class="ObjetosLinha">
+							<div class="ObjetosColuna">
+	     						<p:outputLabel value="Turma"/>
+	     						<p:inputText value="#{pacientesBean.pacientes.turma_ctepac}" styleClass="TamanhoPPP" readonly="true"/>
+	     					</div>
+		     					
+							<div class="ObjetosColuna">
+								<p:outputLabel value="Data Encaminhamento" />
+								<p:inputText value="#{pacientesBean.pacientes.dataencam_ctepac}" class="TamanhoMIN" readonly="true"/>
+							</div>
+		     			</div> 
+     				</p:tab>     			
+      			</p:tabView>
+	      			 
+         		<br/>
+         			
+			    <p:commandButton styleClass="BotaoPrimario" action="#{pacientesBean.excluir}" value="Excluir" 
+			     	onclick="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
       		</h:form>
    	  </p:dialog>
 

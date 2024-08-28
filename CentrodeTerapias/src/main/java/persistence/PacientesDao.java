@@ -123,7 +123,29 @@ public class PacientesDao extends Dao {
 		stmt.setString(23, pac.getTurma_ctepac());
 		stmt.setString(24, pac.getDataencam_ctepac());
 		stmt.setString(25, usuario);
-		stmt.setString(25, pac.getStatus_ctepac());
+		stmt.setString(26, pac.getStatus_ctepac());
+
+		stmt.executeUpdate();
+		
+		close();
+	}
+	
+	public void excluir(Pacientes pac)throws Exception{
+		open();
+		
+		String sql = "delete from cte_agenda where id_ctepac = ? ";
+		
+		stmt = con.prepareStatement(sql);
+		
+		stmt.setInt(1, pac.getId_ctepac());
+
+		stmt.executeUpdate();
+		
+		sql = "delete from cte_pacientes where id_ctepac = ? ";
+		
+		stmt = con.prepareStatement(sql);
+		
+		stmt.setInt(1, pac.getId_ctepac());
 
 		stmt.executeUpdate();
 		

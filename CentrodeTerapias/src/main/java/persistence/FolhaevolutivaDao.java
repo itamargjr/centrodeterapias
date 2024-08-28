@@ -135,4 +135,26 @@ public class FolhaevolutivaDao extends Dao {
 		
 		close();
 	}
+	
+	public Boolean temfolha(Integer paciente)throws Exception{               
+		Boolean temfolha = false;                
+		open();
+		
+		String sql = "select "+                                                     
+					 "	a.id_folhaevol "+ 
+					 "from "+
+					 "	cte_folhaevolutiva a "+
+					 "where "+
+					 "	a.id_ctepac = " + paciente;
+		
+		stmt = con.prepareStatement(sql);
+		
+		rs = stmt.executeQuery();
+		
+		temfolha = rs.next();	
+
+		close();
+		
+		return temfolha;		
+	}
 }

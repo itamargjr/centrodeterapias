@@ -17,6 +17,7 @@ import org.primefaces.PrimeFaces;
 
 import entity.Pacientes;
 import net.sf.jasperreports.engine.JasperRunManager;
+import persistence.FolhaevolutivaDao;
 import persistence.PacientesDao;
 import report.DSReportPacientes;
 
@@ -93,7 +94,35 @@ public class PacientesBean {
 			
 			pd.gravar(pacientes);
 			
+			pacienteslista.add(pacientes);
+			
 			pacientes = new Pacientes();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
+		}
+	}
+	
+	public void excluir() {
+		try {
+			
+			if (pacientes.getId_ctepac()!=null) {
+				FolhaevolutivaDao fd = new FolhaevolutivaDao();
+				
+				if (fd.temfolha(pacientes.getId_ctepac())) {
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Existe folha evolutiva para este paciente, não pode excluir", ""));
+				} else {
+					PacientesDao pd = new PacientesDao();
+					
+					pd.excluir(pacientes);
+					
+					pacienteslista.remove(pacientes);
+					
+					pacientes = new Pacientes();
+				}
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
