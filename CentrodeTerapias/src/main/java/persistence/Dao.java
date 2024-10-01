@@ -27,7 +27,7 @@ public class Dao {
 	private final String PASS = "Protagoras23*/"; // Usuario Prefeitura 
 	
 //	private final String USER = "protagoras_protagoras"; // Usuario protagoras 
-//	private final String PASS = "Protagoras23*/"; // Usuario Perdido 
+//	private final String PASS = "Protagoras23*/"; // Usuario protagoras 
 	
 	public String caminho(){
 		return URL;

@@ -275,8 +275,7 @@ public class AcessoBean implements Serializable {
 		//System.out.println(usulog);
 		
 		return usulog !=null;
-	}
-	
+	}	
 	
 	public String validausu(Integer item) throws Exception{
 		// alterar o AcessoBean para guardar tambe�m a variavel de sessao usuadm - login()   
