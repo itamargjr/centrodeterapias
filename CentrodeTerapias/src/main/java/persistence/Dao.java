@@ -20,23 +20,14 @@ public class Dao {
 	ResultSet rs;
 	CallableStatement cstmt;
 	
-
-//	private final String URL = "jdbc:mysql://151.106.110.4:3306/u145949539_sistemas"; // URL Hostinger
-
-//	private final String USER = "u145949539_admin";
-//	private final String PASS = "EducaNilopolis2021*/";
+	private final String URL = "jdbc:mysql://15.235.55.109:3306/prefe3015_prefnil"; // URL Prefeitura 
+//	private final String URL = "jdbc:mysql://15.235.55.109:3306/protagoras_prefnil"; // URL Protagoras
 	
-//	private final String URL = "jdbc:mysql://207.244.230.138:3306/x2plataf_sistemas"; // URL Integrator
-//	private final String URL = "jdbc:mysql://15.235.55.109:3306/x2plataf_sistemas"; // URL Integrator DEV
-//	private final String URL = "jdbc:mysql://localhost:3306/x2plataf_sistemas"; // URL Perdida 
-	private final String URL = "jdbc:mysql://15.235.55.109:3306/protagoras_prefnil"; // URL Protagoras
-//	private final String URL = "jdbc:mysql://localhost:3306/protagoras_prefnil"; // URL Protagoras Localhost
+	private final String USER = "prefe3015_protagoras"; // Usuario Prefeitura 
+	private final String PASS = "Protagoras23*/"; // Usuario Prefeitura 
 	
-//	private final String USER = "x2plataf_admin"; // Usuario Perdido 
-//	private final String PASS = "EducaNilopolis2021*/"; // Usuario Perdido 
-	
-	private final String USER = "protagoras_protagoras"; // Usuario protagoras 
-	private final String PASS = "Protagoras23*/"; // Usuario Perdido 
+//	private final String USER = "protagoras_protagoras"; // Usuario protagoras 
+//	private final String PASS = "Protagoras23*/"; // Usuario Perdido 
 	
 	public String caminho(){
 		return URL;
